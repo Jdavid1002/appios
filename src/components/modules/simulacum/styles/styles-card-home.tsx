@@ -1,0 +1,90 @@
+import {StyleSheet} from 'react-native';
+
+export default StyleSheet.create({
+  container: {
+    backgroundColor: '#FFF',
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 134,
+    paddingVertical: 15,
+    flex: 1,
+  },
+  cardImageLeft: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: 73,
+    height: 134,
+    borderRadius: 15,
+  },
+  title: {
+    fontSize: 22,
+    fontFamily: 'Nunito-ExtraBold',
+    textAlign: 'center',
+    color: '#051845',
+    marginBottom: 8,
+  },
+  subTitle: {
+    color: '#767676',
+    marginBottom: 10,
+    marginLeft: 80,
+    marginRight: 80,
+    textAlign: 'center',
+    fontFamily: 'Nunito-Bold',
+    fontSize: 16,
+  },
+  starWraper: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    marginRight: 20,
+    marginTop: 20,
+  },
+  starContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+    paddingRight: 25,
+  },
+  star: {
+    height: 15,
+    width: 15,
+    marginRight: 2,
+  },
+  brainContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
+  textInfo: {
+    fontFamily: 'Nunito',
+    fontSize: 8,
+    fontWeight: 'bold',
+    color: '#22abdf',
+  },
+  brainImage: {
+    width: 13,
+    height: 15,
+  },
+  textDescription: {
+    fontSize: 12,
+    fontFamily: 'Nunito-Regular',
+  },
+  button: {
+    minWidth: 200,
+    maxWidth: 250,
+    width: '100%',
+    backgroundColor: '#e94044',
+    elevation: 0,
+    shadowOffset: {width: 0, height: 0},
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontFamily: 'Nunito-ExtraBold',
+    fontSize: 14,
+    color: 'white',
+  },
+});
