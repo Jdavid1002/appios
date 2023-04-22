@@ -10,7 +10,7 @@ import {Text, Button} from 'native-base';
 
 import InlineWebview from 'app_components/commons/webview';
 
-import {styles} from './../index';
+import {styles} from '../index';
 
 const TriviaLayout: React.FC<any> = props => {
   return (

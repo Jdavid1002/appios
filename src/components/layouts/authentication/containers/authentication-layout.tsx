@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {Stack} from 'app_router/navigator';
-import LoginScreen from 'app_components/screens/login/containers/login';
-import ForgotPasswordScreen from 'app_components/screens/forgot-password/containers/forgot-password';
-import RegisterScreen from 'app_components/screens/register/containers/register';
+import LoginScreen from '../../../screens/login/containers/login';
+// import ForgotPasswordScreen from '../../../screens/forgot-password/containers/forgot-password';
+// import RegisterFormScreenComponent from '../../../screens/register/containers/register';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 function mapStateToProps(state: any) {
   return state;
@@ -13,37 +13,35 @@ function mapStateToProps(state: any) {
 
 class AuthenticationLayout extends Component<any, any> {
   render() {
+    const Tab = createBottomTabNavigator();
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
+        <Tab.Navigator>
+          <Tab.Screen
             name="Login"
             component={LoginScreen}
             options={{
               title: 'Iniciar sesión',
-              animationTypeForReplace: !this.props.auth.user ? 'pop' : 'push',
               headerShown: false,
             }}
           />
-          <Stack.Screen
+          {/* <Tab.Screen
+            name="Register"
+            component={RegisterFormScreenComponent}
+            options={{
+              title: 'Registrarse',
+              headerShown: false,
+            }}
+          />
+          <Tab.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
             options={{
               title: 'Olvidó su contraseña',
-              // animationTypeForReplace: !this.props.auth.user ? 'pop' : 'push',
               headerShown: false,
             }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={{
-              title: 'Registrarse',
-              // animationTypeForReplace: !this.props.auth.user ? 'pop' : 'push',
-              headerShown: false,
-            }}
-          />
-        </Stack.Navigator>
+          /> */}
+        </Tab.Navigator>
       </NavigationContainer>
     );
   }

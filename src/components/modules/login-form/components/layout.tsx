@@ -1,23 +1,23 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   TextInput,
   View,
   TouchableOpacity,
-  ActivityIndicator
-} from "react-native";
-import mainStyles from "app_styles/MainStyles";
-import styles from "../styles/LoginFormStyle";
-import { CustomText } from "app_components/commons/customs/components/customComponents";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+  ActivityIndicator,
+} from 'react-native';
+import mainStyles from '../../../../styles/MainStyles';
+import styles from '../styles/LoginFormStyle';
+import {CustomText} from '../../../commons/customs/components/customComponents';
+import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 class LoginFormComponent extends Component<any> {
   state = {
-    showLettersPassword: false
+    showLettersPassword: false,
   };
 
   render() {
-    const { email, password } = this.props;
+    const {email, password} = this.props;
 
     return (
       <View style={[styles.container]}>
@@ -26,16 +26,16 @@ class LoginFormComponent extends Component<any> {
           style={mainStyles.input}
           placeholder="Escribe tu Correo electrónico"
           placeholderTextColor="rgba(255, 255, 255, 0.5)"
-          onChangeText={this.props.handleInputChange("email")}
+          onChangeText={this.props.handleInputChange('email')}
           value={email}
           autoCapitalize="none"
           textContentType="emailAddress"
-          autoCompleteType="email"
+          autoComplete="email"
           keyboardType="email-address"
           editable={!this.props.loading}
         />
 
-        <View style={{ position: "relative" }}>
+        <View style={{position: 'relative'}}>
           <CustomText style={mainStyles.label}>Contraseña</CustomText>
           <TextInput
             style={mainStyles.input}
@@ -44,18 +44,17 @@ class LoginFormComponent extends Component<any> {
             textContentType="password"
             autoCapitalize="none"
             secureTextEntry={!this.state.showLettersPassword}
-            onChangeText={this.props.handleInputChange("password")}
+            onChangeText={this.props.handleInputChange('password')}
             value={password}
             editable={!this.props.loading}
           />
           <CustomText
-            style={{ position: "absolute", bottom: 32, right: 10 }}
+            style={{position: 'absolute', bottom: 32, right: 10}}
             onPress={() => {
               this.setState({
-                showLettersPassword: !this.state.showLettersPassword
+                showLettersPassword: !this.state.showLettersPassword,
               });
-            }}
-          >
+            }}>
             {!this.state.showLettersPassword ? (
               <FontAwesomeIcon
                 icon={faEye}
@@ -77,21 +76,18 @@ class LoginFormComponent extends Component<any> {
         </CustomText>
         <CustomText
           style={[mainStyles.textCenter, mainStyles.link]}
-          onPress={this.props.onForgotPassword}
-        >
+          onPress={this.props.onForgotPassword}>
           Recupérala
         </CustomText>
 
         <TouchableOpacity
           onPress={this.props.onSubmit}
           style={mainStyles.formButton}
-          disabled={this.props.loading}
-        >
+          disabled={this.props.loading}>
           {this.props.loading && <ActivityIndicator />}
           {!this.props.loading && (
             <CustomText
-              style={[mainStyles.textCenter, mainStyles.formButtonText]}
-            >
+              style={[mainStyles.textCenter, mainStyles.formButtonText]}>
               Ingresar
             </CustomText>
           )}

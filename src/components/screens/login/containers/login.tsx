@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Layout from 'app_components/screens/login/components/login-layout';
 import {connect} from 'react-redux';
-import ScreenSplash from 'app_components/commons/screen-splash/components/screen-splash';
+import ScreenSplash from '../../../commons/screen-splash/components/screen-splash';
+import Layout from '../components/login-layout';
 
 class Login extends Component<any, any> {
   state = {

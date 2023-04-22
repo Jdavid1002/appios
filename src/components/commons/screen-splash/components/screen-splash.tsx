@@ -1,7 +1,6 @@
 import React from 'react';
 import { SafeAreaView, Image} from 'react-native';
 
-
 function ScreenSplash() {
   return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>

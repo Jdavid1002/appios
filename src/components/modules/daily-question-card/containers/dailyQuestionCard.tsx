@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import SimulacrumService from 'app_services/simulacrum/simulacrum';
 
-import {DailyQuestionCardLayout} from './../index';
+import {DailyQuestionCardLayout} from '../index';
 
 class DailyQuestionCard extends React.Component<any, any> {
   constructor(props: any) {

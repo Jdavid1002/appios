@@ -1,12 +1,12 @@
 // @import_config_files
-import {main_external_api} from 'app_config/globals';
-import { store } from 'app_storage/redux-storage'
+import {main_external_api} from '../config/globals';
+import {store} from '../storage/redux-storage';
 
 // @end
 
 // @import_services
-import {externalConnectionsService} from 'app_services/externalConnectionsService';
-import { LOGOUT } from 'app_reducers/auth/types';
+import {externalConnectionsService} from '../services/externalConnectionsService';
+import {LOGOUT} from '../reducers/auth/types';
 // @end
 
 type HttpCustomStructure = {
@@ -41,9 +41,8 @@ class HttpUtil {
           httpConfig.api,
         );
       } else if (main_external_api) {
-        this._main_external_api = this._main_external_api = externalConnectionsService.getConnection(
-          main_external_api,
-        );
+        this._main_external_api = this._main_external_api =
+          externalConnectionsService.getConnection(main_external_api);
       } else {
         this._main_external_api = null;
       }
@@ -115,12 +114,12 @@ class HttpUtil {
       );
       const query_response = await query.json();
 
-      if(query_response?.status_code === 'jwt_token_invalid'){
+      if (query_response?.status_code === 'jwt_token_invalid') {
         store.dispatch({
           type: LOGOUT,
           payload: null,
         });
-        return null
+        return null;
       }
 
       return query_response;

@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {Fab, Text, Button, Icon} from 'native-base';
-import styles from './../styles';
+import styles from '../styles';
 
 
 const HowIFeelLayout = (props: any) => {

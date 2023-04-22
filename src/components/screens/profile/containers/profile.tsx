@@ -5,7 +5,6 @@ import { LOGOUT } from "app_reducers/auth/types";
 import { ProfileLayout } from "app_components/screens/profile";
 
 import ProfileService from "app_services/profile";
-import StatisticsService from "app_services/statistics/statistics";
 
 class Profile extends Component<any, any> {
   constructor(props: any) {
@@ -46,7 +45,7 @@ class Profile extends Component<any, any> {
   };
 
   doGetStatistics = async () => {
-    const statisticsService = new StatisticsService();
+    const profileService = new ProfileService();
 
     const params = {
       nPerPage: "10",
@@ -57,7 +56,7 @@ class Profile extends Component<any, any> {
       structure_id: this?.props?.data?.program?._id || ""
     };
 
-    await statisticsService.getStatistics(
+    await profileService.getStatistics(
       this.props.token,
       this.props.alliance_id,
       this.props.dispatch,

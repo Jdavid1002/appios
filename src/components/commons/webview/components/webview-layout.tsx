@@ -1,8 +1,8 @@
 import React from 'react';
 import {ActivityIndicator, View, StyleProp, ViewStyle} from 'react-native';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
-import {styles} from './../index';
-import {fontFace, normalize, HtmlCleaner} from './../utils';
+import {styles} from '../index';
+import {fontFace, normalize, HtmlCleaner} from '../utils';
 
 interface InlineWebViewProps {
   html: string;

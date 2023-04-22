@@ -16,7 +16,7 @@ import HowIFeel from 'app_components/commons/how-i-feel';
 import SimualcrumService from 'app_services/simulacrum/simulacrum';
 
 import mainStyles from 'app_styles/MainStyles';
-import { styles } from './../index'
+import { styles } from '../index'
 import SimulacrumService from 'app_services/simulacrum/simulacrum';
 import { updateLives } from 'app_reducers/auth/actions';
 

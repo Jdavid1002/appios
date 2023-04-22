@@ -1,20 +1,11 @@
 import React from 'react';
-// import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView, View, StatusBar} from 'react-native';
 
-import {
-  ScrollView,
-  View,
-  // TouchableOpacity,
-  StatusBar,
-  // Platform,
-} from 'react-native';
-import LoginFormContainer from 'app_components/modules/login-form/containers/login-form';
-import mainStyles from 'app_styles/MainStyles';
+import LogoHeaderContainer from '../../../commons/logo-header/containers/logo-header-container';
+import LoginFormContainer from '../../../modules/login-form/containers/login-form';
+import {CustomText} from '../../../commons/customs/components/customComponents';
+import mainStyles from '../../../../styles/MainStyles';
 import styles from '../styles/login-styles';
-import LogoHeaderContainer from 'app_components/commons/logo-header/containers/logo-header-container';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-// import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-// import {faFacebookSquare} from '@fortawesome/free-brands-svg-icons';
 
 function LoginLayout(props: any) {
   return (
@@ -27,17 +18,6 @@ function LoginLayout(props: any) {
           onForgotPassword={props.onForgotPassword}
         />
       </View>
-
-      {/* {Platform.OS === 'android' && (
-        <TouchableOpacity
-          onPress={props.onFacebook}
-          style={styles.facebookButton}>
-          <FontAwesomeIcon icon={faFacebookSquare} color={'#FFF'} size={28} />
-          <CustomText style={styles.facebookButtonText}>
-            Continuar con Facebook
-          </CustomText>
-        </TouchableOpacity>
-      )} */}
 
       <CustomText
         style={[
@@ -52,9 +32,6 @@ function LoginLayout(props: any) {
         onPress={props.onRegister}>
         Regístrate
       </CustomText>
-
-      {/*<CustomText>Login - template</CustomText>
-        <Button title="Iniciar sesión" onPress={props.onPress} />*/}
     </ScrollView>
   );
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import Video from 'react-native-video';
+// import VideoPlayer from 'react-native-video-controls';
 
 import {PlayerStyles as styles} from 'app_components/commons/player';
 

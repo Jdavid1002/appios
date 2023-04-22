@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Image} from 'react-native';
 import {Text} from 'native-base';
 
-import {styles} from './../index';
+import {styles} from '../index';
 
 class About extends React.Component {
   render() {

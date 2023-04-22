@@ -70,6 +70,7 @@ class SimulacrumService {
       auth_token: this.token,
       params: _params,
     }
+    // //console.log('Params GET resource data: ', params);
     responseData = await Http.send(queryData)
     if (responseData.code === 200) {
       return responseData
@@ -79,6 +80,8 @@ class SimulacrumService {
   getLivesAvailable = async (userId?: string, token?: string) => {
 
     const auth_token = token || this.token
+
+    console.log('auth_token', auth_token)
 
     if(!auth_token) return
 

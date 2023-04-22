@@ -1,15 +1,15 @@
 import {combineReducers} from 'redux';
 
-import {authReducer} from 'app_reducers/auth/reducers';
-import {profileReducer} from 'app_reducers/profile/reducers';
-import {statisticsReducer} from 'app_reducers/statistics/reducers';
-import {rankingsReducer} from 'app_reducers/rankings/reducers';
-import {simulacrumReducer} from 'app_reducers/simulacrum/reducers';
-import {triviaReducer} from 'app_reducers/trivia/reducers';
-import {dailyQuestionReducer} from 'app_reducers/daily-question/reducers';
-import {howIFeelReducer} from 'app_reducers/how_i_feel/reducers';
+import {authReducer} from './auth/reducers';
+import {profileReducer} from './profile/reducers';
+import {statisticsReducer} from './statistics/reducers';
+import {rankingsReducer} from './rankings/reducers';
+import {simulacrumReducer} from './simulacrum/reducers';
+import {triviaReducer} from './trivia/reducers';
+import {dailyQuestionReducer} from './daily-question/reducers';
+import {howIFeelReducer} from './how_i_feel/reducers';
 
-import {LOGOUT} from 'app_reducers/auth/types';
+import {LOGOUT} from './auth/types';
 
 const reducers = combineReducers({
   auth: authReducer,

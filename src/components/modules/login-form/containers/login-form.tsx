@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {View, Alert} from 'react-native';
 import {connect} from 'react-redux';
 
-import Layout from 'app_components/modules/login-form/components/layout';
-import AuthService from 'app_services/auth/auth';
+import Layout from '../../../modules/login-form/components/layout';
+import AuthService from '../../../../services/auth/auth';
 
 class LoginFormContainer extends Component<any, any> {
   constructor(props: any) {
@@ -31,7 +31,7 @@ class LoginFormContainer extends Component<any, any> {
 
   loginAction = async () => {
     const authService = new AuthService();
-    const alliance_id = await authService.getIqSecundariaID()
+    const alliance_id = await authService.getIqSecundariaID();
 
     this.setState({...this.state, loading: true});
 
@@ -41,7 +41,7 @@ class LoginFormContainer extends Component<any, any> {
         password: this.state.password,
         alliance_id: alliance_id,
       };
-      await authService.login(credentials, this?.props)
+      await authService.login(credentials, this?.props);
     } else {
       Alert.alert('Error', 'Ingrese los credenciales de acceso');
     }

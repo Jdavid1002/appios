@@ -15,7 +15,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 import mainStyles from 'app_styles/MainStyles';
-import styles from './../styles';
+import styles from '../styles';
 
 class ProfileEditModal extends Component<any>  {
 

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import TriviaService from 'app_services/trivia';
 
-import {TriviaLayout} from './../index';
+import {TriviaLayout} from '../index';
 
 class Trivia extends React.Component<any, any> {
   constructor(props: any) {

@@ -12,7 +12,7 @@ import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
 import HowIFeel from 'app_components/commons/how-i-feel';
 
 import mainStyles from 'app_styles/MainStyles';
-import {styles} from './../index'
+import {styles} from '../index'
 
 
 function mapStatesToProps(state: any = {}) {

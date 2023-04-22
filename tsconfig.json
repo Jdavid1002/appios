@@ -1,21 +1,11 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "src/*": ["src/*"],
-      "app_components/*": ["src/components/*"],
-      "app_config/*": ["src/config/*"],
-      "app_providers/*": ["src/providers/*"],
-      "app_reducers/*": ["src/reducers/*"],
-      "app_router/*": ["src/router/*"],
-      "app_services/*": ["src/services/*"],
-      "app_storage/*": ["src/storage/*"],
-      "app_utils/*": ["src/utils/*"],
-      "app_styles/*": ["src/styles/*"],
-      "assets": ["src/assets"],
-      "underscore": ["lodash"],
-    }
-  }
+    "jsx": "react"
+  },
+  "baseUrl": ".",
+  "paths": {
+    "*": ["src/*"],
+    "app_components/*": ["src/components/*"],
+  },
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { styles } from './../index'
+import { styles } from '../index'
 import { Image, View } from 'react-native';
 import { CustomText } from 'app_components/commons/customs/components/customComponents';
 import MainStyles from 'app_styles/MainStyles';
 import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
 
-const fail = require('assets/img/fail_simulacrum.png')
-const success = require('assets/img/success_simulacrum.png')
+const fail = require('app_assets/img/fail_simulacrum.png')
+const success = require('app_assets/img/success_simulacrum.png')
 
 const SimulacrumScore = (props: any) => {
 

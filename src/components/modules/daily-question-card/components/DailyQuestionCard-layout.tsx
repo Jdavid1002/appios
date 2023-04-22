@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import GeneralService from 'app_services/general/general';
 
-import {styles} from './../index';
+import {styles} from '../index';
 
 interface DailyQuestionCardLayoutProps {
   data: any;

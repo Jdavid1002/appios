@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 
-import {WebviewLayout} from './../index';
+import {WebviewLayout} from '../index';
 
 interface WebviewProps {
   html: string;
