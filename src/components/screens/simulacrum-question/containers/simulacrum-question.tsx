@@ -8,26 +8,23 @@ import { Http, HttpCustomStructure } from 'app_utils/http';
 import InlineWebview from 'app_components/commons/webview';
 
 import QuestionNavigate from 'app_components/commons/question/containers/question-navigate';
-import QuestionContainer from 'app_components/commons/question/containers/question';
-import QuestionAnswerList from 'app_components/commons/question/containers/list-answer';
 import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
 import ModalLives from 'app_components/commons/question/components/modal-lives';
 import HowIFeel from 'app_components/commons/how-i-feel';
-import SimualcrumService from 'app_services/simulacrum/simulacrum';
 
 import mainStyles from 'app_styles/MainStyles';
-import { styles } from '../index'
+import { styles } from './../index'
 import SimulacrumService from 'app_services/simulacrum/simulacrum';
 import { updateLives } from 'app_reducers/auth/actions';
 
-class ChallengeQuestions extends Component<any, any> {
+class SimulacrumQuestions extends Component<any, any> {
 
   private simulacrumService = new SimulacrumService()
 
   state: any = {
     loading: true,
     start_time: null,
-    question_per_challenge: 0,
+    question_per_simulacrum: 0,
     max_level: 0,
     current_question: 1,
     questions: {},
@@ -52,7 +49,7 @@ class ChallengeQuestions extends Component<any, any> {
     this.setState({
       loading: true,
       start_time: null,
-      question_per_challenge: 0,
+      question_per_simulacrum: 0,
       max_level: 0,
       current_question: 1,
       questions: {},
@@ -62,14 +59,14 @@ class ChallengeQuestions extends Component<any, any> {
       statistics: [],
       modalVisible: false
     });
-    this.getChallengesQuestions();
+    this.getSimulacrumsQuestions();
   };
 
   componentWillUnmount = () => {
     this.setState({
       loading: true,
       start_time: null,
-      question_per_challenge: 0,
+      question_per_simulacrum: 0,
       max_level: 0,
       current_question: 1,
       questions: {},
@@ -94,7 +91,7 @@ class ChallengeQuestions extends Component<any, any> {
 
 
 
-  getChallengesQuestions = async () => {
+  getSimulacrumsQuestions = async () => {
     const section = this?.props?.route?.params?.section;
     const newQuestions = section?.questions?.map((_question: any, idx: number) => {
       return {
@@ -122,7 +119,7 @@ class ChallengeQuestions extends Component<any, any> {
       loading: false,
       start_time: new Date(),
       questions: newQuestions,
-      question_per_challenge: newQuestions?.length,
+      question_per_simulacrum: newQuestions?.length,
       max_level: newQuestions?.length,
     });
 
@@ -308,7 +305,7 @@ class ChallengeQuestions extends Component<any, any> {
         <ScrollView style={[mainStyles.container]}>
           <QuestionNavigate
             currentItem={this.state.current_question}
-            totalItem={this.state.question_per_challenge}
+            totalItem={this.state.question_per_simulacrum}
             text="Pregunta"
             onPressNextItem={() => this.changeQuestionByNavigate('+')}
             onPressPrevItem={() => this.changeQuestionByNavigate('-')}
@@ -398,4 +395,4 @@ function mapStatesToProps(state: any = {}) {
   };
 }
 
-export default connect(mapStatesToProps)(ChallengeQuestions);
+export default connect(mapStatesToProps)(SimulacrumQuestions);

@@ -3,22 +3,25 @@ import {connect} from 'react-redux';
 
 import TriviaService from 'app_services/trivia';
 
-import {TriviaLayout} from '../index';
+import {TriviaLayout} from './../index';
+import { TriviaAnswers, TriviaType } from 'app_reducers/trivia/types';
+
+export interface ITriviaScreenProps {
+  route : {
+    params : {
+      trivia : TriviaType
+    }
+  }
+}
 
 class Trivia extends React.Component<any, any> {
-  constructor(props: any) {
+  constructor(props: ITriviaScreenProps) {
     super(props);
-
-    let correctAnswer = null;
-
-    if (props.route.params.trivia.status === 'success') {
-      correctAnswer = props.route.params.trivia.questions[0].answers.filter(
-        (answer: any) => answer.correct === 1,
-      )[0];
-    }
+    const trivia = props.route.params.trivia
+    const correctAnswer = trivia?.answers?.find((item : TriviaAnswers) => item?.is_correct)
 
     this.state = {
-      selectedOption: null,
+      selectedOption: '',
       correctAnswer: correctAnswer,
       correct: false,
       loading: false,
@@ -29,9 +32,9 @@ class Trivia extends React.Component<any, any> {
     this.selectOption = this.selectOption.bind(this);
   }
 
-  selectOption = (option: any) => {
-    if (this.state.selectedOption !== option.id) {
-      this.setState({selectedOption: option.id});
+  selectOption = (option: TriviaAnswers) => {
+    if (this.state.selectedOption !== option._id) {
+      this.setState({selectedOption: option._id});
     }
   };
 
@@ -41,7 +44,7 @@ class Trivia extends React.Component<any, any> {
       const triviaService = new TriviaService();
 
       const triviaData = {
-        trivia_id: this.props.route.params.trivia.trivia_id,
+        trivia_id: this.props.route.params.trivia._id,
         time_view: 30,
         questions: [
           {
@@ -59,7 +62,7 @@ class Trivia extends React.Component<any, any> {
       this.setState({
         ...this.state,
         loading: false,
-        brains: triviaResponse.brains_assigned,
+        brains: 10,
         correct: triviaResponse.questions_answered_correctly === 1,
       });
 

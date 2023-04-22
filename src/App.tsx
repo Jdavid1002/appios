@@ -29,7 +29,7 @@ export default class App extends Component {
     // show the splash for 2 seconds
     setTimeout(() => {
       this.setState({
-        splashFinished: true,
+        splashFinished: true
       });
     }, 2000);
   }

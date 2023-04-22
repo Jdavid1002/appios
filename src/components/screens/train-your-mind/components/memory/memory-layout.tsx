@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { Text, Thumbnail, Icon } from 'native-base';
 
-import { styles } from '../../index';
+import { styles } from './../../index';
 import gameStyles from './styles'
 
 const MemoryThumbnail: React.FC<any> = (props: any) => {

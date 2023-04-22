@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {useDispatch, useSelector} from 'react-redux';
 import {setIsActive as setIsActiveAction} from 'app_reducers/how_i_feel/actions';
 
-import HowIFeelLayout from '../components/how-i-feel-layout';
+import HowIFeelLayout from './../components/how-i-feel-layout';
 
 import HowIFeelService from 'app_services/how-i-feel';
 

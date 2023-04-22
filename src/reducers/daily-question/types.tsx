@@ -1,6 +1,13 @@
 export const DAILY_QUESION_GET = 'DAILY_QUESION_GET';
 
-export type DailyQuestionType = any;
+export type DailyQuestionType = {
+  status : string
+  questions : {
+    description : string
+    level : string
+  }[]
+  matter_id : string
+} | any;
 
 export type DailyQuestionState = DailyQuestionType | null;
 

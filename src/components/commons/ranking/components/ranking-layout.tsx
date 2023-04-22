@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image} from 'react-native';
 import {Text, Thumbnail, Button} from 'native-base';
 
-import styles from '../styles';
+import styles from './../styles';
 
 import Separator from './separator';
 import GeneralService from 'app_services/general/general';

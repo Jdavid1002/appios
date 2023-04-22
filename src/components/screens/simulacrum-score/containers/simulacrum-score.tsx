@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles } from '../index'
+import { styles } from './../index'
 import { Image, View } from 'react-native';
 import { CustomText } from 'app_components/commons/customs/components/customComponents';
 import MainStyles from 'app_styles/MainStyles';

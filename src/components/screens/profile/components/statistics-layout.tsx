@@ -8,6 +8,7 @@ import StatisticsTopSection from './statisticsTopSection';
 import StatisticsRankingSection from './statisticsRankingSection';
 import ProfileService from 'app_services/profile';
 import { connect } from 'react-redux';
+import StatisticsService from 'app_services/statistics/statistics';
 
 const StatisticsLayout = (props: any) => {
 
@@ -16,7 +17,7 @@ const StatisticsLayout = (props: any) => {
   const getStatisticsInformation = async () => {
     setLoading(true)
 
-    const profileService = new ProfileService()
+    const statisticsService = new StatisticsService()
 
     const params = {
       nPerPage: "10",
@@ -27,7 +28,7 @@ const StatisticsLayout = (props: any) => {
       structure_id: props?.user_data?.program?._id || ""
     };
 
-    await profileService.getStatistics(props?.auth_token, props?.alliance_id, props.dispatch, params)
+    await statisticsService.getStatistics(props?.auth_token, props?.alliance_id, props.dispatch, params)
     setLoading(false)
   }
 

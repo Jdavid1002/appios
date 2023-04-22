@@ -4,7 +4,6 @@ import {setIsActive as setIsActiveAction} from 'app_reducers/how_i_feel/actions'
 
 class HowIFeelService {
   save = async (hifData: any, token: string) => {
-    console.log(token);
     
     const query_data: HttpCustomStructure = {
       method: 'POST',

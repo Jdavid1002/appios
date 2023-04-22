@@ -2,21 +2,17 @@ import React from 'react';
 import {View, Image, ActivityIndicator} from 'react-native';
 import {Text, Button} from 'native-base';
 import {useNavigation} from '@react-navigation/native'
-
-import GeneralService from 'app_services/general/general';
-
-import {styles} from '../index';
+import {styles} from './../index';
+import { TriviaType } from 'app_reducers/trivia/types';
 
 interface TriviaCardLayoutProps {
-  trivia: any;
+  trivia: TriviaType;
   getTriviaData: any;
 }
 
 const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
 
   const navigation = useNavigation();
-
-  const generalService = new GeneralService();
 
   return (
     <View style={[styles.triviaCard]}>
@@ -28,30 +24,26 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
       <View style={[styles.container]}>
         <View style={[styles.topLine]}>
           <Text style={[styles.title]}>Trivia del día</Text>
-          {props.trivia?.brains_to_assign && (
-            <View style={[styles.brains]}>
-              <Image source={require('assets/img/brain.png')} />
-              <Text style={[styles.brainsText]}>
-                +{props.trivia.brains_to_assign}
-              </Text>
-            </View>
-          )}
+          <View style={[styles.brains]}>
+            <Image source={require('assets/img/brain.png')} />
+            <Text style={[styles.brainsText]}>
+              +10
+            </Text>
+          </View>
         </View>
+
         <Text style={[styles.subtitle]} numberOfLines={2}>
-          {props.trivia?.questions && generalService.stripTags(props.trivia?.questions[0].description)}
-          {props.trivia?.status === 'error' && props.trivia.message}
+          {props?.trivia?.content}
         </Text>
         <Button
-          onPress={() => navigation.navigate('TriviaScreen', {trivia: props.trivia})}
-          style={[styles.button, props.trivia?.status === 'error' && {
-            backgroundColor: '#f8f8f8'
-          }]}
-          disabled={!props.trivia || props.trivia?.status === 'error'}
+          onPress={() => navigation.navigate('TriviaScreen', {trivia: props?.trivia})}
+          style={[styles.button]}
+          disabled={!props?.trivia}
           rounded
           small>
-          {!props.trivia && <ActivityIndicator />}
+          {!props?.trivia && <ActivityIndicator />}
 
-          <Text style={[styles.buttonText, props.trivia?.status === 'error' && {color: '#888'}]}>
+          <Text style={[styles.buttonText]}>
             Responder trivia
           </Text>
         </Button>

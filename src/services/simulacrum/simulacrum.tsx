@@ -70,7 +70,6 @@ class SimulacrumService {
       auth_token: this.token,
       params: _params,
     }
-    // //console.log('Params GET resource data: ', params);
     responseData = await Http.send(queryData)
     if (responseData.code === 200) {
       return responseData
@@ -80,8 +79,6 @@ class SimulacrumService {
   getLivesAvailable = async (userId?: string, token?: string) => {
 
     const auth_token = token || this.token
-
-    console.log('auth_token', auth_token)
 
     if(!auth_token) return
 
@@ -114,21 +111,26 @@ class SimulacrumService {
     }
   }
 
-  getDailyQuestion = async (token: string, dispatch: any) => {
+  getDailyQuestion = async (token: string, dispatch: any, alliance_id : string, user : string) => {
     const query_data: HttpCustomStructure = {
-      method: 'GET',
-      url: '/api/simulacrums/question-day',
+      method: 'POST',
+      url: `/api/question-of-the-day/${alliance_id}/fetch-question-of-the-day`,
       headers: new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: token,
       }),
-    }
+      auth_token : token,
+      params : {
+        user,
+        alliance_id
+      }
+    };
 
-    const data = await Http.send(query_data)
+    const data = await Http.send(query_data);
 
     if (data.status === 'success') {
-      dispatch(getDailyQuestionAction(data))
+      dispatch(getDailyQuestionAction(data?.response))
       return data
     } else if (
       data.status === 'error' &&

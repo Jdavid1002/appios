@@ -4,29 +4,28 @@ import {Alert} from 'react-native';
 import {get as getTriviaAction} from 'app_reducers/trivia/actions';
 
 class TriviaService {
-  getTrivia = async (token: string, dispatch: any) => {
+
+  getTrivia = async (token: string, dispatch: any, alliance_id : string, user : string) => {
+
     const query_data: HttpCustomStructure = {
-      method: 'GET',
-      url: '/api/trivia/day-trivia',
+      method: 'POST',
+      url: `/api/trivias/${alliance_id}/question-trivia`,
       headers: new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: token,
       }),
+      auth_token : token,
+      params : {
+        user,
+        alliance_id
+      }
     };
 
     const data = await Http.send(query_data);
 
     if (data.status === 'success') {
-      dispatch(getTriviaAction(data));
-    } else if (
-      data.status === 'error' &&
-      (data.status_code === 'trivia_not_found' ||
-        data.status_code === 'trivia_not_available')
-    ) {
-      dispatch(getTriviaAction(data));
-    } else {
-      // Alert.alert('Error!', data.message);
+      dispatch(getTriviaAction(data?.response));
     }
   };
 

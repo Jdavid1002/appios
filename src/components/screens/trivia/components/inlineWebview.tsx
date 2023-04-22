@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, View} from 'react-native';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
-import {styles} from '../index';
+import {styles} from './../index';
 
 interface InlineWebViewProps {
   html: string;

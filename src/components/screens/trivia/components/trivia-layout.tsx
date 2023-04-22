@@ -10,31 +10,46 @@ import {Text, Button} from 'native-base';
 
 import InlineWebview from 'app_components/commons/webview';
 
-import {styles} from '../index';
+import {styles} from './../index';
+import { TriviaAnswers, TriviaType } from 'app_reducers/trivia/types';
 
-const TriviaLayout: React.FC<any> = props => {
+
+export interface ITriviaLayout {
+  navigation : any
+  trivia : TriviaType
+  state : any
+  selectOption : any
+  saveAnswer : any
+}
+
+const TriviaLayout: React.FC<ITriviaLayout> = props => {
   return (
     <ScrollView contentContainerStyle={[styles.trivia]}>
-      <Text style={[styles.title]}>{props.trivia.questions[0].title}</Text>
+
+      <Text style={[styles.title]}>Selecciona la opción correcta. </Text>
+
       <InlineWebview
-        html={props.trivia.questions[0].description}
+        html={props.trivia.content}
         style={[styles.inlineWebview]}
       />
-      {props.state.loading && <ActivityIndicator size="large" />}
+      {props.state.loading && 
+        <ActivityIndicator size="large" />
+      }
+
       {!props.state.answered &&
-        props.trivia.questions[0].answers.map((answer: any, i: number) => (
+        props.trivia.answers.map((answer: TriviaAnswers, i: number) => (
           <TouchableOpacity
-            key={answer.id}
+            key={answer._id}
             onPress={() => props.selectOption(answer)}
             style={{marginBottom: 16}}>
             <View
               style={[
                 styles.responseOption,
-                props.state.selectedOption === answer.id &&
+                props.state.selectedOption === answer._id &&
                   styles.responseSelectedOption,
               ]}>
               <Text style={[styles.responseOptionTitle]}>Opción {i + 1}</Text>
-              <InlineWebview html={answer.title} />
+              <InlineWebview html={answer.content} />
             </View>
           </TouchableOpacity>
         ))}
