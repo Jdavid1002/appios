@@ -329,7 +329,7 @@ PODS:
   - React-jsinspector (0.71.7)
   - React-logger (0.71.7):
     - glog
-  - react-native-safe-area-context (4.4.1):
+  - react-native-safe-area-context (4.5.1):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -433,6 +433,8 @@ PODS:
   - RNSVG (13.9.0):
     - React-Core
   - SocketRocket (0.6.0)
+  - toolbar-android (0.2.1):
+    - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -503,6 +505,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - "toolbar-android (from `../node_modules/@react-native-community/toolbar-android`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -604,6 +607,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  toolbar-android:
+    :path: "../node_modules/@react-native-community/toolbar-android"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -641,7 +646,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: eaa5f71eb8f6861cf0e57f1a0f52aeb020d9e18e
   React-jsinspector: 9885f6f94d231b95a739ef7bb50536fb87ce7539
   React-logger: 3f8ebad1be1bf3299d1ab6d7f971802d7395c7ef
-  react-native-safe-area-context: ec0d85aca8110dae9327430a9541fec165352dab
+  react-native-safe-area-context: 7a023eebf7b1cbee184322f50b774e9263b591f7
   React-perflogger: 2d505bbe298e3b7bacdd9e542b15535be07220f6
   React-RCTActionSheet: 0e96e4560bd733c9b37efbf68f5b1a47615892fb
   React-RCTAnimation: fd138e26f120371c87e406745a27535e2c8a04ef
@@ -662,9 +667,10 @@ SPEC CHECKSUMS:
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
+  toolbar-android: 7c528a58a3d79f03124cbb370f738280bf1114a6
   Yoga: d56980c8914db0b51692f55533409e844b66133c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: fd73cfec89abc3023d2198b66f7cbd72573aadf5
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

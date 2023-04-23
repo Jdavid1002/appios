@@ -12,7 +12,7 @@ function LoginLayout(props: any) {
     <ScrollView>
       <StatusBar barStyle="light-content" />
       <View style={[mainStyles.blueBackground, styles.formContainer]}>
-        {/* <LogoHeaderContainer /> */}
+        <LogoHeaderContainer />
         <LoginFormContainer
           onSubmit={props.onSubmit}
           onForgotPassword={props.onForgotPassword}

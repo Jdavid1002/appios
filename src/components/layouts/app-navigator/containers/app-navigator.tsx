@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {AppState, NativeEventSubscription} from 'react-native';
+import {AppState, NativeEventSubscription, View} from 'react-native';
 
 import {Http, HttpCustomStructure} from '../../../../utils/http';
 import LayoutApp from '../../app/containers/app-layout';
@@ -66,23 +66,23 @@ class AppNavigator extends Component<any, any> {
   }
 
   render() {
+    if (!this.props.auth.user) {
+      return (
+        <View style={{height: '100%'}}>
+          <NavigationContainer>
+            <LayoutAuthentication />
+          </NavigationContainer>
+        </View>
+      );
+    }
+
     return (
-      <NavigationContainer>
-        <LayoutAuthentication />
-      </NavigationContainer>
+      <View style={{height: '100%'}}>
+        <NavigationContainer>
+          <LayoutApp />
+        </NavigationContainer>
+      </View>
     );
-    // if (!this.props.auth.user) {
-    //   return (
-    //     <Fragment>
-    //       <LayoutAuthentication />
-    //     </Fragment>
-    //   );
-    // }
-    // return (
-    //   <Fragment>
-    //     <LayoutApp />
-    //   </Fragment>
-    // );
   }
 }
 

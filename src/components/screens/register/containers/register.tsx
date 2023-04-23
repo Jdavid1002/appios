@@ -13,15 +13,20 @@ class RegisterFormScreenComponent extends Component<any> {
   render() {
     return (
       <KeyboardAvoidingView
-        style={[mainStyles.blueBackground, mainStyles.mainContainer, {flex: 1}]}
+        style={[
+          mainStyles.blueBackground,
+          mainStyles.mainContainer,
+          {
+            width: '100%',
+            height: '100%',
+          },
+        ]}
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
         enabled>
-        <SafeAreaView>
-          <ScrollView>
-            {/* <LogoHeaderContainer /> */}
-            <RegisterFormContainer {...this.props} />
-          </ScrollView>
-        </SafeAreaView>
+        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+          <LogoHeaderContainer />
+          <RegisterFormContainer {...this.props} />
+        </ScrollView>
       </KeyboardAvoidingView>
     );
   }

@@ -19,8 +19,8 @@ class LogoHeaderContainer extends Component<any> {
           barStyle="light-content"
         />
         <Left>
-          {typeof this.props.navigation !== 'undefined' ? (
-            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+          {typeof this?.props?.navigation !== 'undefined' ? (
+            <TouchableOpacity onPress={() => this?.props?.navigation?.goBack()}>
               <FontAwesomeIcon icon={faArrowLeft} color={'#24ABDF'} size={32} />
             </TouchableOpacity>
           ) : (
@@ -28,7 +28,7 @@ class LogoHeaderContainer extends Component<any> {
           )}
         </Left>
         <Body style={styles.logo}>
-          <Image source={require('assets/img/logo_registro.png')} />
+          <Image source={require('../../../../assets/img/logo_registro.png')} />
         </Body>
         <Right />
       </Header>

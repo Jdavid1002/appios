@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {View, Alert, StatusBar, Platform, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Alert,
+  StatusBar,
+  Platform,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import styles from '../styles/styles';
 import RegisterForm1 from '../components/register-form-1/components/register-form-1';
 import RegisterForm2 from '../components/register-form-2/components/register-form-2.ios';
@@ -67,18 +74,19 @@ class RegisterFormScreenComponent extends Component<any> {
 
     this.state = {
       facebook_id:
-        this.props.route.params && this.props.route.params.facebook_id
-          ? this.props.route.params.facebook_id
+        this?.props?.route?.params && this?.props?.route?.params?.facebook_id
+          ? this?.props?.route?.params?.facebook_id
           : '',
       email_validated:
-        this.props.route.params && this.props.route.params.email_validated
-          ? this.props.route.params.email_validated
+        this?.props?.route?.params &&
+        this?.props?.route?.params?.email_validated
+          ? this?.props?.route?.params?.email_validated
           : '',
       name: '',
       last_name: '',
       email:
-        this.props.route.params && this.props.route.params.email
-          ? this.props.route.params.email
+        this?.props?.route?.params && this?.props?.route?.params?.email
+          ? this?.props?.route?.params?.email
           : '',
       password: '',
       confPassword: '',
@@ -255,7 +263,7 @@ class RegisterFormScreenComponent extends Component<any> {
 
   previousStep() {
     if (this.state.step === 1) {
-      this.props.navigation.navigate('Login');
+      this?.props?.navigation?.navigate('Login');
     } else {
       this.setState({
         step: this.state.step - 1,

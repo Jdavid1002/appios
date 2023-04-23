@@ -1,10 +1,10 @@
 import React from 'react';
 import {Image, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Header from 'app_components/commons/header/containers/header';
-import HomeScreen from 'app_components/screens/home/containers/home';
-import ChallengeScreen from 'app_components/screens/challenge/containers/challenge';
-import SectionsMatterScreen from 'app_components/screens/sections-matter/containers/SectionsMatterContainer';
+import Header from '../../components/commons/header/containers/header';
+import HomeScreen from '../../components/screens/home/containers/home';
+import ChallengeScreen from '../../components/screens/challenge/containers/challenge';
+import SectionsMatterScreen from '../../components/screens/sections-matter/containers/SectionsMatterContainer';
 import TrainYourMindScreen, {
   TrainYourMindInstructionsLayout,
   TrainYourMindResultsLayout,
@@ -12,19 +12,19 @@ import TrainYourMindScreen, {
   SpellItLayout,
   ProblemsLayout,
   MemoryLayout,
-} from 'app_components/screens/train-your-mind';
-import SimulacrumScreen from 'app_components/screens/simulacrum/containers/simulacrum';
-import ProfileScreen from 'app_components/screens/profile/containers/profile';
-import ChallengeQuestionScreen from 'app_components/screens/challenge-questions/containers/challenge-questions';
-import LearningPathScreen from 'app_components/screens/learning-path/containers/learning-path';
-import ChallengeResultsScreen from 'app_components/screens/challenge-results/components/challenge-results';
-import SimulacrumQuestionScreen from 'app_components/screens/simulacrum-question/containers/simulacrum-question';
-import RecoverLivesScreen from 'app_components/screens/recover-lives/containers/recover-lives';
-import TriviaScreen from 'app_components/screens/trivia';
-import AboutScreen from 'app_components/screens/about';
-import TipsScreen from 'app_components/screens/tips/containers/tips';
-import TipScreen from 'app_components/screens/tips/containers/tip';
-import SimulacrumScore from 'app_components/screens/simulacrum-score';
+} from '../../components/screens/train-your-mind';
+import SimulacrumScreen from '../../components/screens/simulacrum/containers/simulacrum';
+import ProfileScreen from '../../components/screens/profile/containers/profile';
+import ChallengeQuestionScreen from '../../components/screens/challenge-questions/containers/challenge-questions';
+import LearningPathScreen from '../../components/screens/learning-path/containers/learning-path';
+import ChallengeResultsScreen from '../../components/screens/challenge-results/components/challenge-results';
+import SimulacrumQuestionScreen from '../../components/screens/simulacrum-question/containers/simulacrum-question';
+import RecoverLivesScreen from '../../components/screens/recover-lives/containers/recover-lives';
+import TriviaScreen from '../../components/screens/trivia';
+import AboutScreen from '../../components/screens/about';
+import TipsScreen from '../../components/screens/tips/containers/tips';
+import TipScreen from '../../components/screens/tips/containers/tip';
+import SimulacrumScore from '../../components/screens/simulacrum-score';
 
 const Stack = createStackNavigator();
 
@@ -60,39 +60,6 @@ export const AppStackNavigator = () => {
               previous={previous}
             />
           );
-
-          // if (typeof scene === 'object') {
-          //   if (scene.hasOwnProperty('route')) {
-          //     if (
-          //       scene.route.hasOwnProperty('params') &&
-          //       typeof scene.route.params !== 'undefined'
-          //     ) {
-          //       if (typeof scene.route.params.headerTitle !== 'undefined') {
-          //         title = scene.route.params.headerTitle.toString();
-          //       }
-          //     }
-          //   }
-          // }
-          // if (title && typeof title !== undefined) {
-          //   return (
-          //     <Header
-          //       onPressIcon={() => navigation.toggleDrawer()}
-          //       leftIcon={
-          //         <FontAwesomeIcon icon={faBars} color={'#24ABDF'} size={36} />
-          //       }>
-          //       <CustomText style={mainStyles.headerText}> {title} </CustomText>
-          //     </Header>
-          //   );
-          // }
-          // return (
-          //   <Header
-          //     onPressIcon={() => navigation.toggleDrawer()}
-          //     leftIcon={
-          //       <FontAwesomeIcon icon={faBars} color={'#24ABDF'} size={36} />
-          //     }>
-          //     <Image source={require('assets/img/logo_iq.png')} />
-          //   </Header>
-          // );
         },
       }}>
       <Stack.Screen
@@ -125,7 +92,7 @@ export const AppStackNavigator = () => {
         name="Train-your-mind/problemSolving"
         component={ProblemsLayout}
       />
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <Stack.Screen name="Train-your-mind/memory" component={MemoryLayout} />
+      <Stack.Screen name="Train-your-mind/memory" component={MemoryLayout} />
       <Stack.Screen
         name="Challenges"
         component={ChallengeScreen}

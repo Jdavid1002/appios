@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {connect} from 'react-redux';
 
 // import {Drawer} from 'app_router/drawer-navigator';
@@ -14,14 +14,14 @@ import {AppStackNavigator} from '../../../../router/app-stack-navigator/stack-na
 class AppLayout extends Component {
   render() {
     return (
-      // <NavigationContainer>
-      //   <Drawer.Navigator
-      //     drawerStyle={mainStyles.navDrawer}
-      //     drawerContent={(props: any) => <DrawerMenu {...props} />}>
-      //     <Drawer.Screen name="AppStart" component={AppStackNavigator} />
-      //   </Drawer.Navigator>
-      // </NavigationContainer>
-      <AppStackNavigator />
+      <NavigationContainer>
+        {/* <Drawer.Navigator
+          drawerStyle={mainStyles.navDrawer}
+          drawerContent={(props: any) => <DrawerMenu {...props} />}>
+          <Drawer.Screen name="AppStart" component={AppStackNavigator} />
+        </Drawer.Navigator> */}
+        <AppStackNavigator />
+      </NavigationContainer>
     );
   }
 }
