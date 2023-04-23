@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, TextInput, TouchableOpacity} from 'react-native';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../../../styles/MainStyles';
 import styles from '../styles/styles';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import { CustomText } from '../../../../../commons/customs/components/customComponents';
 
 class RegisterForm1Component extends Component<any> {
   render() {

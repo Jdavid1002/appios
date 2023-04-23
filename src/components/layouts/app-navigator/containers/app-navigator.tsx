@@ -6,6 +6,7 @@ import {Http, HttpCustomStructure} from '../../../../utils/http';
 import LayoutApp from '../../app/containers/app-layout';
 import LayoutAuthentication from '../../authentication/containers/authentication-layout';
 import {LOGOUT} from '../../../../reducers/auth/types';
+import {NavigationContainer} from '@react-navigation/native';
 
 function mapStatesToProps(state: any = {}) {
   return {
@@ -65,11 +66,10 @@ class AppNavigator extends Component<any, any> {
   }
 
   render() {
-
     return (
-      <Fragment>
+      <NavigationContainer>
         <LayoutAuthentication />
-      </Fragment>
+      </NavigationContainer>
     );
     // if (!this.props.auth.user) {
     //   return (

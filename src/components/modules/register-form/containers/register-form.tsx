@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import {View, Alert, StatusBar, Platform, TouchableOpacity} from 'react-native';
 import styles from '../styles/styles';
 import RegisterForm1 from '../components/register-form-1/components/register-form-1';
-import RegisterForm2 from '../components/register-form-2/components/register-form-2';
+import RegisterForm2 from '../components/register-form-2/components/register-form-2.ios';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 import {connect} from 'react-redux';
-import {Http, HttpCustomStructure} from 'app_utils/http';
-import AuthService from 'app_services/auth/auth';
-import mainStyles from 'app_styles/MainStyles';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
+import AuthService from '../../../../services/auth/auth';
+import mainStyles from '../../../../styles/MainStyles';
 
 class RegisterFormScreenComponent extends Component<any> {
   state = {
@@ -24,7 +24,7 @@ class RegisterFormScreenComponent extends Component<any> {
     userType: '',
     center: {},
     grade: '',
-    journey : '',
+    journey: '',
     birthDate: '',
     tel: '',
     gender: '',
@@ -33,31 +33,29 @@ class RegisterFormScreenComponent extends Component<any> {
     loading: false,
   };
 
-
   userTypes = [
-    { value: '62cef6fa8facba0f2df89871', label: 'Estudiante', key: 'estudiante' },
-    { value: '63054a871e65131020dc7905', label: 'Docente', key: 'docente' },
-    { value: '63054affee06d1100a3f0649', label: 'Invitado', key: 'invitado' },
-  ]
-
+    {value: '62cef6fa8facba0f2df89871', label: 'Estudiante', key: 'estudiante'},
+    {value: '63054a871e65131020dc7905', label: 'Docente', key: 'docente'},
+    {value: '63054affee06d1100a3f0649', label: 'Invitado', key: 'invitado'},
+  ];
 
   grades = [
-    { key: '63054a021e65131020dc6da7', label: '1° de secundaria' },
-    { key: '63054a4c1e65131020dc74b4', label: '2° de secundaria' },
-    { key: '63054a871e65131020dc7906', label: '3° de secundaria' },
-    { key: '63054b1fee06d1100a3f0820', label: '4° de secundaria' },
-    { key: '63054b3cee06d1100a3f0a2b', label: '5° de secundaria' },
-    { key: '63054b741e65131020dc8ab9', label: '6° de secundaria' },
-  ]
+    {key: '63054a021e65131020dc6da7', label: '1° de secundaria'},
+    {key: '63054a4c1e65131020dc74b4', label: '2° de secundaria'},
+    {key: '63054a871e65131020dc7906', label: '3° de secundaria'},
+    {key: '63054b1fee06d1100a3f0820', label: '4° de secundaria'},
+    {key: '63054b3cee06d1100a3f0a2b', label: '5° de secundaria'},
+    {key: '63054b741e65131020dc8ab9', label: '6° de secundaria'},
+  ];
 
   journeyOptions = [
-    { key: 'morning', label: 'Matutina' },
-    { key: 'evening', label: 'Vespertina' },
-    { key: 'nocturne', label: 'Nocturna' },
-    { key: 'sunday', label: 'Dominical' },
-    { key: 'extended', label: 'Extendida' },
-    { key: 'regular', label: 'Regular' },
-  ]
+    {key: 'morning', label: 'Matutina'},
+    {key: 'evening', label: 'Vespertina'},
+    {key: 'nocturne', label: 'Nocturna'},
+    {key: 'sunday', label: 'Dominical'},
+    {key: 'extended', label: 'Extendida'},
+    {key: 'regular', label: 'Regular'},
+  ];
 
   genders = [
     {key: 'male', label: 'Masculino'},
@@ -195,27 +193,32 @@ class RegisterFormScreenComponent extends Component<any> {
     return [year, month, day].join('-');
   }
 
-  transformKeyThatValue = (item : any) => {
+  transformKeyThatValue = (item: any) => {
     return {
-      value : item?.key,
-      label : item?.label
-    }
-  }
+      value: item?.key,
+      label: item?.label,
+    };
+  };
 
   loginAction = async (register_data: any = {}) => {
     const authService = new AuthService();
 
-    const alliance_id = await authService.getIqSecundariaID()
+    const alliance_id = await authService.getIqSecundariaID();
 
-    const register_codes =  this.state.userType === 'estudiante' ?
-      register_data?.grade :
-      this.userTypes.find((item : any) => item.key === this.state.userType)?.value
+    const register_codes =
+      this.state.userType === 'estudiante'
+        ? register_data?.grade
+        : this.userTypes.find((item: any) => item.key === this.state.userType)
+            ?.value;
 
     const newParams: any = {
       alliance_id: alliance_id,
       password: register_data.password,
       confirm_password: register_data.password,
-      grade: this.transformKeyThatValue(this.grades?.find((item : any) => item?.key === register_data?.grade) || this.grades[0]),
+      grade: this.transformKeyThatValue(
+        this.grades?.find((item: any) => item?.key === register_data?.grade) ||
+          this.grades[0],
+      ),
       username: register_data.email,
       register_codes: register_codes,
       profile: {
@@ -227,7 +230,7 @@ class RegisterFormScreenComponent extends Component<any> {
         headquarter: register_data?.center?._id,
         birthday: this.formatDate(register_data?.birthDate),
         culture: 'es_DO',
-        journey : register_data?.journey
+        journey: register_data?.journey,
       },
     };
 
@@ -243,7 +246,7 @@ class RegisterFormScreenComponent extends Component<any> {
         username: newParams?.username,
         password: newParams?.password,
         alliance_id: alliance_id,
-      }
+      };
       await authService.login(credentials, this.props);
     } else {
       Alert.alert('Error!', data.message);
@@ -328,10 +331,10 @@ class RegisterFormScreenComponent extends Component<any> {
           <View style={{width: 30}}>
             <TouchableOpacity onPress={this.previousStep}>
               <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  color={'#E94044'}
-                  size={26}
-                />
+                icon={faChevronLeft}
+                color={'#E94044'}
+                size={26}
+              />
             </TouchableOpacity>
           </View>
 

@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import { TextInput, FlatList, View } from 'react-native';
-import CenterItemComponent from 'app_components/modules/center-search-bar/components/center-item-component';
-import mainStyles from 'app_styles/MainStyles';
+import React, {Component} from 'react';
+import {TextInput, FlatList, View} from 'react-native';
+import CenterItemComponent from '../../../../components/modules/center-search-bar/components/center-item-component';
+import mainStyles from '../../../../styles/MainStyles';
 import styles from '../styles/styles';
-import { CustomText } from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
-class CenterSearchBarComponent extends Component <any> {
-
+class CenterSearchBarComponent extends Component<any> {
   constructor(props: any) {
     super(props);
 
@@ -16,17 +15,18 @@ class CenterSearchBarComponent extends Component <any> {
   filterItems() {
     const {text} = this.props;
 
-    return this.props.items.filter((item: any) => item.school_name.toLowerCase().indexOf(text.toLowerCase()) > -1);
+    return this.props.items.filter(
+      (item: any) =>
+        item.school_name.toLowerCase().indexOf(text.toLowerCase()) > -1,
+    );
   }
 
   render() {
-
-    const { text, message, selectedItem } = this.props;
+    const {text, message, selectedItem} = this.props;
     const filteredItems = this.filterItems();
     // filteredItems.push({school_name: '¿No encuentras tu centro?'});
 
     return (
-
       <View>
         <CustomText style={mainStyles.label}>Centro Educativo</CustomText>
         <TextInput
@@ -38,22 +38,26 @@ class CenterSearchBarComponent extends Component <any> {
           onFocus={this.props.changeSelectedItem}
         />
 
-        {!selectedItem &&
+        {!selectedItem && (
           <>
             <FlatList
               data={filteredItems}
-              renderItem={({item}) =>
-                <CenterItemComponent handleSelectItem={() => this.props.handleSelectItem(item)} school={item}/>
-              }
+              renderItem={({item}) => (
+                <CenterItemComponent
+                  handleSelectItem={() => this.props.handleSelectItem(item)}
+                  school={item}
+                />
+              )}
               style={styles.listContainer}
             />
-            { !message && filteredItems.length === 0 && <CustomText style={styles.message}>No hay resultados que coincidan con la búsqueda</CustomText> }
+            {!message && filteredItems.length === 0 && (
+              <CustomText style={styles.message}>
+                No hay resultados que coincidan con la búsqueda
+              </CustomText>
+            )}
           </>
-        }
-
-
+        )}
       </View>
-
     );
   }
 }

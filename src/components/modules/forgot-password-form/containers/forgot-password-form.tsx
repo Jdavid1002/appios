@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React, {Component} from 'react';
+import {View} from 'react-native';
 import ForgotPasswordFormComponent from '../components/layout';
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
 
 class ForgotPasswordFormContainer extends Component {
   state = {email: ''};
@@ -11,48 +11,44 @@ class ForgotPasswordFormContainer extends Component {
 
     this.state = {
       email: '',
-    }
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleInputChange(name: string) {
-
     return (text: string) => {
-      this.setState({ [name]: text });
-    }
-
+      this.setState({[name]: text});
+    };
   }
 
   onSubmit() {
-    if (this.state.email === ''){
+    if (this.state.email === '') {
       alert('Debes proporcionar un email válido');
       return;
     }
     this.forgotPass();
   }
 
-
   forgotPass = async () => {
     const query_data: HttpCustomStructure = {
-      method   : 'GET',
-      url      :  '/api/auth/change-password',
-      params   : {
-        email_address: this.state.email
-      }
-    }
+      method: 'GET',
+      url: '/api/auth/change-password',
+      params: {
+        email_address: this.state.email,
+      },
+    };
     const data = await Http.send(query_data);
-    if (data.status === "success"){
+    if (data.status === 'success') {
       alert(data.message);
-    }else{
+    } else {
       alert(data.message);
     }
-  }
+  };
 
   render() {
-
-    const { email } = this.state;
+    const {email} = this.state;
 
     return (
       <View style={{marginTop: 20}}>

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import CenterSearchBarComponent from 'app_components/modules/center-search-bar/components/center-search-bar-component';
+import CenterSearchBarComponent from '../../../../components/modules/center-search-bar/components/center-search-bar-component';
 import {SafeAreaView, View, TouchableOpacity} from 'react-native';
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
 import styles from '../styles/styles';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../styles/MainStyles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 class CenterSearchBarContainer extends Component<any> {
   state = {
@@ -65,19 +65,23 @@ class CenterSearchBarContainer extends Component<any> {
       // Fetch.
       const query_data: HttpCustomStructure = {
         method: 'GET',
-        url:
-          '/api/alliance/iq-secundaria/headquarter/external-list?search=&pageNumber=1&nPerPage=10&select=name+localization+slug',
+        url: '/api/alliance/iq-secundaria/headquarter/external-list?search=&pageNumber=1&nPerPage=10&select=name+localization+slug',
       };
 
       const data = await Http.send(query_data);
 
       if (data.status === 'success') {
-        const centers = data?.headquarters?.map((item : any) => {
+        const centers = data?.headquarters?.map((item: any) => {
           return {
-            school_name : (item?.name + ',  ' + item?.localization?.regional + ',  ' + item?.localization?.district ) || '',
-            ...item
-          }
-        })
+            school_name:
+              item?.name +
+                ',  ' +
+                item?.localization?.regional +
+                ',  ' +
+                item?.localization?.district || '',
+            ...item,
+          };
+        });
 
         this.setState({
           items: centers,

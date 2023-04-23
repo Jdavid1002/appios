@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from 'react-native-check-box';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../../../styles/MainStyles';
 import styles from '../styles/styles';
-import CenterSearchBarContainer from 'app_components/modules/center-search-bar/containers/center-search-bar-container';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import CenterSearchBarContainer from '../../../../../modules/center-search-bar/containers/center-search-bar-container';
+import {CustomText} from '../../../../../commons/customs/components/customComponents';
 
 class RegisterForm2Component extends Component<any> {
   state = {
@@ -56,7 +56,7 @@ class RegisterForm2Component extends Component<any> {
   };
 
   showActionSheet(inputName: string, options: any) {
-     this.setState({showPicker: false});
+    this.setState({showPicker: false});
     const opts = [...options.map((data: any) => data.label), 'Cancelar'];
     const cancelIndex = opts.length - 1;
 
@@ -92,17 +92,17 @@ class RegisterForm2Component extends Component<any> {
       journey,
     } = this.props;
     const {showPicker} = this.state;
-    const userSelected = userTypes.filter(function(_data: any) {
+    const userSelected = userTypes.filter(function (_data: any) {
       return _data.key === userType;
     });
-    const genderSelected = genders.filter(function(_data: any) {
+    const genderSelected = genders.filter(function (_data: any) {
       return _data.key === gender;
     });
-    const gradeSelected = grades.filter(function(_data: any) {
+    const gradeSelected = grades.filter(function (_data: any) {
       return _data.key === grade;
     });
 
-    const journeySelected = journeyOptions.filter(function(_data: any) {
+    const journeySelected = journeyOptions.filter(function (_data: any) {
       return _data.key === journey;
     });
 
@@ -201,8 +201,9 @@ class RegisterForm2Component extends Component<any> {
             onPress={this.showDatePicker}>
             <CustomText style={styles.inputText}>
               {birthDate
-                ? `${birthDate.getDate()}/${birthDate.getMonth() +
-                    1}/${birthDate.getFullYear()}`
+                ? `${birthDate.getDate()}/${
+                    birthDate.getMonth() + 1
+                  }/${birthDate.getFullYear()}`
                 : 'día/mes/año'}
             </CustomText>
           </TouchableOpacity>

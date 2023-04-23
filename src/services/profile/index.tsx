@@ -1,18 +1,18 @@
-import {UpdateProfile} from 'app_reducers/profile/types';
-import {update as updateProfileAction} from 'app_reducers/profile/actions';
-import {setUserData as setUserDataAction} from 'app_reducers/auth/actions';
+import {UpdateProfile} from '../../reducers/profile/types';
+import {update as updateProfileAction} from '../../reducers/profile/actions';
+import {setUserData as setUserDataAction} from '../../reducers/auth/actions';
 import {
   get as getRankingsAction,
   update as updateRankingsAction,
-} from 'app_reducers/rankings/actions';
+} from '../../reducers/rankings/actions';
 
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../utils/http';
 import {Alert} from 'react-native';
 
 export interface IGetFetchGamificationValuesAndTransformData {
-  force_calculation?:boolean
-  alliance_id: string
-  auth_token: string
+  force_calculation?: boolean;
+  alliance_id: string;
+  auth_token: string;
 }
 
 class ProfileService {
