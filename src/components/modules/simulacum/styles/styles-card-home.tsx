@@ -81,6 +81,8 @@ export default StyleSheet.create({
     elevation: 0,
     shadowOffset: {width: 0, height: 0},
     justifyContent: 'center',
+    borderRadius: 16,
+    alignItems: 'center',
   },
   buttonText: {
     fontFamily: 'Nunito-ExtraBold',

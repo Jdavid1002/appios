@@ -56,10 +56,13 @@ export default StyleSheet.create({
     maxWidth: 250,
     width: '100%',
     justifyContent: 'center',
+    borderRadius: 16,
+    alignItems: 'center',
   },
   buttonText: {
     fontFamily: 'Nunito-ExtraBold',
     textTransform: 'capitalize',
     fontSize: 14,
+    color: 'white',
   },
 });

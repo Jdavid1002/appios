@@ -37,8 +37,6 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
           }
           style={[styles.button]}
           disabled={!props?.trivia}
-          // rounded
-          // small
           >
             <>
               {!props?.trivia && <ActivityIndicator />}
