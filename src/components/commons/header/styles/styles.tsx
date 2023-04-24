@@ -17,7 +17,7 @@ export default StyleSheet.create({
     elevation: 3,
   },
   header: {
-    height: 80,
+    height: 120,
   },
   containerHeader: {
     width : '100%',
