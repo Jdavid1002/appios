@@ -75,7 +75,7 @@ const InfoLayout = (props: any) => {
           </View>
         </View>
 
-        <TouchableHighlight style={[styles.button]} onPress={props.doLogout} rounded block>
+        <TouchableHighlight style={[styles.button]} onPress={props.doLogout}>
           <Text>Cerrar sesión</Text>
         </TouchableHighlight>
 

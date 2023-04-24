@@ -25,7 +25,7 @@ const AppLayout = () => {
             const navigation = headerParams?.navigation;
             const previous = headerParams?.progress?.previous
             const title = (headerParams?.route?.name && headerParams?.route?.name !== 'Home') || <Image source={require('../../../../assets/img/logo_iq.png')} />;
-            const plain = (headerParams?.route?.params?.headerPlain && headerParams?.route?.name !== 'Home') || false;
+            const plain = headerParams?.route?.params?.headerPlain
             return (
               <Header
                 title={title}

@@ -36,85 +36,85 @@ const AppHeader = (props: AppHeaderProps) => {
           barStyle="light-content"
         />
 
-        <View style={[styles.left]}>
-          {!props.leftButton && !props.previous && (
-            <TouchableOpacity 
-              onPress={() => props.navigation.toggleDrawer()}
-              style={{
-                height : '100%',
-              }}
-            >
-              <FontAwesomeIcon icon={faBars} color={'#24ABDF'} size={32} />
-            </TouchableOpacity>
-          )}
-
-          {!props.leftButton && props.previous && (
-            <TouchableOpacity 
-              onPress={() => {
-                props.navigation.goBack()
-              }}
-            >
-              <FontAwesomeIcon icon={faArrowLeft} color={'#24ABDF'} size={32} />
-            </TouchableOpacity>
-          )}
-
-          {props.leftButton && props.leftButton}
-        </View>
-
-        <View style={[styles.body]}>
-          {typeof props.title === 'string' && (
-            <Text style={[styles.textTitle]} numberOfLines={1}>
-              {props.title}
-            </Text>
-          )}
-          {typeof props.title === 'object' && props.title}
-        </View>
-
-        <View style={[styles.right]}>
-          {!props.rightButton && (
-            <View
-              style={[
-                {
-                  alignItems: 'center',
-                  flexDirection: 'column-reverse',
-                },
-              ]}>
-              {props?.statistics &&
-              props?.statistics?.hasOwnProperty('points') &&
-              props?.statistics?.points.hasOwnProperty('total') &&
-              props?.statistics?.points?.total ? (
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    marginHorizontal: 4,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <Image
-                    resizeMode="contain"
-                    style={{width: 12, height: 12, marginRight: 4}}
-                    source={require('assets/img/brain_white_md.png')}
-                  />
-                  <Text style={[{color: 'white', fontSize: 12}]}>
-                    {generalService?.formatNumber(
-                      props?.statistics?.points?.total || 0,
-                    )}
-                  </Text>
-                </View>
-              ) : null}
-
-              <TouchableOpacity
-                onPress={() =>  props.navigation.toggleDrawer()}
-                // onPress={() => props.navigation.navigate('Profile')}
+        <View style={[styles.containerHeader]} >
+          <View style={[styles.left]}>
+            {!props.leftButton && !props.previous && (
+              <TouchableOpacity 
+                onPress={() => props.navigation.toggleDrawer()}
               >
-                <AvatarComponent
-                  name={props?.user_data?.avatar}
-                  color={props?.user_data?.color}
-                />
+                <Text>
+                  <FontAwesomeIcon icon={faBars} color={'#24ABDF'} size={32} />
+                </Text>
               </TouchableOpacity>
-            </View>
-          )}
-          {props.rightButton && props.rightButton}
+            )}
+
+            {!props.leftButton && props.previous && (
+              <TouchableOpacity 
+                onPress={() => {
+                  props.navigation.goBack()
+                }}
+              >
+                <FontAwesomeIcon icon={faArrowLeft} color={'#24ABDF'} size={32} />
+              </TouchableOpacity>
+            )}
+
+            {props.leftButton && props.leftButton}
+          </View>
+
+          <View style={[styles.body]}>
+            {typeof props.title === 'string' && (
+              <Text style={[styles.textTitle]} numberOfLines={1}>
+                {props.title}
+              </Text>
+            )}
+            {typeof props.title === 'object' && props.title}
+          </View>
+
+          <View style={[styles.right]}>
+            {!props.rightButton && (
+              <View
+                style={[
+                  {
+                    alignItems: 'center',
+                    flexDirection: 'column-reverse',
+                  },
+                ]}>
+                {props?.statistics &&
+                props?.statistics?.hasOwnProperty('points') &&
+                props?.statistics?.points.hasOwnProperty('total') &&
+                props?.statistics?.points?.total ? (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      marginHorizontal: 4,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <Image
+                      resizeMode="contain"
+                      style={{width: 12, height: 12, marginRight: 4}}
+                      source={require('assets/img/brain_white_md.png')}
+                    />
+                    <Text style={[{color: 'white', fontSize: 12}]}>
+                      {generalService?.formatNumber(
+                        props?.statistics?.points?.total || 0,
+                      )}
+                    </Text>
+                  </View>
+                ) : null}
+
+                <TouchableOpacity
+                  onPress={() => props.navigation.navigate('Profile')}
+                >
+                  <AvatarComponent
+                    name={props?.user_data?.avatar}
+                    color={props?.user_data?.color}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
+            {props.rightButton && props.rightButton}
+          </View>
         </View>
 
       </View>

@@ -17,29 +17,25 @@ export default StyleSheet.create({
     elevation: 3,
   },
   header: {
-    height: 120,
-    position : 'relative'
+    height: 80,
+  },
+  containerHeader: {
+    width : '100%',
+    height : '100%',
+    flexDirection: 'row',
+    alignItems : 'center'
   },
   body: {
-    flex: 1,
-    flexGrow: 3,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width : '50%',
+    alignItems : 'center'
   },
   left: {
-    flex: 1,
-    flexShrink: 1,
-    position : 'absolute',
-    left : 10,
-    top : 40
+    width : '25%',
+    alignItems : 'center'
   },
   right: {
-    flex: 1,
-    flexShrink: 1,
-    position : 'absolute',
-    right : 10,
-    top : 40
+    width : '25%',
+    alignItems : 'center'
   },
   textTitle: {
     color: '#FFF',
