@@ -1,5 +1,5 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity, View , Text} from 'react-native';
 
 import mainStyles from '../../../../styles/MainStyles';
 import {
@@ -9,38 +9,32 @@ import {
 } from '../../../../components/screens/profile';
 
 const ProfileLayout = (props: any) => {
+
+  const [ScreenSelected, setScreenSelected] = useState <'info' | 'statistics'>('info');
+  
+
   return (
     <View style={[mainStyles.container, styles.container]}>
-      <InfoLayout {...props} />
-      <StatisticsLayout {...props} />
+
+      <View style={[styles.tabs]} >
+        <TouchableOpacity style={[styles.tab, ScreenSelected==='info' ? styles.tabActive : {}]}  onPress={() => setScreenSelected('info')}>
+          <Text style={styles.tabText} > Tu info </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.tab, ScreenSelected==='statistics' ? styles.tabActive : {} ]} onPress={() => setScreenSelected('statistics')}>
+          <Text style={styles.tabText} > Estadísticas </Text>
+        </TouchableOpacity>
+      </View>
+
+
+      {ScreenSelected === 'info' &&
+        <InfoLayout {...props} />
+      }
+      {ScreenSelected === 'statistics' &&
+        <StatisticsLayout {...props} />
+      }
+
     </View>
   );
 };
 
 export default ProfileLayout;
-
-
-{/* <Tabs
-  tabContainerStyle={[styles.tabs]}
-  tabBarUnderlineStyle={[styles.tabUnderline]}
-  initialPage={
-    props.route.params.initialTab ? props.route.params.initialTab : 0
-  }
-  locked>
-  <Tab
-    tabStyle={[styles.tab]}
-    activeTabStyle={[styles.tabActive]}
-    activeTextStyle={styles.tabText}
-    textStyle={styles.tabText}
-    heading="Tu info">
-    <InfoLayout {...props} />
-  </Tab>
-  <Tab
-    tabStyle={[styles.tab]}
-    activeTabStyle={[styles.tabActive]}
-    activeTextStyle={styles.tabText}
-    textStyle={styles.tabText}
-    heading="Estadísticas">
-    <StatisticsLayout {...props} />
-  </Tab>
-</Tabs> */}

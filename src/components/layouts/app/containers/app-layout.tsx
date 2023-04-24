@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, Image,SafeAreaView} from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { DrawerHeaderProps, createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from '../../../../components/screens/home/containers/home';
 import SimulacrumScreen from '../../../../components/screens/simulacrum/containers/simulacrum';
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,11 +21,11 @@ const AppLayout = () => {
       <Drawer.Navigator
         drawerContent={(props) => <DrawerMenu {...props} />}
         screenOptions={{
-          header : (headerParams: any) => {
+          header : (headerParams: DrawerHeaderProps) => {
             const navigation = headerParams?.navigation;
-            const previous = headerParams?.progress?.previous
+            const previous = headerParams?.route?.name === 'Home' ? false : true;
             const title = (headerParams?.route?.name && headerParams?.route?.name !== 'Home') || <Image source={require('../../../../assets/img/logo_iq.png')} />;
-            const plain = headerParams?.route?.params?.headerPlain
+            const plain = headerParams?.route?.params?.headerPlain;
             return (
               <Header
                 title={title}

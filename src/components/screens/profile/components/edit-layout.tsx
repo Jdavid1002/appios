@@ -5,9 +5,7 @@ import {
   ScrollView,
   TextInput,
   StatusBar,
-  Picker,
   Platform,
-  TouchableOpacity,
   ActionSheetIOS,
   KeyboardAvoidingView,
   Text,
@@ -52,167 +50,140 @@ class ProfileEditModal extends Component<any> {
         <KeyboardAvoidingView
           style={[styles.container]}
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
-          <View
-            style={{backgroundColor: '#061946'}}
-            // androidStatusBarColor="#061946"
-          >
-            <StatusBar
-              translucent={true}
-              backgroundColor="#061946"
-              barStyle="light-content"
-            />
+            <View
+              style={{
+                backgroundColor: '#061946',
+                borderBottomColor : 'white', 
+                borderBottomWidth : 2,
+                width : '100%',
+                flexDirection: 'row',
+                alignItems : 'center',
+                justifyContent : 'space-between',
+                paddingHorizontal : 10,
+                paddingBottom : 5
+              }}
+              // androidStatusBarColor="#061946"
+            >
+              <StatusBar
+                translucent={true}
+                backgroundColor="#061946"
+                barStyle="light-content"
+              />
 
-            <View>
-              <TouchableHighlight onPress={() => this.props.setVisible(false)} >
-                <FontAwesomeIcon
-                  icon={faArrowLeft}
-                  color={'#24ABDF'}
-                  size={24}
-                />
-              </TouchableHighlight>
-            </View>
-            <View>
-              <Text style={{color: 'white'}}>Editar perfil</Text>
-            </View>
-            <View>
-              <TouchableHighlight
-                onPress={this.props.doEdit}
-                disabled={this.props.state.status === 'loading'}
-              >
-                {this.props.state.status === 'loading' && (
-                  <>
-                  0
-                  </>
-                  // <Spinner color="#39b3e2" size="small" />
-                )}
-                <Text style={{color: '#39b3e2'}}>Guardar</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-          <ScrollView
-            contentContainerStyle={[styles.wrapper, {paddingTop: 16}]}>
-            <View style={[styles.grid]}>
-              <View style={[styles.row, {margin: 8}]}>
-                <Text style={[styles.label]}>Nombre</Text>
-                <TextInput
-                  onChangeText={(text: string) =>
-                    this.props.handleInputChange('first_name', text)
-                  }
-                  value={this.props.state.first_name}
-                  placeholder="Nombre"
-                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                  style={[mainStyles.input, {marginBottom: 16}]}
-                  autoCompleteType="name"
-                />
-              </View>
-
-              <View style={[styles.row, {margin: 8}]}>
-                <Text style={[styles.label]}>Apellido</Text>
-                <TextInput
-                  onChangeText={(text: string) =>
-                    this.props.handleInputChange('last_name', text)
-                  }
-                  value={this.props.state.last_name}
-                  placeholder="Apellido"
-                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                  style={[mainStyles.input, {marginBottom: 16}]}
-                  autoCompleteType="name"
-                />
-              </View>
-
-              <View style={[styles.row, {margin: 8}]}>
-                <Text style={[styles.label]}>Correo electrónico / Usuario</Text>
-                <TextInput
-                  style={[mainStyles.input, {marginBottom: 16}]}
-                  onChangeText={(text: string) =>
-                    this.props.handleInputChange('email_address', text)
-                  }
-                  placeholder="E-mail"
-                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                  autoCapitalize="none"
-                  value={this.props.state.email_address}
-                  textContentType="emailAddress"
-                  autoCompleteType="email"
-                  keyboardType="email-address"
-                />
-              </View>
-
-              <View style={[styles.row, {margin: 8}]}>
-                <Text style={[styles.label]}>Fecha de nacimiento</Text>
-                <TouchableHighlight
-                  onPress={() => this.props.setShowBirthdatePicker(true)}
-                  style={[
-                    mainStyles.input,
-                    {marginBottom: 16, paddingHorizontal: 0},
-                  ]}>
-                  <Text>{this.props.state.birthdate}</Text>
-                </TouchableHighlight>
-                {this.props.state.showBirthdatePicker && (
-                  <DateTimePicker
-                    value={new Date(this.props.state.birthdate) || new Date()}
-                    onChange={this.props.handleDateChange}
-                    mode="date"
-                    style={{backgroundColor: '#8E96AB', borderRadius: 30}}
+              <View>
+                <TouchableHighlight onPress={() => this.props.setVisible(false)} >
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    color={'#24ABDF'}
+                    size={24}
                   />
-                )}
+                </TouchableHighlight>
               </View>
-
-              <View style={[styles.row, {margin: 8}]}>
-                <Text style={[styles.label]}>Teléfono (opcional *)</Text>
-                <TextInput
-                  onChangeText={(text: string) =>
-                    this.props.handleInputChange('phone', text)
-                  }
-                  value={this.props.state.phone}
-                  placeholder="Teléfono"
-                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                  style={[mainStyles.input, {marginBottom: 16}]}
-                  textContentType="telephoneNumber"
-                  keyboardType="number-pad"
-                  autoCompleteType="tel"
-                />
+              <View>
+                <Text style={{color: 'white'}}>Editar perfil</Text>
               </View>
+              <View>
+                <TouchableHighlight
+                  onPress={this.props.doEdit}
+                  disabled={this.props.state.status === 'loading'}
+                >
+                  <View>
+                    {this.props.state.status === 'loading' && (
+                      <Text>
+                        0
+                      </Text>
+                    )}
+                    <Text style={{color: '#39b3e2'}}>Guardar</Text>
+                  </View>
+                </TouchableHighlight>
+              </View>
+            </View>
 
-              <View style={[styles.row, {margin: 8}]}>
-                <Text style={[styles.label]}>Género</Text>
-                <View style={[mainStyles.input, styles.input]}>
-                  {Platform.OS === 'ios' ? (
-                    <>
-                      <TouchableOpacity
-                        style={mainStyles.input}
-                        onPress={_ =>
-                          this.showActionSheet('sex', this.props.state.genders)
-                        }>
-                        <Text style={styles.inputText}>
-                          {this.props.state.sex !== '' &&
-                          typeof this.props.state.sex !== 'undefined'
-                            ? this.props.state.genders.filter(
-                                (a: any) => a.key == this.props.state.sex,
-                              )[0].label
-                            : 'Masculino'}
-                        </Text>
-                      </TouchableOpacity>
-                    </>
-                  ) : (
-                    <Picker
-                      style={[mainStyles.input, {marginBottom: 0}]}
-                      selectedValue={this.props.state.sex}
-                      onValueChange={(text: string) =>
-                        this.props.handleInputChange('sex', text)
-                      }>
-                      {this.props.state.genders.map((gender: any) => (
-                        <Picker.Item
-                          key={gender.key}
-                          label={gender.label}
-                          value={gender.key}
-                        />
-                      ))}
-                    </Picker>
+            <ScrollView
+              contentContainerStyle={[styles.wrapper, {paddingTop: 16}]}>
+              <View style={[styles.grid]}>
+                <View style={[styles.row, {margin: 8}]}>
+                  <Text style={[styles.label]}>Nombre</Text>
+                  <TextInput
+                    onChangeText={(text: string) =>
+                      this.props.handleInputChange('first_name', text)
+                    }
+                    value={this.props.state.first_name}
+                    placeholder="Nombre"
+                    placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                    style={[mainStyles.input, {marginBottom: 16}]}
+                    autoCompleteType="name"
+                  />
+                </View>
+
+                <View style={[styles.row, {margin: 8}]}>
+                  <Text style={[styles.label]}>Apellido</Text>
+                  <TextInput
+                    onChangeText={(text: string) =>
+                      this.props.handleInputChange('last_name', text)
+                    }
+                    value={this.props.state.last_name}
+                    placeholder="Apellido"
+                    placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                    style={[mainStyles.input, {marginBottom: 16}]}
+                    autoCompleteType="name"
+                  />
+                </View>
+
+                <View style={[styles.row, {margin: 8}]}>
+                  <Text style={[styles.label]}>Correo electrónico / Usuario</Text>
+                  <TextInput
+                    style={[mainStyles.input, {marginBottom: 16}]}
+                    onChangeText={(text: string) =>
+                      this.props.handleInputChange('email_address', text)
+                    }
+                    placeholder="E-mail"
+                    placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                    autoCapitalize="none"
+                    value={this.props.state.email_address}
+                    textContentType="emailAddress"
+                    autoCompleteType="email"
+                    keyboardType="email-address"
+                  />
+                </View>
+
+                <View style={[styles.row, {margin: 8}]}>
+                  <Text style={[styles.label]}>Fecha de nacimiento</Text>
+                  <TouchableHighlight
+                    onPress={() => this.props.setShowBirthdatePicker(true)}
+                    style={[
+                      mainStyles.input,
+                      {marginBottom: 16, paddingHorizontal: 0},
+                    ]}>
+                    <Text>{this.props.state.birthdate}</Text>
+                  </TouchableHighlight>
+                  {this.props.state.showBirthdatePicker && (
+                    <DateTimePicker
+                      value={new Date(this.props.state.birthdate) || new Date()}
+                      onChange={this.props.handleDateChange}
+                      mode="date"
+                      style={{backgroundColor: '#8E96AB', borderRadius: 30}}
+                    />
                   )}
                 </View>
+
+                <View style={[styles.row, {margin: 8}]}>
+                  <Text style={[styles.label]}>Teléfono (opcional *)</Text>
+                  <TextInput
+                    onChangeText={(text: string) =>
+                      this.props.handleInputChange('phone', text)
+                    }
+                    value={this.props.state.phone}
+                    placeholder="Teléfono"
+                    placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                    style={[mainStyles.input, {marginBottom: 16}]}
+                    textContentType="telephoneNumber"
+                    keyboardType="number-pad"
+                    autoCompleteType="tel"
+                  />
+                </View>
               </View>
-            </View>
-          </ScrollView>
+            </ScrollView>
         </KeyboardAvoidingView>
       </Modal>
     );

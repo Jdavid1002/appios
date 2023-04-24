@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ActivityIndicator, Text, Button} from 'react-native';
+import {View, ActivityIndicator, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import GeneralService from '../../../../services/general/general';
@@ -29,7 +29,7 @@ const DailyQuestionCardLayout: React.FC<
               .stripTags(props.data?.questions[0].description)
               .trim()}
           </Text>
-          <Button
+          <TouchableOpacity
             style={[styles.button]}
             onPress={() =>
               navigation.navigate('SimulacrumQuestion', {
@@ -39,10 +39,11 @@ const DailyQuestionCardLayout: React.FC<
               })
             }
             disabled={props.data?.status === 'error'}
-            rounded
-            small>
+            // rounded
+            // small
+          >
             <Text style={[styles.buttonText]}>Responder</Text>
-          </Button>
+          </TouchableOpacity>
         </React.Fragment>
       )}
 

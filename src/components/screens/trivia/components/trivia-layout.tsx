@@ -6,7 +6,7 @@ import {
   Image,
   ActivityIndicator,
   Text,
-  Button
+  Button,
 } from 'react-native';
 
 import InlineWebview from '../../../../components/commons/webview';
@@ -51,17 +51,18 @@ const TriviaLayout: React.FC<ITriviaLayout> = props => {
           </TouchableOpacity>
         ))}
       {!props.state.answered && (
-        <Button
+        <TouchableOpacity
           style={[
             styles.button,
             props.state.selectedOption && {backgroundColor: '#39b3e2'},
           ]}
           onPress={props.saveAnswer}
           disabled={!props.state.selectedOption}
-          rounded
-          block>
+          // rounded
+          // block
+          >
           <Text style={[styles.buttonText]}>Ver respuesta</Text>
-        </Button>
+        </TouchableOpacity>
       )}
 
       {!props.state.loading && props.state.answered && (
@@ -107,13 +108,14 @@ const TriviaLayout: React.FC<ITriviaLayout> = props => {
               {props.state.brains}
             </Text>
           </View>
-          <Button
+          <TouchableOpacity
             style={[styles.button, {backgroundColor: '#e94044'}]}
             onPress={() => props.navigation.goBack()}
-            rounded
-            block>
+            // rounded
+            // block
+            >
             <Text style={[styles.buttonText]}>Salir</Text>
-          </Button>
+          </TouchableOpacity>
         </React.Fragment>
       )}
       {props.state.correct && <React.Fragment />}

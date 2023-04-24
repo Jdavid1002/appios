@@ -43,6 +43,9 @@ const StatisticsLayout = (props: any) => {
   return (
     <React.Fragment>
       <ScrollView
+        style={{
+          height : '85%'
+        }}
         contentContainerStyle={[
           styles.wrapper,
           {

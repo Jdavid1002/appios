@@ -24,12 +24,19 @@ export default StyleSheet.create({
     overflow: 'hidden',
     paddingHorizontal: 0,
     marginHorizontal: 20,
+    flex : 1,
+    justifyContent : 'center',
+    alignItems : 'center',
+    flexDirection : 'row',
   },
   tab: {
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 50,
     backgroundColor: 'transparent',
+    width : '50%',
+    justifyContent : 'center',
+    alignItems : 'center'
   },
   tabActive: {
     backgroundColor: '#24abdf',
@@ -96,6 +103,15 @@ export default StyleSheet.create({
   },
   button: {
     backgroundColor: '#0f4575',
+    width : '100%',
+    height : 40,
+    borderRadius : 18,
+    display : 'flex',
+    justifyContent : 'center',
+    alignItems : 'center'
+  },
+  buttonText: {
+    color : 'white'
   },
   input: {
     overflow: 'hidden',

@@ -24,7 +24,6 @@ const InfoLayout = (props: any) => {
           height={138}
           color={props?.user_data?.color}
         />
-        {/* <Thumbnail source={{uri: props?.data?.avatar}} style={[styles.avatar]} /> */}
 
         <TouchableOpacity
           style={{flex: 1}}
@@ -76,7 +75,7 @@ const InfoLayout = (props: any) => {
         </View>
 
         <TouchableHighlight style={[styles.button]} onPress={props.doLogout}>
-          <Text>Cerrar sesión</Text>
+          <Text style={[styles.buttonText]} >Cerrar sesión</Text>
         </TouchableHighlight>
 
         <ProfileEditModal
