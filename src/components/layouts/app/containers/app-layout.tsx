@@ -43,7 +43,7 @@ const AppLayout = () => {
           header : (headerParams: DrawerHeaderProps) => {
             const navigation = headerParams?.navigation;
             const previous = headerParams?.route?.name === 'Home' ? false : true;
-            const title = (headerParams?.route?.name && headerParams?.route?.name !== 'Home') || <Image source={require('../../../../assets/img/logo_iq.png')} />;
+            const title = !headerParams?.options?.title ? <Image source={require('../../../../assets/img/logo_iq.png')} /> : headerParams?.options?.title
             const plain = headerParams?.route?.params?.headerPlain;
             return (
               <Header
@@ -87,12 +87,6 @@ const AppLayout = () => {
             rightButton: <View />,
           }}
         />
-        <Drawer.Screen
-          name="Train-your-mind"
-          component={TrainYourMind}
-          options={{title: 'Entrena tu mente'}}
-        />
-
 
         <Drawer.Screen
           name="Train-your-mind"
@@ -108,13 +102,26 @@ const AppLayout = () => {
           component={TrainYourMindResultsLayout}
           initialParams={{leftButton: <View />}}
         />
-        <Drawer.Screen name="Train-your-mind/sudoku" component={SudokuLayout} />
-        <Drawer.Screen name="Train-your-mind/spellIt" component={SpellItLayout} />
+
+        <Drawer.Screen 
+          name="Train-your-mind/sudoku" 
+          component={SudokuLayout} 
+        />
+
+        <Drawer.Screen 
+          name="Train-your-mind/spellIt" 
+          component={SpellItLayout} 
+        />
+
         <Drawer.Screen
           name="Train-your-mind/problemSolving"
           component={ProblemsLayout}
         />
-        <Drawer.Screen name="Train-your-mind/memory" component={MemoryLayout} />
+
+        <Drawer.Screen 
+          name="Train-your-mind/memory" 
+          component={MemoryLayout} 
+        />
 
 
         <Drawer.Screen
@@ -160,11 +167,7 @@ const AppLayout = () => {
           component={ChallengeResultsScreen}
           options={{title: 'Resultados'}}
         />
-        <Drawer.Screen
-          name="Tips"
-          component={TipsScreen}
-          options={{title: 'Noticias'}}
-        />
+
         <Drawer.Screen
           name="Tip"
           component={TipScreen}
