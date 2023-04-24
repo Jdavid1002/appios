@@ -58,10 +58,8 @@ const InstructionsLayout = (props: any) => {
           onPress={() =>
             props.navigation.navigate(`Train-your-mind/${params.data.key}`)
           }
-          // rounded
-          // block
           >
-          <Text>Jugar</Text>
+          <Text style={[styles.text, {color : 'white'}]} >Jugar</Text>
         </TouchableHighlight>
       </ScrollView>
     </View>

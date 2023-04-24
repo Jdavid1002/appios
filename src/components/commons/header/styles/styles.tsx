@@ -23,7 +23,8 @@ export default StyleSheet.create({
     width : '100%',
     height : '100%',
     flexDirection: 'row',
-    alignItems : 'center'
+    alignItems : 'center',
+    paddingTop : 30
   },
   body: {
     width : '50%',

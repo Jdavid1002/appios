@@ -8,7 +8,7 @@ import ScreenSplash from './src/components/commons/screen-splash/components/scre
 
 export default function App() {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{height : '100%'}} >
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           {(bootstrapped: any) => {
