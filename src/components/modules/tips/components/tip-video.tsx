@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 
-import {Player} from 'app_components/commons/player';
+import {Player} from '../../../../components/commons/player';
 
 class TipVideo extends Component<any, any> {
   private tip: any = null;

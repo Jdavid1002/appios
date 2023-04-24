@@ -1,6 +1,5 @@
 import React from 'react';
-import {ScrollView, Image} from 'react-native';
-import {Text} from 'native-base';
+import {ScrollView, Image, Text} from 'react-native';
 
 import {styles} from './../index';
 

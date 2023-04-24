@@ -3,7 +3,7 @@ import {useNavigation, CommonActions} from '@react-navigation/native';
 import isValidSudoku from 'is-valid-sudoku';
 import Sudoku from 'sudoku-umd';
 
-import GeneralService from 'app_services/general/general';
+import GeneralService from '../../../../../services/general/general';
 
 import SudokuLayout from './sudoku-layout';
 

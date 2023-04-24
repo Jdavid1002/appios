@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, ScrollView, TextInput } from 'react-native';
-import { Text, Button, Icon } from 'native-base';
+import { View, ScrollView, Text, TouchableHighlight } from 'react-native';
+import gameStyles from './styles';
 
-import gameStyles from './styles'
-
-import { styles } from 'app_components/screens/train-your-mind';
+import { styles } from '../../../../../components/screens/train-your-mind';
 
 const SpellIt = (props: any) => {
   props.question&& console.log('options', props.question?.options)
@@ -34,13 +32,15 @@ const SpellIt = (props: any) => {
 
             {props.answered && props.answered === props?.question?.answer && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
-                <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} />
+                {/* <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} /> */}
+                +++
               </View>
             )}
 
             {props.answered && props.answered !== props?.question?.answer && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#e94044' }]}>
-                <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} />
+                {/* <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} /> */}
+                ---
               </View>
             )}
 
@@ -50,7 +50,7 @@ const SpellIt = (props: any) => {
 
             <View style={{ width: '100%' }}>
               {props.question?.options.map((option: string, index: number) => (
-                <Button
+                <TouchableHighlight
                   key={index}
                   style={[
                     { marginBottom: 16, paddingHorizontal: 16},
@@ -62,11 +62,9 @@ const SpellIt = (props: any) => {
                     { backgroundColor: '#e94044' }
                   ]}
                   onPress={() => props.doAnswer(option)}
-                  block
-                  rounded
                 >
                   <Text>{option}</Text>
-                </Button>
+                </TouchableHighlight>
               ))}
             </View>
 

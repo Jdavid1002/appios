@@ -1,21 +1,18 @@
 import React from 'react';
-import {View, TouchableOpacity, ScrollView} from 'react-native';
-import {Thumbnail, Text, Button} from 'native-base';
+import {View, TouchableOpacity, ScrollView, Text, TouchableHighlight} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEdit} from '@fortawesome/free-solid-svg-icons';
-import HowIFeel from 'app_components/commons/how-i-feel';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 
-import {styles, ProfileEditModal} from 'app_components/screens/profile';
-import AvatarComponent from 'app_components/commons/avatar';
-import { connect } from 'react-redux';
+import {styles, ProfileEditModal} from '../../../../components/screens/profile';
+import AvatarComponent from '../../../../components/commons/avatar';
+import {connect} from 'react-redux';
 
 const InfoLayout = (props: any) => {
-
-
-  const convertGenderInNaturalLenguaje : any = {
-    'male' : 'masculino',
-    'female' : 'femenino'
-  }
+  const convertGenderInNaturalLenguaje: any = {
+    male: 'masculino',
+    female: 'femenino',
+  };
 
   return (
     <React.Fragment>
@@ -51,7 +48,7 @@ const InfoLayout = (props: any) => {
               <Text style={[styles.label]}>Correo electrónico / Usuario</Text>
               <Text style={[styles.text]}>{props.data.email_address}</Text>
             </View>
-          ) :null}
+          ) : null}
 
           {props?.data && props?.data?.birthdate ? (
             <View style={[styles.row]}>
@@ -70,33 +67,32 @@ const InfoLayout = (props: any) => {
             {props?.data && props?.data?.gender && (
               <View style={[styles.withColCell]}>
                 <Text style={[styles.label]}>Género</Text>
-                <Text style={[styles.text]}>{convertGenderInNaturalLenguaje[props.data.gender]}</Text>
+                <Text style={[styles.text]}>
+                  {convertGenderInNaturalLenguaje[props.data.gender]}
+                </Text>
               </View>
             )}
           </View>
-
         </View>
 
-        <Button style={[styles.button]} onPress={props.doLogout} rounded block>
+        <TouchableHighlight style={[styles.button]} onPress={props.doLogout} rounded block>
           <Text>Cerrar sesión</Text>
-        </Button>
+        </TouchableHighlight>
 
         <ProfileEditModal
           setVisible={props.setEditModalVisible}
           visible={props.editModalVisible}
         />
       </ScrollView>
-      <HowIFeel screen="section_profile" />
+      <HowIFeel screen="section_profile" auth_token={''} />
     </React.Fragment>
   );
 };
-
 
 function mapStatesToProps(state: any = {}) {
   return {
     user_data: state.auth.user.user_data,
   };
 }
-
 
 export default connect(mapStatesToProps)(InfoLayout);

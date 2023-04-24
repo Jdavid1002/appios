@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Platform} from 'react-native';
 import {connect} from 'react-redux';
 
-import {UpdateProfile} from 'app_reducers/profile/types';
-import ProfileService from 'app_services/profile';
-import {ProfileEditLayout} from 'app_components/screens/profile';
+import {UpdateProfile} from '../../../../reducers/profile/types';
+import ProfileService from '../../../../services/profile';
+import {ProfileEditLayout} from '../../../../components/screens/profile';
 
 class EditProfile extends Component<any, any> {
   constructor(props: any) {

@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, Image, TouchableWithoutFeedback} from 'react-native';
-import {Text} from 'native-base';
+import {View, Image, TouchableWithoutFeedback, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {GameType, styles} from 'app_components/screens/train-your-mind';
+import {GameType, styles} from '../../../../components/screens/train-your-mind';
 
 interface GameListItemProps {
   data: GameType;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {RankingLayout} from 'app_components/commons/ranking';
+import {RankingLayout} from '../../../../components/commons/ranking';
 
 interface RankingProps {
   color: string;

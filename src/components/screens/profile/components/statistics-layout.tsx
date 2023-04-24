@@ -1,40 +1,44 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, RefreshControl} from 'react-native';
 
-import {styles} from 'app_components/screens/profile';
+import {styles} from '../../../../components/screens/profile';
 
-import HowIFeel from 'app_components/commons/how-i-feel';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 import StatisticsTopSection from './statisticsTopSection';
 import StatisticsRankingSection from './statisticsRankingSection';
-import ProfileService from 'app_services/profile';
-import { connect } from 'react-redux';
-import StatisticsService from 'app_services/statistics/statistics';
+import ProfileService from '../../../../services/profile';
+import {connect} from 'react-redux';
+import StatisticsService from '../../../../services/statistics/statistics';
 
 const StatisticsLayout = (props: any) => {
-
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const getStatisticsInformation = async () => {
-    setLoading(true)
+    setLoading(true);
 
-    const statisticsService = new StatisticsService()
+    const statisticsService = new StatisticsService();
 
     const params = {
-      nPerPage: "10",
+      nPerPage: '10',
       not_validate_alliance: false,
       not_validate_structure: false,
       not_validate_user: false,
-      pageNumber: "1",
-      structure_id: props?.user_data?.program?._id || ""
+      pageNumber: '1',
+      structure_id: props?.user_data?.program?._id || '',
     };
 
-    await statisticsService.getStatistics(props?.auth_token, props?.alliance_id, props.dispatch, params)
-    setLoading(false)
-  }
+    await statisticsService.getStatistics(
+      props?.auth_token,
+      props?.alliance_id,
+      props.dispatch,
+      params,
+    );
+    setLoading(false);
+  };
 
   useEffect(() => {
-    getStatisticsInformation()
-  }, [])
+    getStatisticsInformation();
+  }, []);
 
   return (
     <React.Fragment>
@@ -52,8 +56,7 @@ const StatisticsLayout = (props: any) => {
             refreshing={loading}
             onRefresh={getStatisticsInformation}
           />
-        }
-      >
+        }>
         {props.statistics?.status === 'success' && (
           <StatisticsTopSection statistics={props.statistics} />
         )}

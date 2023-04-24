@@ -6,10 +6,11 @@ import {
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
+  Text,
+  Button,
 } from 'react-native';
-import {Text, Button} from 'native-base';
 
-import {styles} from 'app_components/screens/train-your-mind';
+import {styles} from '../../../../../components/screens/train-your-mind';
 import gameStyles from './styles';
 
 const SudokuLayout = (props: any) => {

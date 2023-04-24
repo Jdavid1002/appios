@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
 import {ScrollView, View, ActivityIndicator} from 'react-native';
 import styles from '../styles/styles';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../styles/MainStyles';
 
 class Question extends Component<any> {
   state = {webViewHeight: 10, loading: true};

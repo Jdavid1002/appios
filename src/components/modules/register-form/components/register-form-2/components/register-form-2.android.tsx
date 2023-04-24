@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from 'react-native-check-box';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../../../styles/MainStyles';
 import styles from '../styles/styles';
-import CenterSearchBarContainer from 'app_components/modules/center-search-bar/containers/center-search-bar-container';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import CenterSearchBarContainer from '../../../../../../components/modules/center-search-bar/containers/center-search-bar-container';
+import {CustomText} from '../../../../../../components/commons/customs/components/customComponents';
 
 class RegisterForm2Component extends Component<any> {
   state = {

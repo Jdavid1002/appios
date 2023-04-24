@@ -1,4 +1,4 @@
-import {Profile} from 'app_reducers/profile/types';
+import {Profile} from '../../reducers/profile/types';
 import {
   UserState,
   LOGIN,
@@ -40,6 +40,6 @@ export function logout(): AuthActionTypes {
 export function updateLives(lives: number): AuthActionTypes {
   return {
     type: UPDATE_LIVES,
-    payload: lives
-  }
+    payload: lives,
+  };
 }

@@ -3,16 +3,16 @@ import React, { useEffect } from 'react';
 import { ScrollView, View, RefreshControl } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Challenges from 'app_components/modules/home/containers/challenges';
-import SimulacrumCard from 'app_components/modules/simulacum/containers/card-home';
-import TrainYourMindHome from 'app_components/screens/train-your-mind/containers/tym-home';
-import HowIFeel from 'app_components/commons/how-i-feel';
-import TriviaCard from 'app_components/modules/trivia-card';
-import DailyQuestionCard from 'app_components/modules/daily-question-card';
-import { TipsHomeCard } from 'app_components/modules/tips';
+import Challenges from '../../../../components/modules/home/containers/challenges';
+import SimulacrumCard from '../../../../components/modules/simulacum/containers/card-home';
+import TrainYourMindHome from '../../../../components/screens/train-your-mind/containers/tym-home';
+import HowIFeel from '../../../../components/commons/how-i-feel';
+import TriviaCard from '../../../../components/modules/trivia-card';
+import DailyQuestionCard from '../../../../components/modules/daily-question-card';
+import { TipsHomeCard } from '../../../../components/modules/tips';
 
-import mainStyles from 'app_styles/MainStyles';
-import SimulacrumService from 'app_services/simulacrum/simulacrum';
+import mainStyles from '../../../../styles/MainStyles';
+import SimulacrumService from '../../../../services/simulacrum/simulacrum';
 
 function HomeLayout(props: any) {
   const dispatch = useDispatch();

@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { Text, Thumbnail, Icon } from 'native-base';
+import { View, ScrollView, TouchableOpacity, Text, Image} from 'react-native';
 
 import { styles } from './../../index';
 import gameStyles from './styles'
@@ -8,7 +7,7 @@ import gameStyles from './styles'
 const MemoryThumbnail: React.FC<any> = (props: any) => {
   return (
     <View style={[gameStyles.thumbnail, props.style]}>
-      <Thumbnail source={props.source} style={{ width: '80%', height: '80%' }} square />
+      <Image source={props.source} style={{ width: '80%', height: '80%' }} />
     </View>
   )
 }
@@ -34,13 +33,15 @@ const MemoryLayout: React.FC<any> = (props: any) => {
 
             {props.answered.length > 0 && JSON.stringify(props?.question?.answer) === JSON.stringify(props.answered) && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
-                <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} />
+                {/* <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} /> */}
+                +++
               </View>
             )}
 
             {props.answered.length > 0 && JSON.stringify(props?.question?.answer) !== JSON.stringify(props.answered) && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#e94044' }]}>
-                <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} />
+                {/* <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} /> */}
+                ---
               </View>
             )}
 

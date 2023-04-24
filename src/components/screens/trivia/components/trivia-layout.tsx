@@ -5,36 +5,33 @@ import {
   TouchableOpacity,
   Image,
   ActivityIndicator,
+  Text,
+  Button
 } from 'react-native';
-import {Text, Button} from 'native-base';
 
-import InlineWebview from 'app_components/commons/webview';
+import InlineWebview from '../../../../components/commons/webview';
 
 import {styles} from './../index';
-import { TriviaAnswers, TriviaType } from 'app_reducers/trivia/types';
-
+import {TriviaAnswers, TriviaType} from '../../../../reducers/trivia/types';
 
 export interface ITriviaLayout {
-  navigation : any
-  trivia : TriviaType
-  state : any
-  selectOption : any
-  saveAnswer : any
+  navigation: any;
+  trivia: TriviaType;
+  state: any;
+  selectOption: any;
+  saveAnswer: any;
 }
 
 const TriviaLayout: React.FC<ITriviaLayout> = props => {
   return (
     <ScrollView contentContainerStyle={[styles.trivia]}>
-
       <Text style={[styles.title]}>Selecciona la opción correcta. </Text>
 
       <InlineWebview
         html={props.trivia.content}
         style={[styles.inlineWebview]}
       />
-      {props.state.loading && 
-        <ActivityIndicator size="large" />
-      }
+      {props.state.loading && <ActivityIndicator size="large" />}
 
       {!props.state.answered &&
         props.trivia.answers.map((answer: TriviaAnswers, i: number) => (

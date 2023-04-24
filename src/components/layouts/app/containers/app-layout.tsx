@@ -13,16 +13,7 @@ import {AppStackNavigator} from '../../../../router/app-stack-navigator/stack-na
 
 class AppLayout extends Component {
   render() {
-    return (
-      <NavigationContainer>
-        {/* <Drawer.Navigator
-          drawerStyle={mainStyles.navDrawer}
-          drawerContent={(props: any) => <DrawerMenu {...props} />}>
-          <Drawer.Screen name="AppStart" component={AppStackNavigator} />
-        </Drawer.Navigator> */}
-        <AppStackNavigator />
-      </NavigationContainer>
-    );
+    return <AppStackNavigator />;
   }
 }
 

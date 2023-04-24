@@ -1,12 +1,15 @@
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../utils/http';
 import {Alert} from 'react-native';
 
-import {get as getTriviaAction} from 'app_reducers/trivia/actions';
+import {get as getTriviaAction} from '../../reducers/trivia/actions';
 
 class TriviaService {
-
-  getTrivia = async (token: string, dispatch: any, alliance_id : string, user : string) => {
-
+  getTrivia = async (
+    token: string,
+    dispatch: any,
+    alliance_id: string,
+    user: string,
+  ) => {
     const query_data: HttpCustomStructure = {
       method: 'POST',
       url: `/api/trivias/${alliance_id}/question-trivia`,
@@ -15,11 +18,11 @@ class TriviaService {
         'Content-Type': 'application/json',
         Authorization: token,
       }),
-      auth_token : token,
-      params : {
+      auth_token: token,
+      params: {
         user,
-        alliance_id
-      }
+        alliance_id,
+      },
     };
 
     const data = await Http.send(query_data);

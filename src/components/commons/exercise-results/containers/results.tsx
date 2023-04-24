@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {View, Image} from 'react-native';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import ButtonBlue from '../../../../components/commons/buttons/components/button-blue';
 import ModalResults from './modal-results';
 
-import {update as updateStatisticsAction} from 'app_reducers/statistics/actions';
+import {update as updateStatisticsAction} from '../../../../reducers/statistics/actions';
 
 import {connect} from 'react-redux';
 
 import styles from '../styles/styles';
-import mainStyles from 'app_styles/MainStyles';
-import GeneralService from 'app_services/general/general';
-import HowIFeelService from 'app_services/how-i-feel';
+import mainStyles from '../../../../styles/MainStyles';
+import GeneralService from '../../../../services/general/general';
+import HowIFeelService from '../../../../services/how-i-feel';
 
 function mapStatesToProps(state: any = {}) {
   return {

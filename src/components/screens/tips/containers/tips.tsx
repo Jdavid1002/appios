@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import {View, FlatList, ScrollView, ActivityIndicator} from 'react-native';
-import HowIFeel from 'app_components/commons/how-i-feel';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 import {connect} from 'react-redux';
-import mainStyles from 'app_styles/MainStyles';
-import {Runway, TipCard, styles} from 'app_components/modules/tips';
+import mainStyles from '../../../../styles/MainStyles';
+import {Runway, TipCard, styles} from '../../../../components/modules/tips';
 
-import {Http, HttpCustomStructure} from 'app_utils/http';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 function mapStatesToProps(state: any = {}) {
   return {

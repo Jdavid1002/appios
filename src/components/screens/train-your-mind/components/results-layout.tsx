@@ -1,15 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ScrollView, View, Image, BackHandler} from 'react-native';
-import {Text, Button} from 'native-base';
+import {ScrollView, View, Image, BackHandler, Text, TouchableHighlight} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import GameService from 'app_services/games';
-import {styles} from 'app_components/screens/train-your-mind';
-import HowIFeelService from 'app_services/how-i-feel';
+import GameService from '../../../../services/games';
+import {styles} from '../../../../components/screens/train-your-mind';
+import HowIFeelService from '../../../../services/how-i-feel';
 
 const ResultsLayout = (props: any) => {
-
-  const [state, setState] = React.useState(null)
+  const [state, setState] = React.useState(null);
 
   const navigation = useNavigation();
   const params: any = props.route.params;
@@ -32,11 +30,15 @@ const ResultsLayout = (props: any) => {
       corrected_answers: params.corrected_answers,
     };
 
-    const results: any = await gameService.save(data, props?.statistics, props.auth_token, props.dispatch);
+    const results: any = await gameService.save(
+      data,
+      props?.statistics,
+      props.auth_token,
+      props.dispatch,
+    );
     setState(results);
     howIFeelService.setIsActive(props.dispatch, true);
-  }
-
+  };
 
   useFocusEffect(
     React.useCallback(() => {
@@ -70,7 +72,8 @@ const ResultsLayout = (props: any) => {
         />
 
         <Text style={[styles.gameTitle, {fontSize: 48, color: '#8ec772'}]}>
-          {state?.brains_to_assign > 0 && '+'}{state?.brains_to_assign}
+          {state?.brains_to_assign > 0 && '+'}
+          {state?.brains_to_assign}
         </Text>
 
         {params?.details.map((row: any) => (
@@ -102,13 +105,12 @@ const ResultsLayout = (props: any) => {
           </View>
         ))}
 
-        <Button
+        <TouchableHighlight
           style={[styles.button, {backgroundColor: '#e94044'}]}
-          onPress={() => props.navigation.navigate(`Train-your-mind`)}
-          rounded
-          block>
+          onPress={() => props.navigation.navigate('Train-your-mind')}
+        >
           <Text>Salir</Text>
-        </Button>
+        </TouchableHighlight>
       </ScrollView>
     </View>
   );

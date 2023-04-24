@@ -1,11 +1,11 @@
-import {UpdateProfile} from 'app_reducers/profile/types';
-import {update as updateStatisticsAction} from 'app_reducers/statistics/actions';
+import {UpdateProfile} from '../../reducers/profile/types';
+import {update as updateStatisticsAction} from '../../reducers/statistics/actions';
 
 import ProblemsGameService from './problems';
 import MemoryGameService from './memory';
 import SpellItGameService from './spellIt';
 
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../utils/http';
 import {Alert} from 'react-native';
 
 class GameService {

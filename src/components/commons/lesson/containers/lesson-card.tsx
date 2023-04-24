@@ -4,11 +4,11 @@ import {View, Linking, Alert, ActivityIndicator} from 'react-native';
 import LessonCard from '../components/lesson-card';
 
 import {connect} from 'react-redux';
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
 
-import SimualcrumService from 'app_services/simulacrum/simulacrum';
+import SimualcrumService from '../../../../services/simulacrum/simulacrum';
 
-import * as env from 'app_config/env.json';
+import * as env from '../../../../config/env.json';
 
 function mapStatesToProps(state: any = {}) {
   return {

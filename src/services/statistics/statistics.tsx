@@ -1,8 +1,8 @@
 import {
   get as getStatisticsAction,
   update as updateStatisticsAction,
-} from 'app_reducers/statistics/actions';
-import {Http, HttpCustomStructure} from 'app_utils/http';
+} from '../../reducers/statistics/actions';
+import {Http, HttpCustomStructure} from '../../utils/http';
 import {Alert} from 'react-native';
 
 interface IFetchRankingGamification {

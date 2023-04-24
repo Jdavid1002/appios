@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import {LayoutStyles as styles} from 'app_components/commons/player';
+import {LayoutStyles as styles} from '../../../../components/commons/player';
 
 function Layout(props: any) {
   return (

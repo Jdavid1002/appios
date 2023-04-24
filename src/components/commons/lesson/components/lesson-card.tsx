@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image} from 'react-native';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import ButtonBlue from '../../../../components/commons/buttons/components/button-blue';
 
 function LessonCard(props: any) {
   const progress = props?.progress || 0;

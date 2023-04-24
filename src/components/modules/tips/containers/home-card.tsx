@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 
-import {styles} from 'app_components/modules/tips';
+import {styles} from '../../../../components/modules/tips';
 
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-import {Runway} from 'app_components/modules/tips';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import {Runway} from '../../../../components/modules/tips';
 
 class TipsHomeCard extends Component<any, any> {
   handleGoToPage = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import SimulacrumService from 'app_services/simulacrum/simulacrum';
+import SimulacrumService from '../../../../services/simulacrum/simulacrum';
 
 import {DailyQuestionCardLayout} from './../index';
 

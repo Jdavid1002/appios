@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import {View, ScrollView, Alert, ActivityIndicator, TouchableOpacity} from 'react-native';
 
 import {connect} from 'react-redux';
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
 
 
-import InlineWebview from 'app_components/commons/webview';
+import InlineWebview from '../../../../components/commons/webview';
 
-import QuestionNavigate from 'app_components/commons/question/containers/question-navigate';
-import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
-import HowIFeel from 'app_components/commons/how-i-feel';
+import QuestionNavigate from '../../../../components/commons/question/containers/question-navigate';
+import ButtonBlue from '../../../../components/commons/buttons/components/button-blue';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 
-import mainStyles from 'app_styles/MainStyles';
-import {styles} from './../index'
+import mainStyles from '../../../../styles/MainStyles';
+import {styles} from './../index';
 
 
 function mapStatesToProps(state: any = {}) {

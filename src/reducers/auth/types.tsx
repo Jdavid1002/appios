@@ -1,4 +1,4 @@
-import {Profile} from 'app_reducers/profile/types';
+import {Profile} from '../../reducers/profile/types';
 
 export const AUTH_USER_UPDATE = 'AUTH_USER_UPDATE';
 export const UPDATE_TOKEN = 'UPDATE_TOKEN';

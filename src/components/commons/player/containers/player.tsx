@@ -3,7 +3,7 @@ import {View, ActivityIndicator} from 'react-native';
 import Video from 'react-native-video';
 // import VideoPlayer from 'react-native-video-controls';
 
-import {PlayerStyles as styles} from 'app_components/commons/player';
+import {PlayerStyles as styles} from '../../../../components/commons/player';
 
 class Player extends Component<any, any> {
   player: any = null;

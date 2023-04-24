@@ -35,12 +35,7 @@ class GeneralService {
       .match(/.{1,3}/g)
       .join(',');
     let decimals = num2[1] ? '.' + num2[1] : '';
-    return (
-      thousands
-        .split('')
-        .reverse()
-        .join('') + decimals
-    );
+    return thousands.split('').reverse().join('') + decimals;
   };
 
   stripTags = (txt: any) => {

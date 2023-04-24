@@ -1,6 +1,5 @@
 import React from "react";
-import { Thumbnail } from "native-base";
-import { Text, View } from "react-native";
+import { Text, View , Image} from "react-native";
 import { connect } from "react-redux";
 import styles from '../styles/styles'
 
@@ -65,12 +64,12 @@ const LayoutComponent: React.FC<LayoutComponentProps> = props => {
     );
   }else{
     return(
-      <Thumbnail
+      <Image
         style={[styles.avatar, {width : width, height : height}]}
         source={{
           uri: props?.user_data?.avatar,
         }}
-        small
+        // small
       />
     )
   }
