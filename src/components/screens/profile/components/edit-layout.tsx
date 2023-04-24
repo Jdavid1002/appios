@@ -1,26 +1,27 @@
 import React, {Component} from 'react';
-import {Modal, View, ScrollView, TextInput, StatusBar, Picker, Platform, TouchableOpacity, ActionSheetIOS, KeyboardAvoidingView} from 'react-native';
 import {
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Title,
+  Modal,
+  View,
+  ScrollView,
+  TextInput,
+  StatusBar,
+  Picker,
+  Platform,
+  TouchableOpacity,
+  ActionSheetIOS,
+  KeyboardAvoidingView,
   Text,
-  Spinner,
-} from 'native-base';
+  TouchableHighlight,
+} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../styles/MainStyles';
 import styles from './../styles';
 
-class ProfileEditModal extends Component<any>  {
-
+class ProfileEditModal extends Component<any> {
   showActionSheet(inputName: string, options: any) {
-
     const opts = [...options.map((data: any) => data.label), 'Cancelar'];
     const cancelIndex = opts.length - 1;
 
@@ -34,52 +35,62 @@ class ProfileEditModal extends Component<any>  {
           let value = options.filter(
             (_optData: any) => _optData.label === opts[buttonIndex],
           );
-          this.props.handleInputChange('sex', value[0].key)
-          this.props.handleInputChange('gender', value[0].label)
+          this.props.handleInputChange('sex', value[0].key);
+          this.props.handleInputChange('gender', value[0].label);
         }
       },
     );
   }
 
-  render () {
+  render() {
     return (
       <Modal
         animationType="slide"
         visible={this.props.visible}
         presentationStyle="overFullScreen"
         onRequestClose={() => this.props.setVisible(false)}>
-        <KeyboardAvoidingView style={[styles.container]}
+        <KeyboardAvoidingView
+          style={[styles.container]}
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
-          <Header
+          <View
             style={{backgroundColor: '#061946'}}
-            androidStatusBarColor="#061946">
+            // androidStatusBarColor="#061946"
+          >
             <StatusBar
-               translucent={true}
-               backgroundColor="#061946"
-               barStyle="light-content"
-             />
+              translucent={true}
+              backgroundColor="#061946"
+              barStyle="light-content"
+            />
 
-            <Left>
-              <Button onPress={() => this.props.setVisible(false)} transparent>
-                <FontAwesomeIcon icon={faArrowLeft} color={'#24ABDF'} size={24} />
-              </Button>
-            </Left>
-            <Body>
-              <Title style={{color: 'white'}}>Editar perfil</Title>
-            </Body>
-            <Right>
-              <Button
+            <View>
+              <TouchableHighlight onPress={() => this.props.setVisible(false)} >
+                <FontAwesomeIcon
+                  icon={faArrowLeft}
+                  color={'#24ABDF'}
+                  size={24}
+                />
+              </TouchableHighlight>
+            </View>
+            <View>
+              <Text style={{color: 'white'}}>Editar perfil</Text>
+            </View>
+            <View>
+              <TouchableHighlight
                 onPress={this.props.doEdit}
                 disabled={this.props.state.status === 'loading'}
-                transparent>
+              >
                 {this.props.state.status === 'loading' && (
-                  <Spinner color="#39b3e2" size="small" />
+                  <>
+                  0
+                  </>
+                  // <Spinner color="#39b3e2" size="small" />
                 )}
                 <Text style={{color: '#39b3e2'}}>Guardar</Text>
-              </Button>
-            </Right>
-          </Header>
-          <ScrollView contentContainerStyle={[styles.wrapper, {paddingTop: 16}]}>
+              </TouchableHighlight>
+            </View>
+          </View>
+          <ScrollView
+            contentContainerStyle={[styles.wrapper, {paddingTop: 16}]}>
             <View style={[styles.grid]}>
               <View style={[styles.row, {margin: 8}]}>
                 <Text style={[styles.label]}>Nombre</Text>
@@ -128,20 +139,20 @@ class ProfileEditModal extends Component<any>  {
 
               <View style={[styles.row, {margin: 8}]}>
                 <Text style={[styles.label]}>Fecha de nacimiento</Text>
-                <Button
+                <TouchableHighlight
                   onPress={() => this.props.setShowBirthdatePicker(true)}
                   style={[
                     mainStyles.input,
                     {marginBottom: 16, paddingHorizontal: 0},
                   ]}>
-                  <Text  >{this.props.state.birthdate}</Text>
-                </Button>
+                  <Text>{this.props.state.birthdate}</Text>
+                </TouchableHighlight>
                 {this.props.state.showBirthdatePicker && (
                   <DateTimePicker
                     value={new Date(this.props.state.birthdate) || new Date()}
                     onChange={this.props.handleDateChange}
                     mode="date"
-                    style={{backgroundColor: '#8E96AB',borderRadius: 30 }}
+                    style={{backgroundColor: '#8E96AB', borderRadius: 30}}
                   />
                 )}
               </View>
@@ -165,22 +176,30 @@ class ProfileEditModal extends Component<any>  {
               <View style={[styles.row, {margin: 8}]}>
                 <Text style={[styles.label]}>Género</Text>
                 <View style={[mainStyles.input, styles.input]}>
-
-                  { (Platform.OS === 'ios') ?
+                  {Platform.OS === 'ios' ? (
                     <>
                       <TouchableOpacity
                         style={mainStyles.input}
-                        onPress={_ => this.showActionSheet('sex', this.props.state.genders)}>
+                        onPress={_ =>
+                          this.showActionSheet('sex', this.props.state.genders)
+                        }>
                         <Text style={styles.inputText}>
-                          { (this.props.state.sex !== '' && typeof this.props.state.sex !== 'undefined' ) ? this.props.state.genders.filter( (a: any) => a.key == this.props.state.sex )[0].label : 'Masculino'}
+                          {this.props.state.sex !== '' &&
+                          typeof this.props.state.sex !== 'undefined'
+                            ? this.props.state.genders.filter(
+                                (a: any) => a.key == this.props.state.sex,
+                              )[0].label
+                            : 'Masculino'}
                         </Text>
                       </TouchableOpacity>
                     </>
-                    :
+                  ) : (
                     <Picker
                       style={[mainStyles.input, {marginBottom: 0}]}
                       selectedValue={this.props.state.sex}
-                      onValueChange={(text: string) => this.props.handleInputChange('sex', text) }>
+                      onValueChange={(text: string) =>
+                        this.props.handleInputChange('sex', text)
+                      }>
                       {this.props.state.genders.map((gender: any) => (
                         <Picker.Item
                           key={gender.key}
@@ -189,9 +208,7 @@ class ProfileEditModal extends Component<any>  {
                         />
                       ))}
                     </Picker>
-                  }
-
-
+                  )}
                 </View>
               </View>
             </View>
@@ -200,6 +217,6 @@ class ProfileEditModal extends Component<any>  {
       </Modal>
     );
   }
-};
+}
 
 export default ProfileEditModal;

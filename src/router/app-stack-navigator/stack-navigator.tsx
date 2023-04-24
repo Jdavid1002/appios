@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {StackHeaderProps, createStackNavigator} from '@react-navigation/stack';
 import Header from '../../components/commons/header/containers/header';
 import HomeScreen from '../../components/screens/home/containers/home';
 import ChallengeScreen from '../../components/screens/challenge/containers/challenge';
@@ -32,36 +32,29 @@ export const AppStackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      headerMode="screen"
       screenOptions={{
-        header: ({scene, navigation, previous}: any) => {
-          const {options} = scene.descriptor;
+        header: (headerParams: StackHeaderProps) => {
+          const navigation = headerParams?.navigation;
+          const previous = headerParams?.progress?.previous
+          const title = headerParams?.route?.name || <Image source={require('../../assets/img/logo_iq.png')} />;
+          const subtitle = headerParams?.route?.name
 
-          const params = scene.route.params;
-
-          let title: React.ReactNode = options.title;
-
-          if (typeof params?.headerTitle !== 'undefined') {
-            title = params.headerTitle.toString();
-          }
-
-          if (typeof title === 'undefined') {
-            title = <Image source={require('assets/img/logo_iq.png')} />;
-          }
+          console.log('headerParams', headerParams)
 
           return (
             <Header
               title={title}
-              subtitle={params?.subtitle}
-              leftButton={params?.leftButton}
-              rightButton={params?.rightButton}
-              plain={params?.headerPlain}
+              subtitle={subtitle}
+              leftButton={true}
+              rightButton={false}
+              plain={headerParams?.route?.params?.headerPlain || false}
               navigation={navigation}
               previous={previous}
             />
           );
         },
-      }}>
+      }}
+    >
       <Stack.Screen
         name="Home"
         component={HomeScreen}

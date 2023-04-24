@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 import styles from '../styles/styles-answer';
 

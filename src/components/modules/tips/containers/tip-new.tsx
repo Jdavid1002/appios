@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {View, ActivityIndicator, ScrollView, Image} from 'react-native';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
-import mainStyles from 'app_styles/MainStyles';
-import {TipNewStyles} from 'app_components/modules/tips';
+import mainStyles from '../../../../styles/MainStyles';
+import {TipNewStyles} from '../../../../components/modules/tips';
 
 class TipNew extends Component<any, any> {
   private tip: any = null;
@@ -29,14 +29,15 @@ class TipNew extends Component<any, any> {
   render = () => {
     return (
       <View style={TipNewStyles.container}>
-        {this.tip.hasOwnProperty('image_path') && this.tip.image_path !== '' && (
-          <Image
-            style={TipNewStyles.image}
-            source={{
-              uri: this.tip.image_path,
-            }}
-          />
-        )}
+        {this.tip.hasOwnProperty('image_path') &&
+          this.tip.image_path !== '' && (
+            <Image
+              style={TipNewStyles.image}
+              source={{
+                uri: this.tip.image_path,
+              }}
+            />
+          )}
         <CustomText style={TipNewStyles.title}>{this.tip.name}</CustomText>
         {this.state.loading === true ? (
           <ScrollView style={[mainStyles.container, {height: 800}]}>

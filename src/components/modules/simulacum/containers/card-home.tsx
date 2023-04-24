@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {TouchableOpacity, View, Image} from 'react-native';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-import SimualcrumService from 'app_services/simulacrum/simulacrum';
+import {TouchableOpacity, View, Image, TouchableHighlight} from 'react-native';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import SimualcrumService from '../../../../services/simulacrum/simulacrum';
 import {connect} from 'react-redux';
-import {Button} from 'native-base';
 
 import styles from '../styles/styles-card-home';
 
@@ -30,7 +29,7 @@ class SimulacrumCard extends Component<any> {
       <View style={styles.container}>
         <Image
           style={styles.cardImageLeft}
-          source={require('assets/img/home/bg_card_simulacrum.png')}
+          source={require('../../../../assets/img/home/bg_card_simulacrum.png')}
         />
         <CustomText style={[styles.title]}>Simulacros</CustomText>
         <View style={styles.starWraper}>
@@ -39,15 +38,15 @@ class SimulacrumCard extends Component<any> {
               <>
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star.png')}
+                  source={require('../../../../assets/img/star.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star.png')}
+                  source={require('../../../../assets/img/star.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star.png')}
+                  source={require('../../../../assets/img/star.png')}
                 />
               </>
             ) : (
@@ -58,15 +57,15 @@ class SimulacrumCard extends Component<any> {
               <>
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star.png')}
+                  source={require('../../../../assets/img/star.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star.png')}
+                  source={require('../../../../assets/img/star.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star-light.png')}
+                  source={require('../../../../assets/img/star-light.png')}
                 />
               </>
             ) : (
@@ -77,15 +76,15 @@ class SimulacrumCard extends Component<any> {
               <>
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star.png')}
+                  source={require('../../../../assets/img/star.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star-light.png')}
+                  source={require('../../../../assets/img/star-light.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star-light.png')}
+                  source={require('../../../../assets/img/star-light.png')}
                 />
               </>
             ) : (
@@ -96,15 +95,15 @@ class SimulacrumCard extends Component<any> {
               <>
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star-light.png')}
+                  source={require('../../../../assets/img/star-light.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star-light.png')}
+                  source={require('../../../../assets/img/star-light.png')}
                 />
                 <Image
                   style={styles.star}
-                  source={require('assets/img/star-light.png')}
+                  source={require('../../../../assets/img/star-light.png')}
                 />
               </>
             ) : (
@@ -113,7 +112,7 @@ class SimulacrumCard extends Component<any> {
             <View style={styles.brainContainer}>
               <Image
                 style={styles.brainImage}
-                source={require('assets/img/brain.png')}
+                source={require('../../../../assets/img/brain.png')}
               />
               <CustomText style={styles.textInfo}> {/*+120*/} </CustomText>
             </View>
@@ -122,15 +121,14 @@ class SimulacrumCard extends Component<any> {
         <CustomText style={[styles.subTitle]}>
           Ponte a prueba para las Pruebas Nacionales
         </CustomText>
-        <Button
+        <TouchableHighlight
           style={[styles.button]}
           onPress={() => this.props.navigation.navigate('Simulacrums')}
-          rounded
-          small>
+        >
           <CustomText style={[styles.buttonText]}>
             Escoge tu asignatura
           </CustomText>
-        </Button>
+        </TouchableHighlight>
       </View>
     );
   }

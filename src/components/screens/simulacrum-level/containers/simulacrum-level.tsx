@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {ScrollView, View, FlatList, ActivityIndicator} from 'react-native';
 import {CommonActions} from '@react-navigation/native';
 
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-import SimpleCard from 'app_components/commons/cards/components/simple-card';
-import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
-import mainStyles from 'app_styles/MainStyles';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import SimpleCard from '../../../../components/commons/cards/components/simple-card';
+import ButtonBlue from '../../../../components/commons/buttons/components/button-blue';
+import mainStyles from '../../../../styles/MainStyles';
 import styles from '../styles/styles';
-import HowIFeel from 'app_components/commons/how-i-feel';
-import SimualcrumService from 'app_services/simulacrum/simulacrum';
+import HowIFeel from '../../../../components/commons/how-i-feel';
+import SimualcrumService from '../../../../services/simulacrum/simulacrum';
 
 import {connect} from 'react-redux';
 

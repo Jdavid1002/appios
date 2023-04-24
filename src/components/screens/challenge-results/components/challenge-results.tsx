@@ -1,12 +1,12 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
-import Results from 'app_components/commons/exercise-results/containers/results';
-import mainStyles from 'app_styles/MainStyles';
+import Results from '../../../../components/commons/exercise-results/containers/results';
+import mainStyles from '../../../../styles/MainStyles';
 
-function ChallengeResults (props: any){
+function ChallengeResults(props: any) {
   return (
     <ScrollView style={[mainStyles.container]}>
-      <Results {...props}/>
+      <Results {...props} />
     </ScrollView>
   );
 }

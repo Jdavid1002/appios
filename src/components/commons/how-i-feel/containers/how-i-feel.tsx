@@ -1,12 +1,12 @@
 import React from 'react';
-import {Toast} from 'native-base';
 import {connect} from 'react-redux';
 import {useDispatch, useSelector} from 'react-redux';
-import {setIsActive as setIsActiveAction} from 'app_reducers/how_i_feel/actions';
+import {setIsActive as setIsActiveAction} from '../../../../reducers/how_i_feel/actions';
 
 import HowIFeelLayout from './../components/how-i-feel-layout';
 
-import HowIFeelService from 'app_services/how-i-feel';
+import HowIFeelService from '../../../../services/how-i-feel';
+import { Alert } from 'react-native';
 
 interface HowIFeelProps {
   auth_token: string;
@@ -46,84 +46,84 @@ const HowIFeel = (props: HowIFeelProps) => {
   const emojis = [
     {
       value: 'emoticon_happy',
-      image: require('assets/img/how-i-feel/feels/page-1-3.png'),
+      image: require('../../../../assets/img/how-i-feel/feels/page-1-3.png'),
     },
     {
       value: 'emoticon_slightly_happy',
-      image: require('assets/img/how-i-feel/feels/page-1-2.png'),
+      image: require('../../../../assets/img/how-i-feel/feels/page-1-2.png'),
     },
     {
       value: 'emoticon_indiferent',
-      image: require('assets/img/how-i-feel/feels/page-1-4.png'),
+      image: require('../../../../assets/img/how-i-feel/feels/page-1-4.png'),
     },
     {
       value: 'emoticon_sad',
-      image: require('assets/img/how-i-feel/feels/page-1-5.png'),
+      image: require('../../../../assets/img/how-i-feel/feels/page-1-5.png'),
     },
     {
       value: 'emoticon_cry',
-      image: require('assets/img/how-i-feel/feels/page-1.png'),
+      image: require('../../../../assets/img/how-i-feel/feels/page-1.png'),
     },
   ];
   const activities = [
     {
       value: 'activity_family',
-      image: require('assets/img/how-i-feel/activities/mother.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/mother.png'),
       text: 'Familia',
     },
     {
       value: 'activity_friends',
-      image: require('assets/img/how-i-feel/activities/sport-team.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/sport-team.png'),
       text: 'Amigos',
     },
     {
       value: 'activity_relationship',
-      image: require('assets/img/how-i-feel/activities/heart-1.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/heart-1.png'),
       text: 'Cita',
     },
     {
       value: 'activity_party',
-      image: require('assets/img/how-i-feel/activities/party.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/party.png'),
       text: 'Fiesta',
     },
     {
       value: 'activity_playtime',
-      image: require('assets/img/how-i-feel/activities/puzzle.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/puzzle.png'),
       text: 'Recreo',
     },
     {
       value: 'activity_hobbies',
-      image: require('assets/img/how-i-feel/activities/guitar.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/guitar.png'),
       text: 'Hobbies',
     },
     {
       value: 'activity_school',
-      image: require('assets/img/how-i-feel/activities/school.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/school.png'),
       text: 'Centro Educativo',
     },
     {
       value: 'activity_sport',
-      image: require('assets/img/how-i-feel/activities/run.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/run.png'),
       text: 'Deporte',
     },
     {
       value: 'activity_watch_tv',
-      image: require('assets/img/how-i-feel/activities/computer.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/computer.png'),
       text: 'Películas y TV',
     },
     {
       value: 'activity_reading',
-      image: require('assets/img/how-i-feel/activities/book-1.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/book-1.png'),
       text: 'Lectura',
     },
     {
       value: 'activity_plays',
-      image: require('assets/img/how-i-feel/activities/joystick.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/joystick.png'),
       text: 'Juegos',
     },
     {
       value: 'activity_relax',
-      image: require('assets/img/how-i-feel/activities/sofa.png'),
+      image: require('../../../../assets/img/how-i-feel/activities/sofa.png'),
       text: 'Relajamiento',
     },
   ];
@@ -145,11 +145,11 @@ const HowIFeel = (props: HowIFeelProps) => {
     dispatch(setIsActiveAction(false));
 
     if (response?.status === 200) {
-      Toast.show({
-        text: response.message,
-        buttonText: 'Cerrar',
-        type: 'success',
-      });
+      Alert.alert(
+        'Success',
+        response.message,
+        [{text: 'Cerrar'}],
+      );
     }
   };
 

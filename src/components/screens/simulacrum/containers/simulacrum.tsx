@@ -6,18 +6,18 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-import SimulacrumCard from 'app_components/modules/challenge-card/components/card-large';
-import CardResults, { ISimulacrumResult } from 'app_components/modules/simulacum/containers/card-results';
-import { CustomText } from 'app_components/commons/customs/components/customComponents';
+import SimulacrumCard from '../../../../components/modules/challenge-card/components/card-large';
+import CardResults, { ISimulacrumResult } from '../../../../components/modules/simulacum/containers/card-results';
+import { CustomText } from '../../../../components/commons/customs/components/customComponents';
 import styles from '../styles/styles';
-import mainStyles from 'app_styles/MainStyles';
-import HowIFeel from 'app_components/commons/how-i-feel';
+import mainStyles from '../../../../styles/MainStyles';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 
 import { connect } from 'react-redux';
-import { store } from 'app_storage/redux-storage';
-import SimulacrumService from 'app_services/simulacrum/simulacrum';
-import ModalLives from 'app_components/commons/question/components/modal-lives';
-import { updateLives } from 'app_reducers/auth/actions';
+import { store } from '../../../../storage/redux-storage';
+import SimulacrumService from '../../../../services/simulacrum/simulacrum';
+import ModalLives from '../../../../components/commons/question/components/modal-lives';
+import { updateLives } from '../../../../reducers/auth/actions';
 
 interface ISimulacrumState {
   loading: boolean,

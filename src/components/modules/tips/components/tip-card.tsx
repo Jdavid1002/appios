@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
-import { CustomText } from 'app_components/commons/customs/components/customComponents';
+import {View, Image, TouchableOpacity} from 'react-native';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
-import { TipCardStyles as styles } from 'app_components/modules/tips';
+import {TipCardStyles as styles} from '../../../../components/modules/tips';
 
 const tipsImg: any = {
   new: require('assets/img/tips/new.png'),
@@ -10,7 +10,7 @@ const tipsImg: any = {
 };
 
 function TipCard(props: any) {
-  const { name, type } = props.content;
+  const {name, type} = props.content;
 
   let short_name = name;
   if (name.length > 34) {

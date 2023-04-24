@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 
-import {styles} from 'app_components/screens/train-your-mind';
+import {styles} from '../../../../components/screens/train-your-mind';
 
 const GameListHeader = () => {
   return (

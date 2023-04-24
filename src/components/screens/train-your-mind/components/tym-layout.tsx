@@ -1,12 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import HowIFeel from 'app_components/commons/how-i-feel';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 
 import {
   GameList,
   GameType,
   styles,
-} from 'app_components/screens/train-your-mind';
+} from '../../../../components/screens/train-your-mind';
 
 interface trainYourMindLayoutProps {
   gameList: GameType[];

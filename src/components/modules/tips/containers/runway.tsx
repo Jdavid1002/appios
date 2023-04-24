@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {View, ScrollView, ActivityIndicator} from 'react-native';
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
 import {connect} from 'react-redux';
 
-import mainStyles from 'app_styles/MainStyles';
-import {styles} from 'app_components/modules/tips';
+import mainStyles from '../../../../styles/MainStyles';
+import {styles} from '../../../../components/modules/tips';
 
-import {RunwayCard} from 'app_components/modules/tips';
+import {RunwayCard} from '../../../../components/modules/tips';
 
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 const renderItem = ({item}: any = {}) => <RunwayCard content={item} />;
 

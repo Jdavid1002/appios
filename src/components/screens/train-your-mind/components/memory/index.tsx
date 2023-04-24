@@ -1,8 +1,8 @@
 import React from 'react';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 
-import GameService from 'app_services/games';
-import GeneralService from 'app_services/general/general';
+import GameService from '../../../../../services/games';
+import GeneralService from '../../../../../services/general/general';
 
 import SpellItLayout from './memory-layout';
 

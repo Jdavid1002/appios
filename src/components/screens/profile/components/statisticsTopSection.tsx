@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, Image} from 'react-native';
-import {Text} from 'native-base';
-import {styles} from 'app_components/screens/profile';
-import GeneralService from 'app_services/general/general';
-import { connect } from 'react-redux';
+import {View, Image, Text} from 'react-native';
+import {styles} from '../../../../components/screens/profile';
+import GeneralService from '../../../../services/general/general';
+import {connect} from 'react-redux';
 
 const StatisticsTopSection = (props: any) => {
   const generalService = new GeneralService();
   const categories = props?.statistics?.categories;
-  const total = categories?.map((categorie : any) => categorie?.points).reduce((a : any, b : any) => a + b, 0)
+  const total = categories
+    ?.map((categorie: any) => categorie?.points)
+    .reduce((a: any, b: any) => a + b, 0);
 
   return (
     <View style={[styles.topSection]}>
@@ -41,12 +42,14 @@ const StatisticsTopSection = (props: any) => {
               style={{marginRight: 8}}
               source={require('assets/img/brain_white.png')}
             />
-            {props?.statistics?.range?.end?.points ?
+            {props?.statistics?.range?.end?.points ? (
               <Text style={[styles.text, {fontSize: 16}]}>
-                = { generalService.formatNumber(props?.statistics?.range?.end?.points)}
+                ={' '}
+                {generalService.formatNumber(
+                  props?.statistics?.range?.end?.points,
+                )}
               </Text>
-            : null}
-
+            ) : null}
           </View>
         </View>
       </View>
@@ -67,9 +70,11 @@ const StatisticsTopSection = (props: any) => {
             </Text>
           )}
           {Object.keys(categories).map((category: any) => {
-            if(categories[category]?.name){
+            if (categories[category]?.name) {
               return (
-                <View key={categories[category].name} style={{width: '100%', marginBottom: 12}}>
+                <View
+                  key={categories[category].name}
+                  style={{width: '100%', marginBottom: 12}}>
                   <Text style={{color: '#f3c744', marginBottom: 8}}>
                     {categories[category].name}
                   </Text>
@@ -83,15 +88,16 @@ const StatisticsTopSection = (props: any) => {
                         styles.text,
                         {fontSize: 24, fontFamily: 'Nunito-Bold'},
                       ]}>
-                      = { generalService.formatNumber(categories[category].points)}
+                      ={' '}
+                      {generalService.formatNumber(categories[category].points)}
                     </Text>
                   </View>
                 </View>
-              )
-            }else{
-              return null
+              );
+            } else {
+              return null;
             }
-            })}
+          })}
         </View>
 
         <View
@@ -112,7 +118,7 @@ const StatisticsTopSection = (props: any) => {
           />
           <Text style={[styles.text, {color: '#061946'}]}>Total:</Text>
           <Text style={[styles.text, {color: '#061946', fontSize: 48}]}>
-            { generalService.formatNumber(total)}
+            {generalService.formatNumber(total)}
           </Text>
         </View>
       </View>

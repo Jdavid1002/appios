@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
-import { View, ScrollView, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
+import React, {Component} from 'react';
+import {
+  View,
+  ScrollView,
+  Alert,
+  ActivityIndicator,
+  TouchableOpacity,
+} from 'react-native';
+import {CommonActions} from '@react-navigation/native';
 
-import { DispatchProp, connect } from 'react-redux';
-import { Http, HttpCustomStructure } from 'app_utils/http';
+import {DispatchProp, connect} from 'react-redux';
+import {Http, HttpCustomStructure} from '../../../../utils/http';
 
-import InlineWebview from 'app_components/commons/webview';
+import InlineWebview from '../../../../components/commons/webview';
 
-import QuestionNavigate from 'app_components/commons/question/containers/question-navigate';
-import ButtonBlue from 'app_components/commons/buttons/components/button-blue';
-import ModalLives from 'app_components/commons/question/components/modal-lives';
-import HowIFeel from 'app_components/commons/how-i-feel';
+import QuestionNavigate from '../../../../components/commons/question/containers/question-navigate';
+import ButtonBlue from '../../../../components/commons/buttons/components/button-blue';
+import ModalLives from '../../../../components/commons/question/components/modal-lives';
+import HowIFeel from '../../../../components/commons/how-i-feel';
 
-import mainStyles from 'app_styles/MainStyles';
-import { styles } from './../index'
-import SimulacrumService from 'app_services/simulacrum/simulacrum';
-import { updateLives } from 'app_reducers/auth/actions';
+import mainStyles from '../../../../styles/MainStyles';
+import {styles} from './../index';
+import SimulacrumService from '../../../../services/simulacrum/simulacrum';
+import {updateLives} from '../../../../reducers/auth/actions';
 
 class SimulacrumQuestions extends Component<any, any> {
-
-  private simulacrumService = new SimulacrumService()
+  private simulacrumService = new SimulacrumService();
 
   state: any = {
     loading: true,
@@ -33,7 +38,7 @@ class SimulacrumQuestions extends Component<any, any> {
     selected_answer: {},
     statistics: [],
     lives: 3,
-    modalVisible: false
+    modalVisible: false,
   };
 
   lettersByIndex: any = {
@@ -43,7 +48,7 @@ class SimulacrumQuestions extends Component<any, any> {
     3: 'D',
     4: 'E',
     5: 'F',
-  }
+  };
 
   componentDidMount = () => {
     this.setState({
@@ -57,7 +62,7 @@ class SimulacrumQuestions extends Component<any, any> {
       current_answers: [],
       selected_answer: {},
       statistics: [],
-      modalVisible: false
+      modalVisible: false,
     });
     this.getSimulacrumsQuestions();
   };
@@ -73,47 +78,51 @@ class SimulacrumQuestions extends Component<any, any> {
       current_question_data: {},
       current_answers: [],
       selected_answer: {},
-      statistics: []
+      statistics: [],
     });
   };
 
-
   showModalLives = () => {
-    this.setState({ modalVisible: true });
+    this.setState({modalVisible: true});
   };
 
   hideModal = () => {
-    if(this.props.lives === 0){
-      this.props.navigation.navigate('Simulacrums')
+    if (this.props.lives === 0) {
+      this.props.navigation.navigate('Simulacrums');
     }
-    this.setState({ modalVisible: false });
+    this.setState({modalVisible: false});
   };
-
-
 
   getSimulacrumsQuestions = async () => {
     const section = this?.props?.route?.params?.section;
-    const newQuestions = section?.questions?.map((_question: any, idx: number) => {
-      return {
-        ..._question,
-        position: idx + 1,
-        answers: _question?.answers?.map((item: any) => {
-          return {
-            ...item,
-            id: item?._id,
-            title: item?.content,
-            correct: item?.is_correct,
-            comment: item?.feedback,
-            selected: false,
-          }
-        })
-      }
-    })
+    const newQuestions = section?.questions?.map(
+      (_question: any, idx: number) => {
+        return {
+          ..._question,
+          position: idx + 1,
+          answers: _question?.answers?.map((item: any) => {
+            return {
+              ...item,
+              id: item?._id,
+              title: item?.content,
+              correct: item?.is_correct,
+              comment: item?.feedback,
+              selected: false,
+            };
+          }),
+        };
+      },
+    );
 
     //@INFO Obtener la primera pregunta sin estadisticas, es decir sin ser resuelta. En caso de que no encuentre ninguna coloca la primera.
-    const statistics_ids = this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics?.map((item: any) => item?.question)
-    const nextQuestion = newQuestions?.find((item: any) => !statistics_ids?.includes(item?._id))
-    const questionSelected = nextQuestion || newQuestions[0]
+    const statistics_ids =
+      this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics?.map(
+        (item: any) => item?.question,
+      );
+    const nextQuestion = newQuestions?.find(
+      (item: any) => !statistics_ids?.includes(item?._id),
+    );
+    const questionSelected = nextQuestion || newQuestions[0];
 
     this.setState({
       loading: false,
@@ -128,7 +137,7 @@ class SimulacrumQuestions extends Component<any, any> {
   };
 
   setQuestion = async (question: any) => {
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     // Busca una pregunta del mismo nivel o inferior
     let response: any = false;
@@ -137,8 +146,10 @@ class SimulacrumQuestions extends Component<any, any> {
     } catch (e) {
       response = e;
     }
-    this.setState({ loading: false });
-    if (!response) this.noQuestionError();
+    this.setState({loading: false});
+    if (!response) {
+      this.noQuestionError();
+    }
   };
 
   changeCurrentQuestion = async (question: any) => {
@@ -146,10 +157,10 @@ class SimulacrumQuestions extends Component<any, any> {
       current_question_data: question,
       current_answers: question?.answers,
       selected_answer: {},
-      current_question: question?.position
+      current_question: question?.position,
     });
 
-    this.setState({ loading: false });
+    this.setState({loading: false});
     return true;
   };
 
@@ -157,53 +168,72 @@ class SimulacrumQuestions extends Component<any, any> {
     Alert.alert(
       'Error',
       'No existe una pregunta disponible',
-      [{ text: 'OK', onPress: () => this.props.navigation.navigate('Home') }],
-      { cancelable: false },
+      [{text: 'OK', onPress: () => this.props.navigation.navigate('Home')}],
+      {cancelable: false},
     );
   };
 
   changeQuestionByNavigate = (math: '+' | '-') => {
-    const validateMath = math === '+' ? this.state.current_question + 1 : this.state.current_question - 1
-    const destinyQuestion = this.state.questions?.find((question: any) => question?.position === validateMath)
+    const validateMath =
+      math === '+'
+        ? this.state.current_question + 1
+        : this.state.current_question - 1;
+    const destinyQuestion = this.state.questions?.find(
+      (question: any) => question?.position === validateMath,
+    );
     if (destinyQuestion) {
       this.setState({
         loading: true,
       });
       this.changeCurrentQuestion(destinyQuestion);
     }
-  }
+  };
 
   handlePressButtonSend = async () => {
     const section = this?.props?.route?.params?.section;
 
-
-    const currentStatisticsInDataBase = this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics || []
+    const currentStatisticsInDataBase =
+      this?.props?.route?.params?.academicResourceData?.config?.attempt_active
+        ?.results?.statistics || [];
     //@INFO se concatenan las estadisticas pasadas y las nuevas, ademas de eliminar elementos null
-    const newStatistics = [...currentStatisticsInDataBase, ...this.state.statistics].filter((item: any) => item)
+    const newStatistics = [
+      ...currentStatisticsInDataBase,
+      ...this.state.statistics,
+    ].filter((item: any) => item);
 
-    const questionsByConfiguration = this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsByConfiguration?.length
-      ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsByConfiguration
-      : this?.props?.route?.params?.academicResourceData?.config?.questionsByConfiguration
+    const questionsByConfiguration = this?.props?.route?.params
+      ?.academicResourceData?.config?.attempt_active?.results
+      ?.questionsByConfiguration?.length
+      ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active
+          ?.results?.questionsByConfiguration
+      : this?.props?.route?.params?.academicResourceData?.config
+          ?.questionsByConfiguration;
 
-    const questionsToEvaluate = this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsToEvaluate?.length
-      ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsToEvaluate
-      : this?.props?.route?.params?.academicResourceData?.config?.questions?.map((item: any) => item?._id)
+    const questionsToEvaluate = this?.props?.route?.params?.academicResourceData
+      ?.config?.attempt_active?.results?.questionsToEvaluate?.length
+      ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active
+          ?.results?.questionsToEvaluate
+      : this?.props?.route?.params?.academicResourceData?.config?.questions?.map(
+          (item: any) => item?._id,
+        );
 
     const params = {
       results: {
         currentSection: section?.uuid,
-        deliverable_date: (new Date()),
+        deliverable_date: new Date(),
         questionsByConfiguration: questionsByConfiguration,
         questionsToEvaluate: questionsToEvaluate,
-        statistics: newStatistics
+        statistics: newStatistics,
       },
-      deliverable_date: (new Date()),
+      deliverable_date: new Date(),
       qualify: false,
-      academic_resource_config: this.props?.route?.params?.academicResourceData?.academic_resource_config,
+      academic_resource_config:
+        this.props?.route?.params?.academicResourceData
+          ?.academic_resource_config,
       user: this.props.user?._id,
-    }
+    };
 
-    const alliance = this.props.alliance_id
+    const alliance = this.props.alliance_id;
 
     const query_data: HttpCustomStructure = {
       method: 'POST',
@@ -214,82 +244,100 @@ class SimulacrumQuestions extends Component<any, any> {
         Authorization: this.props.auth_token,
       }),
       params: params,
-      auth_token: this.props.auth_token
+      auth_token: this.props.auth_token,
     };
-
 
     const data = await Http.send(query_data);
 
     if (data?.status_code !== 'success') {
-      console.log('error', data)
-      return
+      console.log('error', data);
+      return;
     }
 
     if (!this.state.selected_answer.is_correct) {
-      const lostLive = await this.simulacrumService.lostLive()
+      const lostLive = await this.simulacrumService.lostLive();
       if (lostLive.status === 'success') {
-        this.props.dispatch(updateLives(lostLive.attempts))
-        this.showModalLives()
+        this.props.dispatch(updateLives(lostLive.attempts));
+        this.showModalLives();
       }
     }
 
-    const questions_ids = this?.state?.questions?.length > 0 ? this?.state?.questions?.map((item: any) => item?._id).reduce(function (acc: any, curr: any) {
-      if (!acc.includes(curr))
-        acc.push(curr);
-      return acc;
-    }, []) : []
+    const questions_ids =
+      this?.state?.questions?.length > 0
+        ? this?.state?.questions
+            ?.map((item: any) => item?._id)
+            .reduce(function (acc: any, curr: any) {
+              if (!acc.includes(curr)) {
+                acc.push(curr);
+              }
+              return acc;
+            }, [])
+        : [];
 
-    const questions_selected_id = this?.state?.statistics?.length > 0 ? this?.state?.statistics?.map((item: any) => item?.question).reduce(function (acc: any, curr: any) {
-      if (!acc.includes(curr))
-        acc.push(curr);
-      return acc;
-    }, []) : []
+    const questions_selected_id =
+      this?.state?.statistics?.length > 0
+        ? this?.state?.statistics
+            ?.map((item: any) => item?.question)
+            .reduce(function (acc: any, curr: any) {
+              if (!acc.includes(curr)) {
+                acc.push(curr);
+              }
+              return acc;
+            }, [])
+        : [];
 
-    const getQuestionsNoSelecteds = questions_ids?.filter((item: any) => !questions_selected_id.includes(item))
+    const getQuestionsNoSelecteds = questions_ids?.filter(
+      (item: any) => !questions_selected_id.includes(item),
+    );
 
     if (!getQuestionsNoSelecteds?.length) {
-      this?.props?.route?.params?.getSectionsOfSimulacrum()
+      this?.props?.route?.params?.getSectionsOfSimulacrum();
       this.props.navigation.navigate('SectionsSimulacrum', {
-        customParams: { alliance: this?.props?.alliance_id, simulacrum: this?.props?.route?.params?.SimulacrumId },
+        customParams: {
+          alliance: this?.props?.alliance_id,
+          simulacrum: this?.props?.route?.params?.SimulacrumId,
+        },
         configCategory: '601981dcef21ba13c3843b88',
-        isSimulacrum: true
+        isSimulacrum: true,
       });
     } else {
-      this.changeQuestionByNavigate('+')
+      this.changeQuestionByNavigate('+');
     }
   };
 
   handlePressAnswer = (answer: any) => {
-    const current_answers = this?.state?.current_answers?.map((_answer: any) => {
-      if (_answer._id === answer?._id) {
-        return {
-          ..._answer,
-          selected: true
+    const current_answers = this?.state?.current_answers?.map(
+      (_answer: any) => {
+        if (_answer._id === answer?._id) {
+          return {
+            ..._answer,
+            selected: true,
+          };
+        } else {
+          return {
+            ..._answer,
+            selected: false,
+          };
         }
-      } else {
-        return {
-          ..._answer,
-          selected: false
-        }
-      }
-    });
+      },
+    );
 
-    const newStatistics =
-      [
-        ...this?.state?.statistics,
-        {
-          answer: answer?.unique,
-          question: this?.state?.current_question_data?._id || this?.state?.current_question_data?.id,
-        }
-      ]
+    const newStatistics = [
+      ...this?.state?.statistics,
+      {
+        answer: answer?.unique,
+        question:
+          this?.state?.current_question_data?._id ||
+          this?.state?.current_question_data?.id,
+      },
+    ];
 
     this.setState({
       selected_answer: answer,
       statistics: newStatistics,
-      current_answers: current_answers
+      current_answers: current_answers,
     });
   };
-
 
   render() {
     if (this.state.loading) {
@@ -338,17 +386,15 @@ class SimulacrumQuestions extends Component<any, any> {
                   <TouchableOpacity
                     key={answer.id}
                     onPress={() => this.handlePressAnswer(answer)}
-                    style={{ marginBottom: 16 }}
-                  >
+                    style={{marginBottom: 16}}>
                     <View
                       style={[
                         styles.responseOption,
                         answer.selected && styles.responseSelectedOption,
-                      ]}
-                    >
+                      ]}>
                       <InlineWebview
                         html={`<span>${this.lettersByIndex[i]}).&nbsp; ${answer.content}</span>`}
-                        css={`span, span * { display: inline; }`}
+                        css={'span, span * { display: inline; }'}
                         style={[styles.webview]}
                       />
                     </View>
@@ -391,7 +437,7 @@ function mapStatesToProps(state: any = {}) {
     auth_token: state.auth.user.token,
     user: state.auth.user,
     alliance_id: state?.auth?.user?.alliance_id,
-    lives: state.auth.user.lives
+    lives: state.auth.user.lives,
   };
 }
 

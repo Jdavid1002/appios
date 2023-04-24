@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { View, ActivityIndicator } from 'react-native';
-import { connect } from 'react-redux';
-import mainStyles from 'app_styles/MainStyles';
+import React, {Component} from 'react';
+import {View, ActivityIndicator} from 'react-native';
+import {connect} from 'react-redux';
+import mainStyles from '../../../../styles/MainStyles';
 import SectionsMatterLayout from '../components/SectionsMatterLayout';
-import ChallengeService from 'app_services/challenges/challenges';
+import ChallengeService from '../../../../services/challenges/challenges';
 
 function mapStatesToProps(state: any = {}) {
   return {
@@ -15,25 +15,24 @@ function mapStatesToProps(state: any = {}) {
 export interface ISectionsMatterContainerProps {
   route: {
     params: {
-      matterId: string
-      configCategory: string
-      customParams: any
-      getChallengesData: () => void
-      isSimulacrum?: boolean
-    }
+      matterId: string;
+      configCategory: string;
+      customParams: any;
+      getChallengesData: () => void;
+      isSimulacrum?: boolean;
+    };
   };
   auth_token: string;
   alliance_id: string;
-  defaultInfoSections?: ISection[]
-  navigation: any
+  defaultInfoSections?: ISection[];
+  navigation: any;
 }
 
 export interface ISectionsMatterContainerState {
   loading: boolean;
-  infoSections: ISection[]
-  academicResourceData: any
+  infoSections: ISection[];
+  academicResourceData: any;
 }
-
 
 export interface ISection {
   _id: string;
@@ -45,9 +44,7 @@ export interface ISection {
   value: number;
 }
 
-export interface IQuestions {
-
-}
+export interface IQuestions {}
 
 class SectionsMatterContainer extends Component<
   ISectionsMatterContainerProps,
@@ -56,47 +53,46 @@ class SectionsMatterContainer extends Component<
   state: ISectionsMatterContainerState = {
     loading: true,
     infoSections: [],
-    academicResourceData: {}
+    academicResourceData: {},
   };
 
   componentDidMount = () => {
     this.setState({
       loading: true,
-      infoSections: []
+      infoSections: [],
     });
-    this.getSectionsOfMatter()
+    this.getSectionsOfMatter();
   };
 
   componentWillUnmount = () => {
     this.setState({
       loading: true,
-      infoSections: []
+      infoSections: [],
     });
   };
-
 
   getSectionsOfMatter = async () => {
     if (this?.props?.defaultInfoSections?.length) {
       this.setState({
         ...this.state,
-        infoSections: this?.props?.defaultInfoSections
-      })
-      return
+        infoSections: this?.props?.defaultInfoSections,
+      });
+      return;
     }
-    const challengeService = new ChallengeService()
+    const challengeService = new ChallengeService();
 
     const matterId = this.props.route.params.matterId;
     const configCategory = this.props.route.params.configCategory;
 
-    let params = {}
+    let params = {};
 
     if (this.props.route.params?.customParams) {
-      params = this.props.route.params?.customParams
+      params = this.props.route.params?.customParams;
     } else {
       params = {
         alliance: this?.props?.alliance_id,
-        diagnostic: matterId
-      }
+        diagnostic: matterId,
+      };
     }
 
     const data = await challengeService.getSectionsMatter({
@@ -104,36 +100,55 @@ class SectionsMatterContainer extends Component<
       auth_token: this.props.auth_token,
       alliance_id: this?.props?.alliance_id,
       query_params: params,
-    })
+    });
 
+    let sectionsWithQuestions: ISection[] = [];
 
-    let sectionsWithQuestions: ISection[] = []
+    if (
+      data?.academicResourceData?.config?.diagnostic_resource_module
+        ?.question_configuration?.length
+    ) {
+      sectionsWithQuestions =
+        data?.academicResourceData?.config?.diagnostic_resource_module?.question_configuration.map(
+          (item: ISection) => {
+            const newQuestions =
+              data?.academicResourceData?.config?.questionsByConfiguration[
+                item?.uuid
+              ]?.map((question_id: any) => {
+                return data?.academicResourceData?.config?.questions?.find(
+                  (question: any) => question?._id === question_id,
+                );
+              });
 
-    if (data?.academicResourceData?.config?.diagnostic_resource_module?.question_configuration?.length) {
-
-      sectionsWithQuestions = data?.academicResourceData?.config?.diagnostic_resource_module?.question_configuration.map((item: ISection) => {
-        const newQuestions = data?.academicResourceData?.config?.questionsByConfiguration[item?.uuid]?.map((question_id: any) => {
-          return data?.academicResourceData?.config?.questions?.find((question: any) => question?._id === question_id)
-        });
-
-        return {
-          ...item,
-          questions: newQuestions
-        }
-      })
+            return {
+              ...item,
+              questions: newQuestions,
+            };
+          },
+        );
     }
-    if (data?.academicResourceData?.config?.simulacrum_resource?.question_configuration?.length) {
-      sectionsWithQuestions = data?.academicResourceData?.config?.simulacrum_resource?.question_configuration.map((item: ISection) => {
+    if (
+      data?.academicResourceData?.config?.simulacrum_resource
+        ?.question_configuration?.length
+    ) {
+      sectionsWithQuestions =
+        data?.academicResourceData?.config?.simulacrum_resource?.question_configuration.map(
+          (item: ISection) => {
+            const newQuestions =
+              data?.academicResourceData?.config?.questionsByConfiguration[
+                item?.uuid
+              ]?.map((question_id: any) => {
+                return data?.academicResourceData?.config?.questions?.find(
+                  (question: any) => question?._id === question_id,
+                );
+              });
 
-        const newQuestions = data?.academicResourceData?.config?.questionsByConfiguration[item?.uuid]?.map((question_id: any) => {
-          return data?.academicResourceData?.config?.questions?.find((question: any) => question?._id === question_id)
-        });
-
-        return {
-          ...item,
-          questions: newQuestions
-        }
-      })
+            return {
+              ...item,
+              questions: newQuestions,
+            };
+          },
+        );
     }
 
     if (data?.status_code === 'success') {
@@ -141,10 +156,10 @@ class SectionsMatterContainer extends Component<
         ...this.state,
         loading: false,
         infoSections: sectionsWithQuestions,
-        academicResourceData: data?.academicResourceData
-      })
+        academicResourceData: data?.academicResourceData,
+      });
     }
-  }
+  };
 
   render() {
     if (this.state.loading) {

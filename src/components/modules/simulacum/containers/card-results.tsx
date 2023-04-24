@@ -1,26 +1,19 @@
-import React, { Component } from 'react';
-import {
-  View,
-  FlatList,
-  ActivityIndicator,
-  ImageBackground,
-  Image,
-} from 'react-native';
-import { CustomText } from 'app_components/commons/customs/components/customComponents';
-import Bar from 'app_components/commons/bars/components/bar-vertical';
-import mainStyles from 'app_styles/MainStyles';
+import React, {Component} from 'react';
+import {View, FlatList, ActivityIndicator, ImageBackground} from 'react-native';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import Bar from '../../../../components/commons/bars/components/bar-vertical';
+import mainStyles from '../../../../styles/MainStyles';
 import styles from '../styles/styles';
 
-import { connect } from 'react-redux';
-import { Http, HttpCustomStructure } from 'app_utils/http';
+import {connect} from 'react-redux';
 
 export interface ISimulacrumResult {
-  average: number,
-  color: string,
-  id: number,
-  name: string,
-  total_score: number,
-  total_simulacrums: number
+  average: number;
+  color: string;
+  id: number;
+  name: string;
+  total_score: number;
+  total_simulacrums: number;
 }
 
 function mapStatesToProps(state: any = {}) {
@@ -30,27 +23,27 @@ function mapStatesToProps(state: any = {}) {
 }
 
 interface ICardResultProps {
-  resultsData: ISimulacrumResult[]
+  resultsData: ISimulacrumResult[];
 }
 
 interface ICardResultState {
-  loading: boolean,
-  brains: number,
-  results_data: ISimulacrumResult[],
+  loading: boolean;
+  brains: number;
+  results_data: ISimulacrumResult[];
 }
 
 class CardResults extends Component<ICardResultProps, ICardResultState> {
   state = {
     loading: true,
     brains: 0,
-    results_data: []
+    results_data: [],
   };
 
   componentDidMount = () => {
     this.setState({
       loading: true,
       brains: 0,
-      results_data: []
+      results_data: [],
     });
     this.getResultsData();
   };
@@ -66,9 +59,9 @@ class CardResults extends Component<ICardResultProps, ICardResultState> {
   renderEmpty = () => (
     <CustomText> No hay información para mostrar </CustomText>
   );
-  renderItemLabels = ({ item }: any = {}) => {
+  renderItemLabels = ({item}: any = {}) => {
     return (
-      <CustomText style={{ marginLeft: 10 }}>
+      <CustomText style={{marginLeft: 10}}>
         <View
           style={{
             height: 10,
@@ -78,14 +71,14 @@ class CardResults extends Component<ICardResultProps, ICardResultState> {
           }}
         />
         <CustomText
-          style={{ color: '#061946', fontSize: 10, fontWeight: 'bold' }}>
+          style={{color: '#061946', fontSize: 10, fontWeight: 'bold'}}>
           &nbsp;&nbsp;{item.name}{' '}
         </CustomText>
       </CustomText>
     );
   };
 
-  renderItemBars = ({ item }: any = {}) => (
+  renderItemBars = ({item}: any = {}) => (
     <Bar color={item.color} progress={item.average} displayValue={true} />
   );
   keyExtractor = (item: any = {}) => item.id.toString();

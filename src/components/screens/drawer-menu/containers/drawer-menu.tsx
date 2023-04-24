@@ -4,10 +4,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 import {connect} from 'react-redux';
-import {LOGOUT} from 'app_reducers/auth/types';
+import {LOGOUT} from '../../../../reducers/auth/types';
 
 import DrawerMenuItem from './drawer-menu-item';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 import styles from '../styles/styles';
 

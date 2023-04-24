@@ -6,16 +6,15 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
-import ChallengeCard from 'app_components/modules/challenge-card/components/challenge-card';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
+import ChallengeCard from '../../../../components/modules/challenge-card/components/challenge-card';
 import styles from '../styles/styles';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../styles/MainStyles';
 
 import {connect} from 'react-redux';
-import {Http, HttpCustomStructure} from 'app_utils/http';
 
-import HowIFeel from 'app_components/commons/how-i-feel';
-import ChallengeService from 'app_services/challenges/challenges';
+import HowIFeel from '../../../../components/commons/how-i-feel';
+import ChallengeService from '../../../../services/challenges/challenges';
 
 function mapStatesToProps(state: any = {}) {
   return {

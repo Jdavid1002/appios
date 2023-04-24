@@ -1,24 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import TriviaService from 'app_services/trivia';
+import TriviaService from '../../../../services/trivia';
 
 import {TriviaLayout} from './../index';
-import { TriviaAnswers, TriviaType } from 'app_reducers/trivia/types';
+import {TriviaAnswers, TriviaType} from '../../../../reducers/trivia/types';
 
 export interface ITriviaScreenProps {
-  route : {
-    params : {
-      trivia : TriviaType
-    }
-  }
+  route: {
+    params: {
+      trivia: TriviaType;
+    };
+  };
 }
 
 class Trivia extends React.Component<any, any> {
   constructor(props: ITriviaScreenProps) {
     super(props);
-    const trivia = props.route.params.trivia
-    const correctAnswer = trivia?.answers?.find((item : TriviaAnswers) => item?.is_correct)
+    const trivia = props.route.params.trivia;
+    const correctAnswer = trivia?.answers?.find(
+      (item: TriviaAnswers) => item?.is_correct,
+    );
 
     this.state = {
       selectedOption: '',

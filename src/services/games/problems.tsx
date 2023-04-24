@@ -1,5 +1,5 @@
 /* eslint-disable no-eval */
-import GeneralService from 'app_services/general/general';
+import GeneralService from '../general/general';
 
 class ProblemsGameService {
   private answer: number = 0;

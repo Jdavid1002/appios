@@ -2,10 +2,10 @@ import React, {Component, Fragment} from 'react';
 import {ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 
-import HowIFeel from 'app_components/commons/how-i-feel';
-import {TipNew, TipVideo} from 'app_components/modules/tips';
+import HowIFeel from '../../../../components/commons/how-i-feel';
+import {TipNew, TipVideo} from '../../../../components/modules/tips';
 
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../styles/MainStyles';
 
 class TipScreen extends Component<any, any> {
   private tip: any = null;

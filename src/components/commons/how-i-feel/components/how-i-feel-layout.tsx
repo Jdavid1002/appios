@@ -7,16 +7,16 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  Text,
+  TouchableHighlight,
 } from 'react-native';
-import {Fab, Text, Button, Icon} from 'native-base';
+// import {Fab, Icon} from 'native-base';
 import styles from './../styles';
 
-
 const HowIFeelLayout = (props: any) => {
- 
   return (
     <React.Fragment>
-      <Fab
+      {/* <Fab
         containerStyle={styles.fabButtonContainer}
         style={[styles.fabButton]}
         position="bottomRight"
@@ -25,7 +25,7 @@ const HowIFeelLayout = (props: any) => {
           source={require('assets/img/how-i-feel/love.png')}
           resizeMode="contain"
         />
-      </Fab>
+      </Fab> */}
       <Modal
         animationType="fade"
         visible={props.modalVisibility}
@@ -45,13 +45,11 @@ const HowIFeelLayout = (props: any) => {
                   {flexDirection: 'row', justifyContent: 'space-between'},
                 ]}>
                 {props.emojis.map((emoji: any) => (
-                  <Button
+                  <TouchableHighlight
                     key={emoji.value}
-                    onPress={() => props.next('question_one', emoji.value)}
-                    transparent
-                    large>
+                    onPress={() => props.next('question_one', emoji.value)}>
                     <Image source={emoji.image} />
-                  </Button>
+                  </TouchableHighlight>
                 ))}
               </View>
               <View style={[styles.modalContainerTriangle]} />
@@ -151,13 +149,13 @@ const HowIFeelLayout = (props: any) => {
             </View>
           )}
         </ScrollView>
-        <Fab
+        {/* <Fab
           containerStyle={styles.fabButtonContainer}
           style={[styles.fabButton]}
           position="bottomRight"
           onPress={() => props.onCloseModal()}>
           <Icon name="close" />
-        </Fab>
+        </Fab> */}
       </Modal>
     </React.Fragment>
   );

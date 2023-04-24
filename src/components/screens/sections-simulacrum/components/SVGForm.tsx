@@ -1,11 +1,11 @@
-import { CustomText } from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 import * as React from 'react';
-import Svg, { G, Path } from 'react-native-svg';
+import Svg, {G, Path} from 'react-native-svg';
 import styles from '../styles';
 
 export interface ISvgComponent {
   color: string;
-  style ?: any;
+  style?: any;
   number: number;
 }
 
@@ -16,8 +16,7 @@ function SvgComponent(props: ISvgComponent) {
       width="80.806"
       height="91"
       viewBox="0 0 80.806 91"
-      style={props.style}
-    >
+      style={props.style}>
       <G
         id="Componente_2_1"
         data-name="Componente 2 – 1"
@@ -33,7 +32,10 @@ function SvgComponent(props: ISvgComponent) {
           stroke-width="1"
           opacity="0.9"
         />
-        <CustomText style={styles.figureNumberCenter}> {props?.number} </CustomText>
+        <CustomText style={styles.figureNumberCenter}>
+          {' '}
+          {props?.number}{' '}
+        </CustomText>
       </G>
     </Svg>
   );

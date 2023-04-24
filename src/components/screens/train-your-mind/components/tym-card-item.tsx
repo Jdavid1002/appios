@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {TYMCardStyles} from 'app_components/screens/train-your-mind';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {TYMCardStyles} from '../../../../components/screens/train-your-mind';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
 interface TymCardItemProps {
   data: any;

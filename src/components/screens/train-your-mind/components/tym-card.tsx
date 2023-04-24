@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 
-import {TYMCardStyles as styles} from 'app_components/screens/train-your-mind';
+import {TYMCardStyles as styles} from '../../../../components/screens/train-your-mind';
 
-import {TYMCardItem} from 'app_components/screens/train-your-mind';
+import {TYMCardItem} from '../../../../components/screens/train-your-mind';
 
 const TrainYourMindCard = (props: any) => {
   return (

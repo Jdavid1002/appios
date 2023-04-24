@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
-import {Text, Button} from 'native-base';
+import {View, ActivityIndicator, Text, Button} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import GeneralService from 'app_services/general/general';
+import GeneralService from '../../../../services/general/general';
 
 import {styles} from './../index';
 
@@ -26,13 +25,22 @@ const DailyQuestionCardLayout: React.FC<
       {props.data?.status === 'success' && (
         <React.Fragment>
           <Text style={[styles.text]} numberOfLines={4}>
-            {generalService.stripTags(props.data?.questions[0].description).trim()}
+            {generalService
+              .stripTags(props.data?.questions[0].description)
+              .trim()}
           </Text>
-          <Button style={[styles.button]} onPress={() => navigation.navigate('SimulacrumQuestion', {
-            questions: props.data,
-            matterId: props.data.matter_id,
-            level: props.data.questions[0].level,
-          })} disabled={props.data?.status === "error"} rounded small>
+          <Button
+            style={[styles.button]}
+            onPress={() =>
+              navigation.navigate('SimulacrumQuestion', {
+                questions: props.data,
+                matterId: props.data.matter_id,
+                level: props.data.questions[0].level,
+              })
+            }
+            disabled={props.data?.status === 'error'}
+            rounded
+            small>
             <Text style={[styles.buttonText]}>Responder</Text>
           </Button>
         </React.Fragment>
@@ -40,7 +48,9 @@ const DailyQuestionCardLayout: React.FC<
 
       {props.data?.status === 'error' && (
         <Text style={[styles.text]} numberOfLines={4}>
-          {props.data?.message === 'No tienes mas vidas' ? 'No tienes más oportunidades' : props.data?.message}
+          {props.data?.message === 'No tienes mas vidas'
+            ? 'No tienes más oportunidades'
+            : props.data?.message}
         </Text>
       )}
 

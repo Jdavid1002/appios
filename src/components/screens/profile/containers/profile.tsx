@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Alert } from "react-native";
-import { connect } from "react-redux";
-import { LOGOUT } from "app_reducers/auth/types";
-import { ProfileLayout } from "app_components/screens/profile";
+import React, {Component} from 'react';
+import {Alert} from 'react-native';
+import {connect} from 'react-redux';
+import {LOGOUT} from '../../../../reducers/auth/types';
+import {ProfileLayout} from '../../../../components/screens/profile';
 
-import ProfileService from "app_services/profile";
-import StatisticsService from "app_services/statistics/statistics";
+import ProfileService from '../../../../services/profile';
+import StatisticsService from '../../../../services/statistics/statistics';
 
 class Profile extends Component<any, any> {
   constructor(props: any) {
     super(props);
 
     this.state = {
-      editModalVisible: false
+      editModalVisible: false,
     };
 
     this.setEditModalVisible = this.setEditModalVisible.bind(this);
@@ -22,26 +22,26 @@ class Profile extends Component<any, any> {
   }
 
   confirmLogout = () => {
-    Alert.alert("Cerrar sesión", "¿Está seguro que desea cerrar sesión?", [
+    Alert.alert('Cerrar sesión', '¿Está seguro que desea cerrar sesión?', [
       {
-        text: "Cancelar",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
+        text: 'Cancelar',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
       },
-      { text: "Si, cerrar sesión", onPress: this.doLogout }
+      {text: 'Si, cerrar sesión', onPress: this.doLogout},
     ]);
   };
 
   doLogout = () => {
     this.props.dispatch({
       type: LOGOUT,
-      payload: null
+      payload: null,
     });
   };
 
   setEditModalVisible = (state: boolean) => {
     this.setState({
-      editModalVisible: state
+      editModalVisible: state,
     });
   };
 
@@ -49,19 +49,19 @@ class Profile extends Component<any, any> {
     const statisticsService = new StatisticsService();
 
     const params = {
-      nPerPage: "10",
+      nPerPage: '10',
       not_validate_alliance: false,
       not_validate_structure: false,
       not_validate_user: false,
-      pageNumber: "1",
-      structure_id: this?.props?.data?.program?._id || ""
+      pageNumber: '1',
+      structure_id: this?.props?.data?.program?._id || '',
     };
 
     await statisticsService.getStatistics(
       this.props.token,
       this.props.alliance_id,
       this.props.dispatch,
-      params
+      params,
     );
   };
 
@@ -71,15 +71,15 @@ class Profile extends Component<any, any> {
     await profileService.getRankings(
       params,
       this.props.token,
-      this.props.dispatch
+      this.props.dispatch,
     );
   };
 
   async componentDidMount() {
     await this.doGetStatistics();
-    await this.doGetRankings({ type: "all", limit: 15 });
-    await this.doGetRankings({ type: "district", limit: 15 });
-    await this.doGetRankings({ type: "institution", limit: 15 });
+    await this.doGetRankings({type: 'all', limit: 15});
+    await this.doGetRankings({type: 'district', limit: 15});
+    await this.doGetRankings({type: 'institution', limit: 15});
   }
 
   render() {
@@ -103,7 +103,7 @@ function mapStatesToProps(state: any = {}) {
     statistics: state.statistics.data,
     statisticsStatus: state.statistics.status,
     rankings: state.rankings.data,
-    rankingsStatus: state.rankings.status
+    rankingsStatus: state.rankings.status,
   };
 }
 

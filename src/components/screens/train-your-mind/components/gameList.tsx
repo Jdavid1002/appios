@@ -1,13 +1,12 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
-import {Text} from 'native-base';
+import {FlatList} from 'react-native';
 
 import {
   GameType,
   GameListItem,
   GameListHeader,
   styles,
-} from 'app_components/screens/train-your-mind';
+} from '../../../../components/screens/train-your-mind';
 
 interface GameListProps {
   data: GameType[];

@@ -1,4 +1,4 @@
-import GeneralService from 'app_services/general/general';
+import GeneralService from '../general/general';
 
 class MemoryGameService {
   private objects: any[] = [

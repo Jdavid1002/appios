@@ -1,26 +1,26 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {CustomText} from 'app_components/commons/customs/components/customComponents';
+import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 import styles from '../styles/styles-button-blue';
-import mainStyles from 'app_styles/MainStyles';
+import mainStyles from '../../../../styles/MainStyles';
 
-function ButtonBlue (props: any){
+function ButtonBlue(props: any) {
   const disabled = props.disabled ? props.disabled : false;
   const fontStyle = props.fontStyle ? props.fontStyle : {};
-	return (
+  return (
     <TouchableOpacity
-      disabled={ disabled }
+      disabled={disabled}
       style={[styles.buttonSendWraper]}
-      onPress={props.onPressBtn}
-    >
-      <View style={[styles.buttonSendContainer, ( disabled ) ? styles.buttonSendDisabled :  styles.buttonSendEnabled, props.style]}>
+      onPress={props.onPressBtn}>
+      <View
+        style={[
+          styles.buttonSendContainer,
+          disabled ? styles.buttonSendDisabled : styles.buttonSendEnabled,
+          props.style,
+        ]}>
         <CustomText
-          style={[
-            mainStyles.textCenter,
-            styles.textbutton,
-            fontStyle,
-          ]}>
-          {  props.textBtn }
+          style={[mainStyles.textCenter, styles.textbutton, fontStyle]}>
+          {props.textBtn}
         </CustomText>
       </View>
     </TouchableOpacity>

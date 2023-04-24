@@ -1,6 +1,6 @@
-import {Http, HttpCustomStructure} from 'app_utils/http';
+import {Http, HttpCustomStructure} from '../../utils/http';
 import {Alert} from 'react-native';
-import {setIsActive as setIsActiveAction} from 'app_reducers/how_i_feel/actions';
+import {setIsActive as setIsActiveAction} from '../../reducers/how_i_feel/actions';
 
 class HowIFeelService {
   save = async (hifData: any, token: string) => {

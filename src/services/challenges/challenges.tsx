@@ -1,64 +1,61 @@
-import {Http, HttpCustomStructure} from 'app_utils/http';
-import { Alert } from 'react-native';
-
+import {Http, HttpCustomStructure} from '../../utils/http';
+import {Alert} from 'react-native';
 
 export interface IGetSectionsMatter {
-  configCategory : string
-  auth_token : string
-  alliance_id : string
-  query_params : {
-    alliance : string
-    diagnostic ?: string
-  } | any
+  configCategory: string;
+  auth_token: string;
+  alliance_id: string;
+  query_params:
+    | {
+        alliance: string;
+        diagnostic?: string;
+      }
+    | any;
 }
 
 export interface IGetChallengesData {
-  auth_token : string
-  alliance_id : string
-  user_id : string
+  auth_token: string;
+  alliance_id: string;
+  user_id: string;
 }
 
 class ChallengeService {
-
-  async getSectionsMatter (params : IGetSectionsMatter){
-
-    const {configCategory, auth_token, alliance_id, query_params} = params
+  async getSectionsMatter(params: IGetSectionsMatter) {
+    const {configCategory, auth_token, alliance_id, query_params} = params;
 
     try {
       const headers = {
-        'Authorization': auth_token,
+        Authorization: auth_token,
         Accept: 'application/json',
         'Content-Type': 'application/json',
-      }
-      if(configCategory){
+      };
+      if (configCategory) {
         // @ts-ignore
-        headers['Academic-Resource-Config-Category'] = configCategory
+        headers['Academic-Resource-Config-Category'] = configCategory;
       }
       const queryData: HttpCustomStructure = {
         headers,
         method: 'POST',
         url: `/api/lms/academic-resource/${alliance_id}/fetch-resource`,
         auth_token: auth_token,
-        params : query_params,
-      }
+        params: query_params,
+      };
 
       const data = await Http.send(queryData);
 
-      if(data?.code !== 200){
+      if (data?.code !== 200) {
         Alert.alert(data.message);
-        return null
+        return null;
       }
 
-      return data
-
+      return data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
-  async getChallengesData(params : IGetChallengesData) {
-
-    const {auth_token, alliance_id, user_id} = params
+  async getChallengesData(params: IGetChallengesData) {
+    const {auth_token, alliance_id, user_id} = params;
 
     try {
       const query_data: HttpCustomStructure = {
@@ -73,16 +70,16 @@ class ChallengeService {
           alliance_id: alliance_id,
           user_id: user_id,
         },
-        auth_token: auth_token
+        auth_token: auth_token,
       };
       const data = await Http.send(query_data);
       if (data?.status === 'success') {
-        return data
+        return data;
       } else {
         Alert.alert(data.message);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 }

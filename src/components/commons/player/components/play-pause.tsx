@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableHighlight, Text} from 'react-native';
 
-import {PlayPauseStyles as styles} from 'app_components/commons/player';
+import {PlayPauseStyles as styles} from '../../../../components/commons/player';
 
 function PlayPause(props: any) {
   return (

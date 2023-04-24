@@ -1,8 +1,7 @@
 import React from 'react';
-import {ScrollView, View, Image} from 'react-native';
-import {Text, Button} from 'native-base';
+import {ScrollView, View, Image, Text, TouchableHighlight} from 'react-native';
 
-import {styles} from 'app_components/screens/train-your-mind';
+import {styles} from '../../../../components/screens/train-your-mind';
 
 const InstructionsLayout = (props: any) => {
   const params: any = props.route.params;
@@ -54,15 +53,16 @@ const InstructionsLayout = (props: any) => {
             Tienes {params.data.time / 60} minuto(s).
           </Text>
         )}
-        <Button
+        <TouchableHighlight
           style={[styles.button]}
           onPress={() =>
             props.navigation.navigate(`Train-your-mind/${params.data.key}`)
           }
-          rounded
-          block>
+          // rounded
+          // block
+          >
           <Text>Jugar</Text>
-        </Button>
+        </TouchableHighlight>
       </ScrollView>
     </View>
   );

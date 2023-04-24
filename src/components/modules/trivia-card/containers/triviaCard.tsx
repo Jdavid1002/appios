@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import TriviaService from "app_services/trivia";
-import { TriviaCardLayout } from "./../index";
+import React from 'react';
+import {connect} from 'react-redux';
+import TriviaService from '../../../../services/trivia';
+import {TriviaCardLayout} from './../index';
 
 class TriviaCard extends React.Component<any, any> {
   constructor(props: any) {
@@ -17,7 +17,12 @@ class TriviaCard extends React.Component<any, any> {
 
   getTriviaData = async () => {
     const triviaService = new TriviaService();
-    await triviaService.getTrivia(this.props.auth_token, this.props.dispatch, this.props.alliance_id, this.props.user_id);
+    await triviaService.getTrivia(
+      this.props.auth_token,
+      this.props.dispatch,
+      this.props.alliance_id,
+      this.props.user_id,
+    );
   };
 
   render() {

@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, Image, ActivityIndicator} from 'react-native';
-import {Text, Button} from 'native-base';
-import {useNavigation} from '@react-navigation/native'
+import {View, Image, ActivityIndicator, Text, TouchableHighlight} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {styles} from './../index';
-import { TriviaType } from 'app_reducers/trivia/types';
+import {TriviaType} from '../../../../reducers/trivia/types';
 
 interface TriviaCardLayoutProps {
   trivia: TriviaType;
@@ -11,7 +10,6 @@ interface TriviaCardLayoutProps {
 }
 
 const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
-
   const navigation = useNavigation();
 
   return (
@@ -26,27 +24,27 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
           <Text style={[styles.title]}>Trivia del día</Text>
           <View style={[styles.brains]}>
             <Image source={require('assets/img/brain.png')} />
-            <Text style={[styles.brainsText]}>
-              +10
-            </Text>
+            <Text style={[styles.brainsText]}>+10</Text>
           </View>
         </View>
 
         <Text style={[styles.subtitle]} numberOfLines={2}>
           {props?.trivia?.content}
         </Text>
-        <Button
-          onPress={() => navigation.navigate('TriviaScreen', {trivia: props?.trivia})}
+        <TouchableHighlight
+          onPress={() =>
+            navigation.navigate('TriviaScreen', {trivia: props?.trivia})
+          }
           style={[styles.button]}
           disabled={!props?.trivia}
-          rounded
-          small>
-          {!props?.trivia && <ActivityIndicator />}
-
-          <Text style={[styles.buttonText]}>
-            Responder trivia
-          </Text>
-        </Button>
+          // rounded
+          // small
+          >
+            <>
+              {!props?.trivia && <ActivityIndicator />}
+              <Text style={[styles.buttonText]}>Responder trivia</Text>
+            </>
+        </TouchableHighlight>
       </View>
     </View>
   );
