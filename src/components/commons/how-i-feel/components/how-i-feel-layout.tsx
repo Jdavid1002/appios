@@ -10,22 +10,27 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native';
-// import {Fab, Icon} from 'native-base';
+import FAB from 'react-native-fab'
 import styles from './../styles';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faClose} from '@fortawesome/free-solid-svg-icons';
+
 
 const HowIFeelLayout = (props: any) => {
   return (
     <React.Fragment>
-      {/* <Fab
-        containerStyle={styles.fabButtonContainer}
-        style={[styles.fabButton]}
-        position="bottomRight"
-        onPress={() => props.setModalVisibility(!props.modalVisibility)}>
-        <Image
-          source={require('assets/img/how-i-feel/love.png')}
-          resizeMode="contain"
-        />
-      </Fab> */}
+      <FAB 
+        buttonColor="#e94044" 
+        iconTextColor="#FFFFFF" 
+        onClickAction={() => props.setModalVisibility(!props.modalVisibility)} 
+        visible={true} 
+        iconTextComponent={
+          <Image
+            source={require('assets/img/how-i-feel/love.png')}
+            resizeMode="contain"
+          />
+        } 
+      />
       <Modal
         animationType="fade"
         visible={props.modalVisibility}
@@ -149,13 +154,20 @@ const HowIFeelLayout = (props: any) => {
             </View>
           )}
         </ScrollView>
-        {/* <Fab
-          containerStyle={styles.fabButtonContainer}
-          style={[styles.fabButton]}
-          position="bottomRight"
-          onPress={() => props.onCloseModal()}>
-          <Icon name="close" />
-        </Fab> */}
+
+        <FAB 
+          buttonColor="#e94044" 
+          iconTextColor="#FFFFFF" 
+          onClickAction={() => props.onCloseModal()} 
+          visible={true} 
+          iconTextComponent={
+            <FontAwesomeIcon
+              icon={faClose}
+              color={'white'}
+              size={24}
+            />
+          } 
+        />
       </Modal>
     </React.Fragment>
   );
