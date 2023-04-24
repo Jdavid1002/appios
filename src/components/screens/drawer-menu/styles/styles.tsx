@@ -3,6 +3,10 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#061946',
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
+    height: '100%',
   },
   header: {
     marginLeft: 25,

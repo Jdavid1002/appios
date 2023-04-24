@@ -1,20 +1,18 @@
 import React from 'react';
-import {View, Image, Text, TouchableHighlight} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
+import {StatusBar} from 'react-native';
 import {faBars, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Profile} from '../../../../reducers/profile/types';
-
-import styles from '../styles/styles';
-import {StatusBar} from 'react-native';
 import GeneralService from '../../../../services/general/general';
 import AvatarComponent from '../../../../components/commons/avatar';
+import styles from '../styles/styles';
 
 interface AppHeaderProps {
   navigation: any;
   title?: React.ReactNode;
   plain?: boolean;
-  subtitle?: string;
   leftButton?: any;
   rightButton?: any;
   user_data: Profile;
@@ -40,15 +38,24 @@ const AppHeader = (props: AppHeaderProps) => {
 
         <View style={[styles.left]}>
           {!props.leftButton && !props.previous && (
-            <TouchableHighlight onPress={props.navigation.toggleDrawer}>
+            <TouchableOpacity 
+              onPress={() => props.navigation.toggleDrawer()}
+              style={{
+                height : '100%',
+              }}
+            >
               <FontAwesomeIcon icon={faBars} color={'#24ABDF'} size={32} />
-            </TouchableHighlight>
+            </TouchableOpacity>
           )}
 
           {!props.leftButton && props.previous && (
-            <TouchableHighlight onPress={props.navigation.goBack}>
+            <TouchableOpacity 
+              onPress={() => {
+                props.navigation.goBack()
+              }}
+            >
               <FontAwesomeIcon icon={faArrowLeft} color={'#24ABDF'} size={32} />
-            </TouchableHighlight>
+            </TouchableOpacity>
           )}
 
           {props.leftButton && props.leftButton}
@@ -61,11 +68,6 @@ const AppHeader = (props: AppHeaderProps) => {
             </Text>
           )}
           {typeof props.title === 'object' && props.title}
-          {props.subtitle && (
-            <Text style={[styles.textSubtitle]} numberOfLines={1}>
-              {props.subtitle}
-            </Text>
-          )}
         </View>
 
         <View style={[styles.right]}>
@@ -101,17 +103,20 @@ const AppHeader = (props: AppHeaderProps) => {
                 </View>
               ) : null}
 
-              <TouchableHighlight
-                onPress={() => props.navigation.navigate('Profile')}>
+              <TouchableOpacity
+                onPress={() =>  props.navigation.toggleDrawer()}
+                // onPress={() => props.navigation.navigate('Profile')}
+              >
                 <AvatarComponent
                   name={props?.user_data?.avatar}
                   color={props?.user_data?.color}
                 />
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           )}
           {props.rightButton && props.rightButton}
         </View>
+
       </View>
     </View>
   );

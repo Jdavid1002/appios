@@ -18,6 +18,7 @@ export default StyleSheet.create({
   },
   header: {
     height: 120,
+    position : 'relative'
   },
   body: {
     flex: 1,
@@ -29,10 +30,16 @@ export default StyleSheet.create({
   left: {
     flex: 1,
     flexShrink: 1,
+    position : 'absolute',
+    left : 10,
+    top : 40
   },
   right: {
     flex: 1,
     flexShrink: 1,
+    position : 'absolute',
+    right : 10,
+    top : 40
   },
   textTitle: {
     color: '#FFF',

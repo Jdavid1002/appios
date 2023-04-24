@@ -36,18 +36,15 @@ export const AppStackNavigator = () => {
         header: (headerParams: StackHeaderProps) => {
           const navigation = headerParams?.navigation;
           const previous = headerParams?.progress?.previous
-          const title = headerParams?.route?.name || <Image source={require('../../assets/img/logo_iq.png')} />;
-          const subtitle = headerParams?.route?.name
-
-          console.log('headerParams', headerParams)
+          const title = (headerParams?.route?.name && headerParams?.route?.name !== 'Home') || <Image source={require('../../assets/img/logo_iq.png')} />;
+          const plain = (headerParams?.route?.params?.headerPlain && headerParams?.route?.name !== 'Home') || false;
 
           return (
             <Header
               title={title}
-              subtitle={subtitle}
-              leftButton={true}
+              leftButton={false}
               rightButton={false}
-              plain={headerParams?.route?.params?.headerPlain || false}
+              plain={plain}
               navigation={navigation}
               previous={previous}
             />

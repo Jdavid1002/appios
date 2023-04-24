@@ -78,9 +78,7 @@ class AppNavigator extends Component<any, any> {
 
     return (
       <View style={{height: '100%'}}>
-        <NavigationContainer>
-          <LayoutApp />
-        </NavigationContainer>
+        <LayoutApp />
       </View>
     );
   }

@@ -1,20 +1,82 @@
-import React, {Component} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
 import {connect} from 'react-redux';
+import {View, Image,SafeAreaView} from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from '../../../../components/screens/home/containers/home';
+import SimulacrumScreen from '../../../../components/screens/simulacrum/containers/simulacrum';
+import { NavigationContainer } from '@react-navigation/native';
+import DrawerMenu from '../../../screens/drawer-menu/containers/drawer-menu';
+import ProfileScreen from '../../../screens/profile';
+import TrainYourMind from '../../../screens/train-your-mind/containers/tym';
+import ChallengeScreen from '../../../screens/challenge/containers/challenge';
+import TipsScreen from '../../../screens/tips/containers/tips';
+import Header from '../../../commons/header/containers/header';
 
-// import {Drawer} from 'app_router/drawer-navigator';
+const Drawer = createDrawerNavigator();
 
-// import DrawerMenu from 'app_components/screens/drawer-menu/containers/drawer-menu';
-import {AppStackNavigator} from '../../../../router/app-stack-navigator/stack-navigator';
-// import HomeScreen from 'app_components/screens/home/containers/home';
-// import ChallengeScreen from 'app_components/screens/challenge/containers/challenge';
+const AppLayout = () => {
 
-// import mainStyles from 'app_styles/MainStyles';
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        drawerContent={(props) => <DrawerMenu {...props} />}
+        screenOptions={{
+          header : (headerParams: any) => {
+            const navigation = headerParams?.navigation;
+            const previous = headerParams?.progress?.previous
+            const title = (headerParams?.route?.name && headerParams?.route?.name !== 'Home') || <Image source={require('../../../../assets/img/logo_iq.png')} />;
+            const plain = (headerParams?.route?.params?.headerPlain && headerParams?.route?.name !== 'Home') || false;
+            return (
+              <Header
+                title={title}
+                leftButton={false}
+                rightButton={false}
+                plain={plain}
+                navigation={navigation}
+                previous={previous}
+              />
+            );
+          }
+        }}
+      >
+        <Drawer.Screen
+          name="Home"
+          component={HomeScreen}
+          initialParams={{headerPlain: true}}
+        />
+        <Drawer.Screen
+          name="Challenges"
+          component={ChallengeScreen}
+          options={{title: 'Retos'}}
+        />
+        <Drawer.Screen 
+          name="Simulacrums"
+          component={SimulacrumScreen}
+          options={{title: 'Simulacros'}}
+        />
+        <Drawer.Screen
+          name="Tips"
+          component={TipsScreen}
+          options={{title: 'Noticias'}}
+        />
+        <Drawer.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{title: 'Perfil'}}
+          initialParams={{
+            headerPlain: true,
+            rightButton: <View />,
+          }}
+        />
+        <Drawer.Screen
+          name="Train-your-mind"
+          component={TrainYourMind}
+          options={{title: 'Entrena tu mente'}}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  )
 
-class AppLayout extends Component {
-  render() {
-    return <AppStackNavigator />;
-  }
 }
 
 export default connect(null)(AppLayout);
