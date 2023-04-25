@@ -10,6 +10,7 @@ export default StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0,
+    height : '100%'
   },
   wrapper: {
     flexGrow: 1,
@@ -28,15 +29,15 @@ export default StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center',
     flexDirection : 'row',
+    maxHeight : 50
   },
   tab: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
     borderRadius: 50,
     backgroundColor: 'transparent',
     width : '50%',
+    height: '100%',
     justifyContent : 'center',
-    alignItems : 'center'
+    alignItems : 'center',
   },
   tabActive: {
     backgroundColor: '#24abdf',

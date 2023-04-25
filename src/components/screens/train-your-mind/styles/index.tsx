@@ -97,6 +97,11 @@ export default StyleSheet.create({
   button: {
     backgroundColor: '#39b3e2',
     marginVertical: 32,
+    width : '100%',
+    borderRadius : 16,
+    alignItems: 'center',
+    justifyContent : 'center',
+    height : 35
   },
   feedBackIconContainer: {
     width: 80,

@@ -3,7 +3,7 @@ import {Image, View} from 'react-native';
 
 function ScreenSplash() {
   return (
-    <View>
+    <View style={{height : '100%', width: '100%', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}} >
       <Image
         source={require('../../../../assets/img/splash.png')}
         style={{
