@@ -23,6 +23,7 @@ export interface ITriviaLayout {
 }
 
 const TriviaLayout: React.FC<ITriviaLayout> = props => {
+  
   return (
     <ScrollView contentContainerStyle={[styles.trivia]}>
       <Text style={[styles.title]}>Selecciona la opción correcta. </Text>
@@ -49,7 +50,9 @@ const TriviaLayout: React.FC<ITriviaLayout> = props => {
               <InlineWebview html={answer.content} />
             </View>
           </TouchableOpacity>
-        ))}
+        ))
+      }
+
       {!props.state.answered && (
         <TouchableOpacity
           style={[
@@ -58,8 +61,6 @@ const TriviaLayout: React.FC<ITriviaLayout> = props => {
           ]}
           onPress={props.saveAnswer}
           disabled={!props.state.selectedOption}
-          // rounded
-          // block
           >
           <Text style={[styles.buttonText]}>Ver respuesta</Text>
         </TouchableOpacity>
@@ -82,7 +83,7 @@ const TriviaLayout: React.FC<ITriviaLayout> = props => {
               ]}>
               Respuesta correcta
             </Text>
-            <InlineWebview html={props.state.correctAnswer.comment} />
+            <InlineWebview html={props?.state?.correctAnswer?.content} />
           </View>
           <Text
             style={[
@@ -111,8 +112,6 @@ const TriviaLayout: React.FC<ITriviaLayout> = props => {
           <TouchableOpacity
             style={[styles.button, {backgroundColor: '#e94044'}]}
             onPress={() => props.navigation.goBack()}
-            // rounded
-            // block
             >
             <Text style={[styles.buttonText]}>Salir</Text>
           </TouchableOpacity>

@@ -40,10 +40,16 @@ export default StyleSheet.create({
     backgroundColor: '#061946',
     elevation: 0,
     shadowOffset: {width: 0, height: 0},
+    justifyContent : 'center',
+    alignItems : 'center',
+    width : '100%',
+    paddingVertical : 5,
+    borderRadius : 16
   },
   buttonText: {
     fontFamily: 'Nunito-ExtraBold',
     textTransform: 'capitalize',
     fontSize: 18,
+    color : 'white'
   },
 });

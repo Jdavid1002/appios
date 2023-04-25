@@ -5,6 +5,8 @@ import TriviaService from '../../../../services/trivia';
 
 import {TriviaLayout} from './../index';
 import {TriviaAnswers, TriviaType} from '../../../../reducers/trivia/types';
+import { store } from '../../../../storage/redux-storage';
+import { Http, HttpCustomStructure } from '../../../../utils/http';
 
 export interface ITriviaScreenProps {
   route: {
@@ -40,35 +42,75 @@ class Trivia extends React.Component<any, any> {
     }
   };
 
+  generateGamification = async () => { 
+    const trivia = store.getState()?.trivia
+
+    const params = {
+      results: {
+        currentSection: trivia.currenSection,
+        deliverable_date: (new Date()),
+        questionsByConfiguration : {
+          [trivia.currenSection] : [trivia._id]
+        },
+        questionsToEvaluate : [trivia._id],
+        statistics : [{
+          question: trivia._id,
+          answer : this.state.selectedOption
+        }]
+      },
+      deliverable_date: (new Date()),
+      qualify : false,
+      academic_resource_config: trivia?.academic_resource_config,
+      user: this.props.user_id,
+    }
+
+    const query_data: HttpCustomStructure = {
+      method: 'POST',
+      url: `/api/academic-resource-attempt/${this.props.alliance_id}/attempt`,
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: this.props.auth_token || '',
+      }),
+      params: params,
+      auth_token: this.props.auth_token,
+    };
+
+    const data = await Http.send(query_data);
+
+    if(data?.code !== 200) return false
+
+    return true
+  }
+
+  getNewTriviaAfterResponse = async () => {
+    const triviaService = new TriviaService();
+    await triviaService.getTrivia(
+      this.props.auth_token,
+      this.props.dispatch,
+      this.props.alliance_id,
+      this.props.user_id,
+    );
+  }
+
   saveAnswer = async () => {
     this.setState({...this.state, loading: true, answered: true});
+
     if (this.state.selectedOption) {
-      const triviaService = new TriviaService();
 
-      const triviaData = {
-        trivia_id: this.props.route.params.trivia._id,
-        time_view: 30,
-        questions: [
-          {
-            id: this.props.route.params.trivia.questions[0].id,
-            answers: [this.state.selectedOption],
-          },
-        ],
-      };
+      // await this.generateGamification()
 
-      const triviaResponse = await triviaService.save(
-        triviaData,
-        this.props.auth_token,
-      );
-
-      this.setState({
+      const newState = {
         ...this.state,
         loading: false,
         brains: 10,
-        correct: triviaResponse.questions_answered_correctly === 1,
-      });
+        correct: this?.state?.correctAnswer?._id === this?.state?.selectedOption,
+        answered : true
+      }
 
-      await triviaService.getTrivia(this.props.auth_token, this.props.dispatch);
+      this.setState(newState);
+
+      await this.getNewTriviaAfterResponse()
     }
   };
 
@@ -88,6 +130,8 @@ class Trivia extends React.Component<any, any> {
 function mapStatesToProps(state: any = {}) {
   return {
     auth_token: state.auth.user.token,
+    user_id: state?.auth?.user?._id,
+    alliance_id: state?.auth?.user?.alliance_id,
   };
 }
 
