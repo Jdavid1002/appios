@@ -39,7 +39,8 @@ const DailyQuestionCardLayout: React.FC<
             onPress={() =>
               navigation.navigate('SimulacrumQuestion', {
                 section :  props.data,
-                dontUseStatistics : true
+                dontUseStatistics : true,
+                isQuestionOfDay : true
               })
             }
             disabled={props.data?.status === 'error'}

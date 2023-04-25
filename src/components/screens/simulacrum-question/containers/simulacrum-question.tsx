@@ -39,6 +39,7 @@ class SimulacrumQuestions extends Component<any, any> {
     statistics: [],
     lives: 3,
     modalVisible: false,
+    success_response_question : 0
   };
 
   lettersByIndex: any = {
@@ -63,6 +64,7 @@ class SimulacrumQuestions extends Component<any, any> {
       selected_answer: {},
       statistics: [],
       modalVisible: false,
+      success_response_question : 0
     });
     this.getSimulacrumsQuestions();
   };
@@ -79,6 +81,7 @@ class SimulacrumQuestions extends Component<any, any> {
       current_answers: [],
       selected_answer: {},
       statistics: [],
+      success_response_question : 0
     });
   };
 
@@ -193,6 +196,7 @@ class SimulacrumQuestions extends Component<any, any> {
   handlePressButtonSend = async () => {
     const section = this?.props?.route?.params?.section;
     const dontUseStatistics = this?.props?.route?.params?.dontUseStatistics;
+    const isQuestionOfDay = this?.props?.route?.params?.isQuestionOfDay;
 
     const currentStatisticsInDataBase =
     this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics 
@@ -264,8 +268,10 @@ class SimulacrumQuestions extends Component<any, any> {
 
     if (data?.status_code !== 'success') {
       console.log('error', data);
-      return;
+      // return;
     }
+
+    let new_success_response_question = this.state.success_response_question
 
     if (!this.state.selected_answer.is_correct) {
       const lostLive = await this.simulacrumService.lostLive();
@@ -273,6 +279,12 @@ class SimulacrumQuestions extends Component<any, any> {
         this.props.dispatch(updateLives(lostLive.attempts));
         this.showModalLives();
       }
+    }else{
+      this.setState({
+        ...this.state,
+        success_response_question : new_success_response_question + 1
+      })
+      new_success_response_question = new_success_response_question + 1
     }
 
     const questions_ids =
@@ -304,6 +316,20 @@ class SimulacrumQuestions extends Component<any, any> {
     );
 
     if (!getQuestionsNoSelecteds?.length) {
+
+      //@INFO Cuando la vista se usa en una pregunta del dia.
+      if(isQuestionOfDay) {
+        this.getDailyQuestions()
+        this.props.navigation.navigate('ChallengeResults', {
+          questions_answered_correctly : new_success_response_question,
+          total_questions_evaluated : section?.questions?.length,
+          time_view : 155,
+          dataResults : this.convertQuestionInFormatOfSummary(newStatistics)
+        })
+        return
+      }
+
+      //@INFO Cuando la vista se usa en un simulacro
       this?.props?.route?.params?.getSectionsOfSimulacrum();
       this.props.navigation.navigate('SectionsSimulacrum', {
         customParams: {
@@ -350,6 +376,32 @@ class SimulacrumQuestions extends Component<any, any> {
       statistics: newStatistics,
       current_answers: current_answers,
     });
+  };
+
+  getDailyQuestions = async () => {
+    const simulacrumService = new SimulacrumService();
+    await simulacrumService.getDailyQuestion(this.props.auth_token, this.props.dispatch, this.props.alliance_id, this.props.user_id);
+  };
+
+  convertQuestionInFormatOfSummary = (new_statistics : any) => {
+    const section = this?.props?.route?.params?.section;
+
+    return section?.questions?.map((item : any) => {
+      const answer_unique = new_statistics?.find((statistic : any) => statistic?.question === item?._id)?.answer
+      const answer = item?.answers?.find((answer : any) => answer?.unique === answer_unique)
+      return {
+        question : {
+          _id : item?._id,
+          content : item?.content
+        },
+        answer : {
+          _id :answer?._id,
+          content : answer?.content,
+          is_correct : answer?.is_correct
+        }
+      }
+    })
+    
   };
 
   render() {

@@ -12,7 +12,7 @@ import styles from '../styles/styles-modal-results';
 class ModalResults extends Component<any> {
   render() {
     const props_menu_navigation = this.props.navigation;
-    // props_menu_navigation.goBack = () => {this.props.onCloseModal}
+    
     return (
       <Modal {...this.props}>
         <HeaderApp

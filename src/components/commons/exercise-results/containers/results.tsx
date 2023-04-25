@@ -27,16 +27,6 @@ class ChallengeResults extends Component<any> {
   componentDidMount = () => {
     const howIFeelService = new HowIFeelService();
     this.setState({modalVisible: false});
-    let prev_statistics = this.props.statistics;
-    if (prev_statistics) {
-      if (prev_statistics.hasOwnProperty('points')) {
-        prev_statistics.points.total =
-        prev_statistics.points.total +
-        this.props.route.params.brains_assigned;
-        this.props.dispatch(updateStatisticsAction(prev_statistics));
-      }
-    }
-
     howIFeelService.setIsActive(this.props.dispatch, true);
   };
 
@@ -45,7 +35,6 @@ class ChallengeResults extends Component<any> {
   }
 
   render() {
-    const generalService = new GeneralService();
     return (
       <View>
         <View style={styles.wraper}>
@@ -55,8 +44,7 @@ class ChallengeResults extends Component<any> {
             source={require('assets/img/brain_lg.png')}
           />
           <CustomText style={styles.brainsNumber}>
-            {' '}
-            +{ generalService.formatNumber(this.props.route.params.brains_assigned) }{' '}
+            {' '} +100 {' '}
           </CustomText>
         </View>
 
@@ -99,8 +87,7 @@ class ChallengeResults extends Component<any> {
           }
           visible={this.state.modalVisible}
           navigation={this.props.navigation}
-          dataResults={this.props.route.params.questions_answered_data}
-          // onCloseModal={() => {this.setModalVisible(!this.state.modalVisible)}}
+          dataResults={this.props.route.params.dataResults}
           onCloseModal={() => this.props.navigation.goBack()}
         />
 
