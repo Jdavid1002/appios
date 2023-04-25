@@ -20,14 +20,9 @@ const SimulacrumScore = (props: any) => {
           Tu calificación es de {props.route.params.score}/100
         </CustomText>
         <CustomText style={[MainStyles.textCenter, styles.descriptionScore]}>
-          {props.route.params.approve
-            ? 'Felicidades aprobaste tu evaluación'
-            : 'Sigue practicando. Completa las lecciones e intenta nuevamente.'}
+          {!props.route.params.approve ? 'Felicidades aprobaste tu evaluación' : 'Sigue practicando. Completa las lecciones e intenta nuevamente.'}
         </CustomText>
-        <Image
-          source={props.route.params.approve ? success : fail}
-          style={styles.image}
-        />
+        <Image source={!props.route.params.approve ? success : fail} style={styles.image} />
         <ButtonBlue
           textBtn="Siguiente recurso"
           style={styles.nextButton}

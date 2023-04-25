@@ -7,7 +7,7 @@ import {styles} from '../../../../components/screens/train-your-mind';
 import HowIFeelService from '../../../../services/how-i-feel';
 
 const ResultsLayout = (props: any) => {
-  const [state, setState] = React.useState(null);
+  const [state, setState] = React.useState<any>(null)
 
   const navigation = useNavigation();
   const params: any = props.route.params;
@@ -24,21 +24,14 @@ const ResultsLayout = (props: any) => {
       time_view = params.time_view;
     }
 
-    const data: any = {
-      game: params.key,
-      time_view: time_view,
-      corrected_answers: params.corrected_answers,
-    };
+    const results: any = await gameService.saveGameGamification(params.corrected_answers, props?.statistics, props.dispatch)
 
-    const results: any = await gameService.save(
-      data,
-      props?.statistics,
-      props.auth_token,
-      props.dispatch,
-    );
-    setState(results);
+    const dataResults: any = { brains_to_assign: Number(results.totalPoints), corrected_answers: Number(params.corrected_answers) }
+
+    setState(dataResults);
     howIFeelService.setIsActive(props.dispatch, true);
-  };
+  }
+
 
   useFocusEffect(
     React.useCallback(() => {
@@ -124,3 +117,4 @@ function mapStatesToProps(state: any = {}) {
 }
 
 export default connect(mapStatesToProps)(ResultsLayout);
+
