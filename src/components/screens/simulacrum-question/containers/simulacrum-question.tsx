@@ -95,6 +95,7 @@ class SimulacrumQuestions extends Component<any, any> {
 
   getSimulacrumsQuestions = async () => {
     const section = this?.props?.route?.params?.section;
+    const dontUseStatistics = this?.props?.route?.params?.dontUseStatistics;
     const newQuestions = section?.questions?.map(
       (_question: any, idx: number) => {
         return {
@@ -115,14 +116,14 @@ class SimulacrumQuestions extends Component<any, any> {
     );
 
     //@INFO Obtener la primera pregunta sin estadisticas, es decir sin ser resuelta. En caso de que no encuentre ninguna coloca la primera.
-    const statistics_ids =
+    const statistics_ids = dontUseStatistics ? [] :
       this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics?.map(
         (item: any) => item?.question,
       );
     const nextQuestion = newQuestions?.find(
       (item: any) => !statistics_ids?.includes(item?._id),
     );
-    const questionSelected = nextQuestion || newQuestions[0];
+    const questionSelected = dontUseStatistics ? newQuestions[0] : (nextQuestion || newQuestions[0])
 
     this.setState({
       loading: false,
@@ -191,17 +192,25 @@ class SimulacrumQuestions extends Component<any, any> {
 
   handlePressButtonSend = async () => {
     const section = this?.props?.route?.params?.section;
+    const dontUseStatistics = this?.props?.route?.params?.dontUseStatistics;
 
     const currentStatisticsInDataBase =
-      this?.props?.route?.params?.academicResourceData?.config?.attempt_active
-        ?.results?.statistics || [];
+    this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics 
+    || [];
+    
     //@INFO se concatenan las estadisticas pasadas y las nuevas, ademas de eliminar elementos null
-    const newStatistics = [
+    const newStatistics = dontUseStatistics 
+    ? this.state.statistics 
+    : [
       ...currentStatisticsInDataBase,
       ...this.state.statistics,
     ].filter((item: any) => item);
 
-    const questionsByConfiguration = this?.props?.route?.params
+    //@INFO En caso de no necesitar estadisticas se enviaran todas las preguntas.
+    const questionsByConfiguration = dontUseStatistics 
+      ?  {[section?.currentSection] : section?.questions?.map((question: any) => question?._id)}
+      : 
+      this?.props?.route?.params
       ?.academicResourceData?.config?.attempt_active?.results
       ?.questionsByConfiguration?.length
       ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active
@@ -209,13 +218,19 @@ class SimulacrumQuestions extends Component<any, any> {
       : this?.props?.route?.params?.academicResourceData?.config
           ?.questionsByConfiguration;
 
-    const questionsToEvaluate = this?.props?.route?.params?.academicResourceData
+    const questionsToEvaluate = dontUseStatistics 
+    
+    ? section?.questions?.map((question: any) => question?._id)
+
+    : this?.props?.route?.params?.academicResourceData
       ?.config?.attempt_active?.results?.questionsToEvaluate?.length
       ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active
           ?.results?.questionsToEvaluate
       : this?.props?.route?.params?.academicResourceData?.config?.questions?.map(
           (item: any) => item?._id,
         );
+
+    const academic_resource_config = dontUseStatistics ? section?.academic_resource_config  : this.props?.route?.params?.academicResourceData?.academic_resource_config
 
     const params = {
       results: {
@@ -227,9 +242,7 @@ class SimulacrumQuestions extends Component<any, any> {
       },
       deliverable_date: new Date(),
       qualify: false,
-      academic_resource_config:
-        this.props?.route?.params?.academicResourceData
-          ?.academic_resource_config,
+      academic_resource_config: academic_resource_config,
       user: this.props.user?._id,
     };
 
@@ -360,27 +373,10 @@ class SimulacrumQuestions extends Component<any, any> {
           />
           {Object.keys(this.state.current_question_data).length > 0 ? (
             <React.Fragment>
-              {/* <QuestionContainer
-                innerHtml={
-                  (this.state.current_question_data.hasOwnProperty('parent')
-                    ? this.state.current_question_data.parent.title
-                    : '') +
-                  this.state.current_question_data.title +
-                  (this.state.current_question_data.hasOwnProperty('parent')
-                    ? this.state.current_question_data.parent.description
-                    : '') +
-                  this.state.current_question_data.description
-                }
-              /> */}
               <InlineWebview
                 html={`${this.state.current_question_data?.content || ''}`}
                 style={[styles.webview]}
               />
-              {/* <QuestionAnswerList
-                style={{marginTop: 40}}
-                dataAnswers={this.state.current_answers_options}
-                onPressAnswer={this.handlePressAnswer}
-              /> */}
               {this.state.current_answers.map((answer: any, i: number) => (
                 <View>
                   <TouchableOpacity

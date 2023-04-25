@@ -15,6 +15,8 @@ export type TriviaType = {
   question_category: string
   tags: any[]
   updated_at: string | Date
+  currenSection : string
+  academic_resource_config : string
 };
 
 

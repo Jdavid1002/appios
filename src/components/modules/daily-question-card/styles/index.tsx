@@ -41,10 +41,14 @@ export default StyleSheet.create({
     maxWidth: 250,
     width: '100%',
     justifyContent: 'center',
+    alignItems : 'center',
+    paddingVertical : 2,
+    borderRadius: 16,
   },
   buttonText: {
     fontFamily: 'Nunito-ExtraBold',
     textTransform: 'capitalize',
     fontSize: 14,
+    color : 'white'
   },
 });

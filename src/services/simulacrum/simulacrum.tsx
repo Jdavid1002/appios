@@ -127,7 +127,7 @@ class SimulacrumService {
       }),
       auth_token: token,
       params: {
-        user,
+        user_id : user,
         alliance_id,
       },
     };
@@ -135,7 +135,13 @@ class SimulacrumService {
     const data = await Http.send(query_data);
 
     if (data.status === 'success') {
-      dispatch(getDailyQuestionAction(data?.response));
+      dispatch(getDailyQuestionAction({
+        currentSection : '',
+        academic_resource_config : '',
+        questions : data?.response
+      }));
+      
+      // dispatch(getDailyQuestionAction(data?.response));
       return data;
     } else if (
       data.status === 'error' &&

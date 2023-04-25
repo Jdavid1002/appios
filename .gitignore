@@ -57,3 +57,7 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+#config/env.json
+src/config/env.json
+/src/config/env.json

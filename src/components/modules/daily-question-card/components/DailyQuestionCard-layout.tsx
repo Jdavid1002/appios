@@ -5,9 +5,10 @@ import {useNavigation} from '@react-navigation/native';
 import GeneralService from '../../../../services/general/general';
 
 import {styles} from './../index';
+import { DailyQuestionType } from '../../../../reducers/daily-question/types';
 
 interface DailyQuestionCardLayoutProps {
-  data: any;
+  data: DailyQuestionType;
   getDailyQuestion: any;
 }
 
@@ -16,31 +17,32 @@ const DailyQuestionCardLayout: React.FC<
 > = props => {
   const navigation = useNavigation();
 
-  const generalService = new GeneralService();
+  const cutContentOfQuestion = (text : string) => {
+    if (text?.length > 100) {
+      return text.slice(0, 100) + '...';
+    } else {
+      return text
+    }
+  }
 
   return (
     <View style={[styles.dailyQuestionCard]}>
       <Text style={[styles.title]}>Pregunta del día</Text>
 
-      {props.data?.status === 'success' && (
+      {props.data?.questions?.length > 0 && (
         <React.Fragment>
           <Text style={[styles.text]} numberOfLines={4}>
-            {generalService
-              .stripTags(props.data?.questions[0].description)
-              .trim()}
+            {cutContentOfQuestion(props.data?.questions[0].content)}
           </Text>
           <TouchableOpacity
             style={[styles.button]}
             onPress={() =>
               navigation.navigate('SimulacrumQuestion', {
-                questions: props.data,
-                matterId: props.data.matter_id,
-                level: props.data.questions[0].level,
+                section :  props.data,
+                dontUseStatistics : true
               })
             }
             disabled={props.data?.status === 'error'}
-            // rounded
-            // small
           >
             <Text style={[styles.buttonText]}>Responder</Text>
           </TouchableOpacity>

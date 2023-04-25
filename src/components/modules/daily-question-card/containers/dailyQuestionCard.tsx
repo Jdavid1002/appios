@@ -18,7 +18,6 @@ class DailyQuestionCard extends React.Component<any, any> {
 
   getDailyQuestions = async () => {
     const simulacrumService = new SimulacrumService();
-
     await simulacrumService.getDailyQuestion(this.props.auth_token, this.props.dispatch, this.props.alliance_id, this.props.user_id);
   };
 
