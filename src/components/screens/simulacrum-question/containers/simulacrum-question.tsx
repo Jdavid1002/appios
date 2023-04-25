@@ -6,9 +6,8 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import {CommonActions} from '@react-navigation/native';
 
-import {DispatchProp, connect} from 'react-redux';
+import {connect} from 'react-redux';
 import {Http, HttpCustomStructure} from '../../../../utils/http';
 
 import InlineWebview from '../../../../components/commons/webview';
@@ -25,6 +24,7 @@ import {updateLives} from '../../../../reducers/auth/actions';
 
 class SimulacrumQuestions extends Component<any, any> {
   private simulacrumService = new SimulacrumService();
+  public _unsubscribe : any = null;
 
   state: any = {
     loading: true,
@@ -51,7 +51,14 @@ class SimulacrumQuestions extends Component<any, any> {
     5: 'F',
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.updateInitialState()
+    });
+    this.updateInitialState()
+  }
+
+  updateInitialState = () => {
     this.setState({
       loading: true,
       start_time: null,
@@ -67,7 +74,7 @@ class SimulacrumQuestions extends Component<any, any> {
       success_response_question : 0
     });
     this.getSimulacrumsQuestions();
-  };
+  }
 
   componentWillUnmount = () => {
     this.setState({
@@ -83,6 +90,7 @@ class SimulacrumQuestions extends Component<any, any> {
       statistics: [],
       success_response_question : 0
     });
+    this._unsubscribe();
   };
 
   showModalLives = () => {

@@ -25,15 +25,19 @@ function mapStatesToProps(state: any = {}) {
 
 class Challenges extends Component<any> {
   state = {loading: false, auth_token: null, matters: []};
+  public _unsubscribe : any = null;
 
   renderEmpty = () => <CustomText> No hay retos para mostrar </CustomText>;
   renderItem = ({item}: any = {}) => <ChallengeCard {...item} />;
   keyExtractor = (item: any = {}) => item.id.toString();
   itemSeparator = () => <CustomText />;
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.getChallengesData();
+    });
     this.getChallengesData();
-  };
+  }
 
   handlePress = (matterId: number) => {
     const matter_data: any = this.state.matters.filter(
@@ -46,6 +50,25 @@ class Challenges extends Component<any> {
       }
     }
     this.props.navigation.navigate('ChallengeQuestion', {matterId: matterId});
+  };
+
+  canResultsWhenIsDiagnostic = (results_statistics: any | undefined, case_key: string ): boolean => {
+    if (results_statistics) {
+      if(results_statistics.status && results_statistics?.status!=="ended") return false
+      if (!Object(results_statistics).hasOwnProperty('generated_route')
+        && !Object(results_statistics).hasOwnProperty('generating_route')
+        && !Object(results_statistics).hasOwnProperty('perfect_route')
+      ) return false
+      const { generated_route, generating_route, perfect_route } = results_statistics
+      if (case_key === 'is_generating') {
+        if (generating_route && !generated_route && !perfect_route) return true
+      } if (case_key === 'cant_generate') {
+        if (!generating_route && !generated_route && !perfect_route) return true
+      }
+      return false
+    } else {
+      return false
+    }
   };
 
   async getChallengesData() {
@@ -98,26 +121,7 @@ class Challenges extends Component<any> {
     } else {
       Alert.alert(data.message);
     }
-  }
-
-  canResultsWhenIsDiagnostic = (results_statistics: any | undefined, case_key: string ): boolean => {
-    if (results_statistics) {
-      if(results_statistics.status && results_statistics?.status!=="ended") return false
-      if (!Object(results_statistics).hasOwnProperty('generated_route')
-        && !Object(results_statistics).hasOwnProperty('generating_route')
-        && !Object(results_statistics).hasOwnProperty('perfect_route')
-      ) return false
-      const { generated_route, generating_route, perfect_route } = results_statistics
-      if (case_key === 'is_generating') {
-        if (generating_route && !generated_route && !perfect_route) return true
-      } if (case_key === 'cant_generate') {
-        if (!generating_route && !generated_route && !perfect_route) return true
-      }
-      return false
-    } else {
-      return false
-    }
-  }
+  };
 
   render() {
     if (this.state.loading) {

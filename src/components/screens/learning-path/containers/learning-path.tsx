@@ -25,6 +25,7 @@ function mapStatesToProps(state: any = {}) {
 }
 
 class LearningPath extends Component<any> {
+  public _unsubscribe : any = null;
   state: any = {
     loading: true,
     no_learning_path: false,
@@ -34,9 +35,13 @@ class LearningPath extends Component<any> {
     lesson_statistics: {},
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.getLearningPath();
+    });
     this.getLearningPath();
-  };
+  }
+
 
   getLearningPath = async () => {
     this.setState({loading: true});
