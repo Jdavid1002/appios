@@ -28,6 +28,7 @@ export default StyleSheet.create({
     borderColor: '#39b3e2',
     flexDirection: 'row',
     backgroundColor: 'transparent',
+    height : 42
   },
   defaultCellInput: {
     flexGrow: 1,
@@ -38,6 +39,7 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
     fontFamily: 'Nunito-Bold',
     color: '#39b3e2',
+    height : 42
   },
   defaultCellText: {
     flexGrow: 1,

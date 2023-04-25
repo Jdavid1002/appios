@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Text,
-  Button,
+  TouchableOpacity,
 } from 'react-native';
 
 import {styles} from '../../../../../components/screens/train-your-mind';
@@ -27,21 +27,16 @@ const SudokuLayout = (props: any) => {
         {props.board.length > 0 && (
           <React.Fragment>
             <View style={[gameStyles.toolbar]}>
-              {/* <Button
-              onPress={props.solveSudoku}
-              style={[{backgroundColor: '#39b3e2'}]}
-              small
-              rounded>
-              <Text>Resolver</Text>
-            </Button> */}
-
-              <Button
+              <TouchableOpacity
                 onPress={props.clearBoard}
-                style={[{backgroundColor: '#39b3e2'}]}
-                small
-                rounded>
-                <Text>Limpiar tablero</Text>
-              </Button>
+                style={[{backgroundColor: '#39b3e2', width : '40%', justifyContent : 'center', alignItems : 'center', borderRadius :  10, paddingVertical : 5}]}
+              >
+                <Text
+                  style={[{backgroundColor: '#39b3e2', color : 'white'}]}
+                >
+                  Limpiar tablero
+                </Text>
+              </TouchableOpacity>
             </View>
 
             <View style={[gameStyles.sudokuContainer]}>

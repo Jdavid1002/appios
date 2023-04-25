@@ -8,6 +8,7 @@ import GeneralService from '../../../../../services/general/general';
 import SudokuLayout from './sudoku-layout';
 
 const SudokuGame: React.FC<any> = () => {
+  
   const [initialBoard] = React.useState<any[]>(
     Sudoku.board_string_to_grid(Sudoku.generate(70)),
   );

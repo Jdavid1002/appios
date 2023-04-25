@@ -3,6 +3,8 @@ import { View, ScrollView, Text, TouchableHighlight } from 'react-native';
 import gameStyles from './styles';
 
 import { styles } from '../../../../../components/screens/train-your-mind';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCheck, faClose} from '@fortawesome/free-solid-svg-icons';
 
 const SpellIt = (props: any) => {
   props.question&& console.log('options', props.question?.options)
@@ -32,15 +34,13 @@ const SpellIt = (props: any) => {
 
             {props.answered && props.answered === props?.question?.answer && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
-                {/* <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} /> */}
-                +++
+                <FontAwesomeIcon icon={faCheck}  color='#7aab62' />
               </View>
             )}
 
             {props.answered && props.answered !== props?.question?.answer && (
-              <View style={[styles.feedBackIconContainer, { borderColor: '#e94044' }]}>
-                {/* <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} /> */}
-                ---
+              <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
+                <FontAwesomeIcon icon={faClose}  color='#7aab62' />
               </View>
             )}
 
@@ -53,7 +53,7 @@ const SpellIt = (props: any) => {
                 <TouchableHighlight
                   key={index}
                   style={[
-                    { marginBottom: 16, paddingHorizontal: 16},
+                    { marginBottom: 16, paddingHorizontal: 16, width : '100%', alignItems : 'center', justifyContent: 'center',borderRadius: 10},
                     props.answered &&
                     props?.question?.answer === option &&
                     { backgroundColor: '#8ec772' },

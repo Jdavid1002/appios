@@ -2,6 +2,8 @@ import React from 'react';
 import {View, ScrollView, Text, TouchableHighlight } from 'react-native';
 import {styles} from '../../../../../components/screens/train-your-mind';
 import gameStyles from './styles';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCheckCircle, faClose} from '@fortawesome/free-solid-svg-icons';
 
 const SpellIt = (props: any) => {
   return (
@@ -17,15 +19,19 @@ const SpellIt = (props: any) => {
 
             {props.answered && props.answered === props?.question?.answer && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
-                {/* <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} /> */}
-                ---
+                <FontAwesomeIcon 
+                  icon={faCheckCircle}  
+                  color='#7aab62'
+                />
               </View>
             )}
 
             {props.answered && props.answered !== props?.question?.answer && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#e94044' }]}>
-                {/* <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} /> */}
-                +++
+                <FontAwesomeIcon 
+                  icon={faClose}  
+                  color='#e94044'
+                />
               </View>
             )}
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, ScrollView, TouchableOpacity, Text, Image} from 'react-native';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faCheck, faClose} from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from './../../index';
 import gameStyles from './styles'
@@ -33,15 +35,13 @@ const MemoryLayout: React.FC<any> = (props: any) => {
 
             {props.answered.length > 0 && JSON.stringify(props?.question?.answer) === JSON.stringify(props.answered) && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
-                {/* <Icon type="FontAwesome" name="check" style={[styles.feedBackIcon, { color: '#7aab62' }]} /> */}
-                +++
+                <FontAwesomeIcon icon={faCheck} color='#7aab62' />
               </View>
             )}
 
             {props.answered.length > 0 && JSON.stringify(props?.question?.answer) !== JSON.stringify(props.answered) && (
               <View style={[styles.feedBackIconContainer, { borderColor: '#e94044' }]}>
-                {/* <Icon type="FontAwesome" name="close" style={[styles.feedBackIcon, { color: '#e94044' }]} /> */}
-                ---
+                <FontAwesomeIcon icon={faClose} color='#e94044' />
               </View>
             )}
 
