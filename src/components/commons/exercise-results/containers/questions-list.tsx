@@ -86,15 +86,6 @@ class ModalResults extends Component<any> {
   };
 
   render() {
-    console.log('dataResults', this.props.dataResults)
-      // <Accordion
-      //   style={styles.acordion}
-      //   dataArray={this.props.dataResults}
-      //   animation={true}
-      //   expanded={true}
-      //   renderHeader={this._renderHeader}
-      //   renderContent={this._renderContent}
-      // />
     return (
       <View>
         {this.props.dataResults?.map((item : any, idx : number) => 
