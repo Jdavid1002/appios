@@ -37,7 +37,7 @@ function ChallengeCardComponent(props: any) {
             +{props.brains_can_get}{' '}
           </CustomText>
           <CustomText style={[styles.title, {color: props.color}]}>
-            {props.title}
+            {props.title?.length > 18 ? `${props.title.slice(0, 18)}...` : props.title}
           </CustomText>
         </View>
       )}
