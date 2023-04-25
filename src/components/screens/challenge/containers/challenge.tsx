@@ -40,16 +40,23 @@ class Challenges extends Component<any> {
   }
 
   handlePress = (matterId: number) => {
-    const matter_data: any = this.state.matters.filter(
+    const matter_data: any = this.state.matters.find(
       (m: any) => m.id === matterId,
     );
-    if (matter_data[0]) {
-      if (parseInt(matter_data[0].progress) >= 100) {
-        this.props.navigation.navigate('LearningPath', {matterId: matterId});
-        return false;
-      }
+    if (!matter_data) {
+      return;
     }
-    this.props.navigation.navigate('ChallengeQuestion', {matterId: matterId});
+
+    if (!matter_data?.isDiagnostic) {
+      this.props.navigation.navigate('LearningPath', {matterId: matterId});
+      return false;
+    }
+
+    this.props.navigation.navigate('SectionsMatter', {
+      matterId: matterId,
+      configCategory: '6303ed5f3138387a1669d7ac',
+      getChallengesData: this.getChallengesData,
+    });
   };
 
   canResultsWhenIsDiagnostic = (results_statistics: any | undefined, case_key: string ): boolean => {
