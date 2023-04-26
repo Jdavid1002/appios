@@ -25,19 +25,17 @@ function ChallengeCardComponent(props: any) {
         </View>
       ) : (
         <View style={styles.containerRight}>
-          {!props.loading ? (
+          <View style={styles.containerBrain} >
             <Image
               style={styles.brainImage}
               source={require('assets/img/brain.png')}
             />
-          ) : null}
-
-          <CustomText style={styles.textInfo}>
-            {' '}
-            +{props.brains_can_get}{' '}
-          </CustomText>
+            <CustomText style={styles.textInfo}>
+              +{props.brains_can_get}
+            </CustomText>
+          </View>
           <CustomText style={[styles.title, {color: props.color}]}>
-            {props.title?.length > 18 ? `${props.title.slice(0, 18)}...` : props.title}
+            {props.title}
           </CustomText>
         </View>
       )}

@@ -6,15 +6,13 @@ export default StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 15,
     height: 76,
-    paddingVertical: 24,
-    // marginHorizontal: 20,
+    paddingVertical: 7,
   },
   containerLoading: {
     backgroundColor: '#6A7590',
     borderRadius: 15,
     height: 76,
     paddingVertical: 24,
-    // marginHorizontal: 20,
   },
   loadingTitle: {
     fontSize: 20,
@@ -25,15 +23,20 @@ export default StyleSheet.create({
     fontFamily: 'Nunito',
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Nunito-Bold',
     fontWeight: "800",
-    fontStyle: 'normal'
+    fontStyle: 'normal',
+    width : '60%',
+    textAlign : 'right'
   },
   containerRight: {
-    marginRight: 20,
+    marginRight: 12,
+    flex : 1,
     alignItems:'flex-end',
-    justifyContent: 'center'
+    justifyContent : 'space-between',
+    flexDirection : 'column',
+    gap : 2,
   },
   cardImageLeft: {
     position: 'absolute',
@@ -52,5 +55,11 @@ export default StyleSheet.create({
   brainImage:{
     width: 13,
     height: 15,
+  },
+  containerBrain: {
+    alignItems:'flex-end',
+    justifyContent: 'center',
+    flexDirection : 'row',
+    gap : 3
   }
 });
