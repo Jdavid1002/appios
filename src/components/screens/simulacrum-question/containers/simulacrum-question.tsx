@@ -21,6 +21,7 @@ import mainStyles from '../../../../styles/MainStyles';
 import {styles} from './../index';
 import SimulacrumService from '../../../../services/simulacrum/simulacrum';
 import {updateLives} from '../../../../reducers/auth/actions';
+import moment from 'moment';
 
 class SimulacrumQuestions extends Component<any, any> {
   private simulacrumService = new SimulacrumService();
@@ -39,7 +40,7 @@ class SimulacrumQuestions extends Component<any, any> {
     statistics: [],
     lives: 3,
     modalVisible: false,
-    success_response_question : 0
+    success_response_question : 0,
   };
 
   lettersByIndex: any = {
@@ -71,7 +72,7 @@ class SimulacrumQuestions extends Component<any, any> {
       selected_answer: {},
       statistics: [],
       modalVisible: false,
-      success_response_question : 0
+      success_response_question : 0,
     });
     this.getSimulacrumsQuestions();
   }
@@ -88,7 +89,7 @@ class SimulacrumQuestions extends Component<any, any> {
       current_answers: [],
       selected_answer: {},
       statistics: [],
-      success_response_question : 0
+      success_response_question : 0,
     });
     this._unsubscribe();
   };
@@ -327,11 +328,14 @@ class SimulacrumQuestions extends Component<any, any> {
 
       //@INFO Cuando la vista se usa en una pregunta del dia.
       if(isQuestionOfDay) {
+        const end = moment();
+        const duration = moment.duration(end.diff(this.state.start_time));
+        const seconds = duration.asSeconds();
         this.getDailyQuestions()
         this.props.navigation.navigate('ChallengeResults', {
           questions_answered_correctly : new_success_response_question,
           total_questions_evaluated : section?.questions?.length,
-          time_view : 155,
+          time_view : seconds,
           dataResults : this.convertQuestionInFormatOfSummary(newStatistics)
         })
         return

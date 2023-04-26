@@ -47,11 +47,7 @@ class Trivia extends React.Component<any, any> {
 
     const params = {
       results: {
-        currentSection: trivia.currenSection,
         deliverable_date: (new Date()),
-        questionsByConfiguration : {
-          [trivia.currenSection] : [trivia._id]
-        },
         questionsToEvaluate : [trivia._id],
         statistics : [{
           question: trivia._id,

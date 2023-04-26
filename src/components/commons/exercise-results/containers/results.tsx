@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 import {View, Image} from 'react-native';
+import {connect} from 'react-redux';
 import {CustomText} from '../../../../components/commons/customs/components/customComponents';
 import ButtonBlue from '../../../../components/commons/buttons/components/button-blue';
 import ModalResults from './modal-results';
-
-import {update as updateStatisticsAction} from '../../../../reducers/statistics/actions';
-
-import {connect} from 'react-redux';
-
 import styles from '../styles/styles';
 import mainStyles from '../../../../styles/MainStyles';
-import GeneralService from '../../../../services/general/general';
 import HowIFeelService from '../../../../services/how-i-feel';
 
 function mapStatesToProps(state: any = {}) {
@@ -44,7 +39,7 @@ class ChallengeResults extends Component<any> {
             source={require('assets/img/brain_lg.png')}
           />
           <CustomText style={styles.brainsNumber}>
-            {' '} +100 {' '}
+            + {this?.props?.route?.params?.questions_answered_correctly * 100}
           </CustomText>
         </View>
 
