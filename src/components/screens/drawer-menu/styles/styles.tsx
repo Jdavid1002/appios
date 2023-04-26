@@ -4,8 +4,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#061946',
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
+    //@INFO Estas propiedades se eliminaron puesto a que el background por defecto en react native dejo de ser transparente a ser blanco.
+    // borderTopRightRadius: 50,
+    // borderBottomRightRadius: 50,
     height: '100%',
   },
   header: {
