@@ -158,7 +158,7 @@ class StatisticsService {
               points : data?.gamification_level?.info?.from
             },
             end : {
-              name : 'Specialist',
+              name : data?.gamification_level?.info?.next_level_name || 'Specialist',
               points : data?.gamification_level?.info?.to
             },
             percentage : ((data?.gamification_level?.value - data?.gamification_level?.info?.from) / data?.gamification_level?.info?.to) * 100

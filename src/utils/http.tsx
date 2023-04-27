@@ -117,7 +117,6 @@ class HttpUtil {
       if (
           query_response?.status_code === 'jwt_token_invalid' 
           || query_response?.status_code === 'jwt_token_expired' 
-          || query_response?.status_code === 'jwt_unauthorized_header'
       ){
         store.dispatch({
           type: LOGOUT,
