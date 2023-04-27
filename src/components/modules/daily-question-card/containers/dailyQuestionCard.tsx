@@ -26,6 +26,7 @@ class DailyQuestionCard extends React.Component<any, any> {
       <DailyQuestionCardLayout
         data={this.props.dailyQuestion}
         getDailyQuestion={this.getDailyQuestions}
+        lives={this.props.lives}
       />
     );
   }
@@ -37,6 +38,7 @@ function mapStatesToProps(state: any = {}) {
     auth_token: state?.auth?.user?.token,
     user_id: state?.auth?.user?._id,
     alliance_id: state?.auth?.user?.alliance_id,
+    lives: state?.auth?.user?.lives,
   };
 }
 export default connect(mapStatesToProps)(DailyQuestionCard);

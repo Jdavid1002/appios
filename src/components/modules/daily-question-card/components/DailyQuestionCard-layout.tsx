@@ -2,14 +2,13 @@ import React from 'react';
 import {View, ActivityIndicator, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import GeneralService from '../../../../services/general/general';
-
 import {styles} from './../index';
 import { DailyQuestionType } from '../../../../reducers/daily-question/types';
 
 interface DailyQuestionCardLayoutProps {
   data: DailyQuestionType;
   getDailyQuestion: any;
+  lives : number
 }
 
 const DailyQuestionCardLayout: React.FC<
@@ -29,10 +28,10 @@ const DailyQuestionCardLayout: React.FC<
     <View style={[styles.dailyQuestionCard]}>
       <Text style={[styles.title]}>Pregunta del día</Text>
 
-      {props.data?.questions?.length > 0 && (
+      {props.data?.questions?.length > 0 && props?.lives > 0 ? (
         <React.Fragment>
           <Text style={[styles.text]} numberOfLines={4}>
-            {cutContentOfQuestion(props.data?.questions[0].content)}
+            {cutContentOfQuestion(props.data?.title)}
           </Text>
           <TouchableOpacity
             style={[styles.button]}
@@ -48,9 +47,9 @@ const DailyQuestionCardLayout: React.FC<
             <Text style={[styles.buttonText]}>Responder</Text>
           </TouchableOpacity>
         </React.Fragment>
-      )}
+      ) : null}
 
-      {props.data?.status === 'error' && (
+      {props.lives === 0 && (
         <Text style={[styles.text]} numberOfLines={4}>
           {props.data?.message === 'No tienes mas vidas'
             ? 'No tienes más oportunidades'
@@ -58,7 +57,7 @@ const DailyQuestionCardLayout: React.FC<
         </Text>
       )}
 
-      {!props.data && <ActivityIndicator />}
+      {!props.data?.questions?.length && <ActivityIndicator />}
     </View>
   );
 };

@@ -221,7 +221,7 @@ class SimulacrumQuestions extends Component<any, any> {
 
     //@INFO En caso de no necesitar estadisticas se enviaran todas las preguntas.
     const questionsByConfiguration = dontUseStatistics 
-      ?  {[section?.currentSection] : section?.questions?.map((question: any) => question?._id)}
+      ? section?.questionsByConfiguration
       : 
       this?.props?.route?.params
       ?.academicResourceData?.config?.attempt_active?.results
@@ -245,9 +245,8 @@ class SimulacrumQuestions extends Component<any, any> {
 
     const academic_resource_config = dontUseStatistics ? section?.academic_resource_config  : this.props?.route?.params?.academicResourceData?.academic_resource_config
 
-    const params = {
+    let params : any = {
       results: {
-        currentSection: section?.uuid,
         deliverable_date: new Date(),
         questionsByConfiguration: questionsByConfiguration,
         questionsToEvaluate: questionsToEvaluate,
@@ -258,6 +257,16 @@ class SimulacrumQuestions extends Component<any, any> {
       academic_resource_config: academic_resource_config,
       user: this.props.user?._id,
     };
+
+    if(section?.uuid){
+      params = {
+        ...params,
+        results : {
+          ...params.results,
+          currentSection : section?.uuid
+        }
+      }
+    }
 
     const alliance = this.props.alliance_id;
 

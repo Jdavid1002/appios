@@ -7,9 +7,24 @@ import {connect} from 'react-redux';
 const StatisticsTopSection = (props: any) => {
   const generalService = new GeneralService();
   const categories = props?.statistics?.categories;
-  const total = categories
-    ?.map((categorie: any) => categorie?.points)
-    .reduce((a: any, b: any) => a + b, 0);
+
+  const getTotal = () => {
+
+    if(!categories?.length) return 0
+
+    const allPoints = categories?.map((categorie: any) => categorie?.points)
+
+    if(!allPoints?.length) return 0
+
+    return allPoints.reduce((a: any, b: any) => a + b, 0);
+  }
+
+  const getPercentage = () => {
+    if(!props.statistics?.range?.percentage) return 0
+    if(props.statistics?.range?.percentage < 0) return 0
+    return props.statistics?.range?.percentage
+  }
+
 
   return (
     <View style={[styles.topSection]}>
@@ -17,7 +32,7 @@ const StatisticsTopSection = (props: any) => {
         <View
           style={[
             styles.progressBar,
-            {width: `${props.statistics?.range?.percentage}%`},
+            {width: `${getPercentage()}%`},
           ]}
         />
       </View>
@@ -118,7 +133,7 @@ const StatisticsTopSection = (props: any) => {
           />
           <Text style={[styles.text, {color: '#061946'}]}>Total:</Text>
           <Text style={[styles.text, {color: '#061946', fontSize: 48}]}>
-            {generalService.formatNumber(total)}
+            {generalService.formatNumber(getTotal())}
           </Text>
         </View>
       </View>

@@ -136,12 +136,10 @@ class SimulacrumService {
 
     if (data.status === 'success') {
       dispatch(getDailyQuestionAction({
-        currentSection : '',
-        academic_resource_config : '',
-        questions : data?.response
+        ...data?.response,
+        questions : data?.response?.question
       }));
       
-      // dispatch(getDailyQuestionAction(data?.response));
       return data;
     } else if (
       data.status === 'error' &&

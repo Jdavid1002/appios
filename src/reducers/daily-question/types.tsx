@@ -4,6 +4,10 @@ export type DailyQuestionType = {
   academic_resource_config : string
   currentSection : string
   questions : DailyQuestionTypeQuestions[]
+  academic_resource: string
+  academic_resource_config_category:string
+  title: string
+  questionsByConfiguration: any
 } | any
 
 
