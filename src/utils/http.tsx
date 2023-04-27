@@ -114,7 +114,11 @@ class HttpUtil {
       );
       const query_response = await query.json();
 
-      if (query_response?.status_code === 'jwt_token_invalid') {
+      if (
+          query_response?.status_code === 'jwt_token_invalid' 
+          || query_response?.status_code === 'jwt_token_expired' 
+          || query_response?.status_code === 'jwt_unauthorized_header'
+      ){
         store.dispatch({
           type: LOGOUT,
           payload: null,
