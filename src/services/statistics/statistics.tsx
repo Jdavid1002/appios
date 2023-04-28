@@ -149,7 +149,6 @@ class StatisticsService {
       };
       const data = await Http.send(query_data);
       if (data?.status === 'success') {
-
         const newStatistics = {
           total : data?.gamification_level?.value,
           range : {
@@ -158,7 +157,7 @@ class StatisticsService {
               points : data?.gamification_level?.info?.from
             },
             end : {
-              name : data?.gamification_level?.info?.next_level_name || 'Specialist',
+              name : data?.next_gamification_level?.info?.level_name || '',
               points : data?.gamification_level?.info?.to
             },
             percentage : ((data?.gamification_level?.value - data?.gamification_level?.info?.from) / data?.gamification_level?.info?.to) * 100
