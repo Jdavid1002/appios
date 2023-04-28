@@ -18,6 +18,7 @@ export default StyleSheet.create({
   },
   header: {
     height: 120,
+    paddingTop: 15
   },
   containerHeader: {
     width : '100%',
