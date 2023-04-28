@@ -59,8 +59,9 @@ class ProfileEditModal extends Component<any> {
                 flexDirection: 'row',
                 alignItems : 'center',
                 justifyContent : 'space-between',
-                paddingHorizontal : 10,
-                paddingBottom : 5
+                paddingHorizontal : 15,
+                paddingBottom : 10,
+                paddingTop : 35
               }}
               // androidStatusBarColor="#061946"
             >
@@ -70,7 +71,7 @@ class ProfileEditModal extends Component<any> {
                 barStyle="light-content"
               />
 
-              <View>
+              <View style={{width : '15%', justifyContent : 'center', alignItems : 'center'}}  >
                 <TouchableHighlight onPress={() => this.props.setVisible(false)} >
                   <FontAwesomeIcon
                     icon={faArrowLeft}
@@ -79,10 +80,12 @@ class ProfileEditModal extends Component<any> {
                   />
                 </TouchableHighlight>
               </View>
-              <View>
-                <Text style={{color: 'white'}}>Editar perfil</Text>
+
+              <View style={{width : '70%'}} >
+                <Text style={{color: 'white', textAlign : 'center'}}>Editar perfil</Text>
               </View>
-              <View>
+
+              <View style={{width : '15%', justifyContent : 'center', alignItems : 'center'}}  >
                 <TouchableHighlight
                   onPress={this.props.doEdit}
                   disabled={this.props.state.status === 'loading'}
@@ -97,6 +100,7 @@ class ProfileEditModal extends Component<any> {
                   </View>
                 </TouchableHighlight>
               </View>
+
             </View>
 
             <ScrollView

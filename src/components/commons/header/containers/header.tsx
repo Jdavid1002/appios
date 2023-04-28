@@ -23,6 +23,18 @@ interface AppHeaderProps {
 const AppHeader = (props: AppHeaderProps) => {
   const generalService = new GeneralService();
 
+  const categories = props?.statistics?.categories;
+
+  const getTotal = () => {
+
+    if(!categories?.length) return 0
+
+    const allPoints = categories?.map((categorie: any) => categorie?.points)
+
+    if(!allPoints?.length) return 0
+
+    return allPoints.reduce((a: any, b: any) => a + b, 0);
+  }
   return (
     <View
       style={[
@@ -37,6 +49,7 @@ const AppHeader = (props: AppHeaderProps) => {
         />
 
         <View style={[styles.containerHeader]} >
+          
           <View style={[styles.left]}>
             {!props.leftButton && !props.previous && (
               <TouchableOpacity 
@@ -79,16 +92,14 @@ const AppHeader = (props: AppHeaderProps) => {
                     flexDirection: 'column-reverse',
                   },
                 ]}>
-                {props?.statistics &&
-                props?.statistics?.hasOwnProperty('points') &&
-                props?.statistics?.points.hasOwnProperty('total') &&
-                props?.statistics?.points?.total ? (
+                {getTotal() ? (
                   <View
                     style={{
                       flexDirection: 'row',
                       marginHorizontal: 4,
                       alignItems: 'center',
                       justifyContent: 'center',
+                      marginTop: 5,
                     }}>
                     <Image
                       resizeMode="contain"
@@ -97,7 +108,7 @@ const AppHeader = (props: AppHeaderProps) => {
                     />
                     <Text style={[{color: 'white', fontSize: 12}]}>
                       {generalService?.formatNumber(
-                        props?.statistics?.points?.total || 0,
+                        getTotal()
                       )}
                     </Text>
                   </View>
@@ -115,6 +126,7 @@ const AppHeader = (props: AppHeaderProps) => {
             )}
             {props.rightButton && props.rightButton}
           </View>
+
         </View>
 
       </View>

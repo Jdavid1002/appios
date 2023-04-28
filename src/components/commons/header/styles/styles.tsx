@@ -25,7 +25,8 @@ export default StyleSheet.create({
     height : '100%',
     flexDirection: 'row',
     alignItems : 'center',
-    paddingTop : 30
+    justifyContent : 'center',
+    paddingTop : 20
   },
   body: {
     width : '50%',
