@@ -1,0 +1,155 @@
+
+App Thinning Size Report for All Variants of IQEDUDO
+
+Variant: IQEDUDO-0413A3EE-CCC4-49A4-89D7-AF91E30C345B.ipa
+Supported variant descriptors: [device: iPad7,2, os-version: 15.0], [device: iPad13,17, os-version: 16.0], [device: iPad14,6-A, os-version: 16.0], [device: iPad8,8, os-version: 16.0], [device: iPad8,7, os-version: 16.0], [device: MacFamily20,1, os-version: 15.0], [device: iPad14,1, os-version: 16.0], [device: iPad8,4, os-version: 15.0], [device: iPad6,4, os-version: 16.0], [device: iPad11,1, os-version: 16.0], [device: iPad8,1, os-version: 16.0], [device: iPad13,4, os-version: 15.0], [device: iPad11,3, os-version: 16.0], [device: iPad8,10, os-version: 15.0], [device: iPad13,6, os-version: 15.0], [device: iPad13,17, os-version: 15.0], [device: iPad8,9, os-version: 15.0], [device: iPad11,2, os-version: 15.0], [device: iPad13,5, os-version: 16.0], [device: iPad13,11, os-version: 16.0], [device: iPad8,10, os-version: 16.0], [device: iPad14,3-A, os-version: 16.0], [device: iPad11,4, os-version: 15.0], [device: iPad13,7, os-version: 16.0], [device: iPad7,2, os-version: 16.0], [device: iPad8,9, os-version: 16.0], [device: iPad14,4-A, os-version: 16.0], [device: iPad8,6, os-version: 15.0], [device: iPad13,11, os-version: 15.0], [device: MacFamily20,1, os-version: 16.0], [device: iPad6,3, os-version: 16.0], [device: iPad8,12, os-version: 15.0], [device: iPad8,5, os-version: 16.0], [device: iPad14,4-B, os-version: 16.0], [device: iPad8,11, os-version: 16.0], [device: iPad8,8, os-version: 15.0], [device: iPad11,1, os-version: 15.0], [device: iPad8,7, os-version: 15.0], [device: iPad13,8, os-version: 15.0], [device: iPad7,1, os-version: 16.0], [device: iPad13,5, os-version: 15.0], [device: iPad8,2, os-version: 15.0], [device: iPad11,4, os-version: 16.0], [device: iPad8,5, os-version: 15.0], [device: iPad13,10, os-version: 15.0], [device: iPad13,1, os-version: 15.0], [device: iPad7,4, os-version: 15.0], [device: iPad8,3, os-version: 15.0], [device: iPad7,4, os-version: 16.0], [device: iPad8,2, os-version: 16.0], [device: iPad13,6, os-version: 16.0], [device: iPad7,3, os-version: 16.0], [device: iPad13,1, os-version: 16.0], [device: iPad13,8, os-version: 16.0], [device: iPad14,5-A, os-version: 16.0], [device: iPad6,4, os-version: 15.0], [device: iPad13,7, os-version: 15.0], [device: iPad11,3, os-version: 15.0], [device: iPad14,1, os-version: 15.0], [device: iPad14,3-B, os-version: 16.0], [device: iPad14,5-B, os-version: 16.0], [device: iPad7,3, os-version: 15.0], [device: iPad8,1, os-version: 15.0], [device: iPad13,16, os-version: 15.0], [device: iPad14,6-B, os-version: 16.0], [device: iPad11,2, os-version: 16.0], [device: iPad8,4, os-version: 16.0], [device: iPad8,12, os-version: 16.0], [device: iPad6,3, os-version: 15.0], [device: iPad7,1, os-version: 15.0], [device: iPad13,16, os-version: 16.0], [device: iPad14,2, os-version: 15.0], [device: iPad13,4, os-version: 16.0], [device: iPad13,9, os-version: 15.0], [device: iPad13,10, os-version: 16.0], [device: iPad13,9, os-version: 16.0], [device: iPad8,11, os-version: 15.0], [device: iPad13,2, os-version: 16.0], [device: iPad8,3, os-version: 16.0], [device: iPad13,2, os-version: 15.0], [device: iPad14,2, os-version: 16.0], and [device: iPad8,6, os-version: 16.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-20D1185F-B2B1-47AA-951F-88C659391608.ipa
+Supported variant descriptors: [device: iPhone11,6, os-version: 14.0], [device: iPhone11,2, os-version: 14.0], [device: iPhone10,2, os-version: 13.0], [device: iPhone12,3, os-version: 13.0], [device: iPhone11,2, os-version: 13.0], [device: iPhone12,5, os-version: 13.0], [device: iPhone10,6, os-version: 14.0], [device: iPhone11,4, os-version: 13.0], [device: iPhone13,1, os-version: 14.0], [device: iPhone9,4, os-version: 14.0], [device: iPhone11,6, os-version: 13.0], [device: iPhone9,2, os-version: 14.0], [device: iPhone10,3, os-version: 14.0], [device: iPhone10,2, os-version: 14.0], [device: iPhone10,3, os-version: 13.0], [device: iPhone10,5, os-version: 14.0], [device: iPhone13,3, os-version: 14.0], [device: iPhone12,3, os-version: 14.0], [device: iPhone13,4, os-version: 14.0], [device: iPhone13,2, os-version: 14.0], [device: iPhone12,5, os-version: 14.0], [device: iPhone9,4, os-version: 13.0], [device: iPhone11,4, os-version: 14.0], [device: iPhone10,5, os-version: 13.0], [device: iPhone10,6, os-version: 13.0], and [device: iPhone9,2, os-version: 13.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-24039AB2-EDA7-4803-B1EE-E8F1506C6E61.ipa
+Supported variant descriptors: [device: iPhone8,1, os-version: 13.0], [device: iPhone8,4, os-version: 14.0], [device: iPod9,1, os-version: 14.0], [device: iPod9,1, os-version: 13.0], [device: iPhone8,1, os-version: 14.0], and [device: iPhone8,4, os-version: 13.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-3984198D-B597-4A0D-AE63-0657DDD9BC2F.ipa
+Supported variant descriptors: [device: iPod9,1, os-version: 15.0], [device: iPhone8,1, os-version: 15.0], and [device: iPhone8,4, os-version: 15.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-4311EB74-DAF9-4640-AA53-6B5365117B0A.ipa
+Supported variant descriptors: [device: iPad11,6, os-version: 16.0], [device: iPad13,18, os-version: 16.0], [device: iPad6,12, os-version: 16.0], [device: iPad7,6, os-version: 16.0], [device: iPad7,12, os-version: 16.0], [device: iPad11,6, os-version: 15.0], [device: iPad12,1, os-version: 15.0], [device: iPad6,11, os-version: 15.0], [device: iPad12,2, os-version: 16.0], [device: iPad6,7, os-version: 15.0], [device: iPad7,11, os-version: 16.0], [device: iPad7,11, os-version: 15.0], [device: iPad6,11, os-version: 16.0], [device: iPad7,12, os-version: 15.0], [device: iPad12,2, os-version: 15.0], [device: iPad6,12, os-version: 15.0], [device: iPad5,3, os-version: 15.0], [device: iPad6,8, os-version: 15.0], [device: iPad7,5, os-version: 16.0], [device: iPad13,19, os-version: 16.0], [device: iPad7,5, os-version: 15.0], [device: iPad11,7, os-version: 16.0], [device: iPad11,7, os-version: 15.0], [device: iPad5,1, os-version: 15.0], [device: iPad7,6, os-version: 15.0], [device: iPad5,2, os-version: 15.0], [device: iPad6,7, os-version: 16.0], [device: iPad5,4, os-version: 15.0], [device: iPad12,1, os-version: 16.0], and [device: iPad6,8, os-version: 16.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-4F23691A-268C-468B-B15C-7BCD9C076553.ipa
+Supported variant descriptors: [device: iPhone14,3, os-version: 16.0], [device: iPhone13,3, os-version: 16.0], [device: iPhone10,2, os-version: 15.0], [device: iPhone14,2, os-version: 15.0], [device: iPhone9,4, os-version: 15.0], [device: iPhone14,5, os-version: 15.0], [device: iPhone11,6, os-version: 16.0], [device: iPhone13,4, os-version: 16.0], [device: iPhone11,6, os-version: 15.0], [device: iPhone15,3, os-version: 16.0], [device: iPhone10,2, os-version: 16.0], [device: iPhone12,5, os-version: 16.0], [device: iPhone10,6, os-version: 15.0], [device: iPhone14,2, os-version: 16.0], [device: iPhone14,3, os-version: 15.0], [device: iPhone14,7, os-version: 16.0], [device: iPhone13,2, os-version: 15.0], [device: iPhone12,3, os-version: 16.0], [device: iPhone14,4, os-version: 16.0], [device: iPhone13,1, os-version: 16.0], [device: iPhone10,5, os-version: 16.0], [device: iPhone14,8, os-version: 16.0], [device: iPhone9,2, os-version: 15.0], [device: iPhone13,1, os-version: 15.0], [device: iPhone10,3, os-version: 16.0], [device: iPhone10,5, os-version: 15.0], [device: iPhone13,2, os-version: 16.0], [device: iPhone11,4, os-version: 15.0], [device: iPhone10,3, os-version: 15.0], [device: iPhone14,5, os-version: 16.0], [device: iPhone11,2, os-version: 16.0], [device: iPhone12,3, os-version: 15.0], [device: iPhone13,4, os-version: 15.0], [device: iPhone15,2, os-version: 16.0], [device: iPhone12,5, os-version: 15.0], [device: iPhone10,6, os-version: 16.0], [device: iPhone11,2, os-version: 15.0], [device: iPhone13,3, os-version: 15.0], [device: iPhone14,4, os-version: 15.0], and [device: iPhone11,4, os-version: 16.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-6ACFBCD3-B70A-48EF-BA54-B18807B4EA29.ipa
+Supported variant descriptors: [device: iPhone10,1, os-version: 14.0], [device: iPhone9,3, os-version: 14.0], [device: iPhone12,8, os-version: 14.0], [device: iPhone9,1, os-version: 13.0], [device: iPhone10,1, os-version: 13.0], [device: iPhone10,4, os-version: 13.0], [device: iPhone10,4, os-version: 14.0], [device: iPhone12,8, os-version: 13.0], [device: iPhone9,1, os-version: 14.0], and [device: iPhone9,3, os-version: 13.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-7FF988BD-F13E-4BDC-B62C-835B0D2A16A3.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 14.0], [device: iPhone11,8, os-version: 13.0], [device: iPhone12,1, os-version: 13.0], and [device: iPhone12,1, os-version: 14.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-819DC7C1-1168-4CA7-BA58-9012E056263E.ipa
+Supported variant descriptors: [device: iPad6,11, os-version: 12.2], [device: iPad4,4, os-version: 12.2], [device: iPad6,8, os-version: 12.2], [device: iPad5,1, os-version: 12.2], [device: iPad4,6, os-version: 12.2], [device: iPad5,3, os-version: 12.2], [device: iPad4,5, os-version: 12.2], [device: iPad4,8, os-version: 12.2], [device: iPad7,6, os-version: 12.2], [device: iPad4,7, os-version: 12.2], [device: iPad4,3, os-version: 12.2], [device: iPad4,1, os-version: 12.2], [device: iPad5,4, os-version: 12.2], [device: iPad6,12, os-version: 12.2], [device: iPad6,7, os-version: 12.2], [device: iPad7,5, os-version: 12.2], [device: iPad4,9, os-version: 12.2], [device: iPad4,2, os-version: 12.2], and [device: iPad5,2, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-8BC82C56-2DED-416F-9422-B72299C88EC0.ipa
+Supported variant descriptors: [device: iPhone7,1, os-version: 12.2] and [device: iPhone8,2, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-964DAD6F-78AF-40A6-83B8-E0045DBE05FE.ipa
+Supported variant descriptors: [device: iPhone9,1, os-version: 15.0], [device: iPhone10,4, os-version: 15.0], [device: iPhone10,4, os-version: 16.0], [device: iPhone12,8, os-version: 15.0], [device: iPhone12,8, os-version: 16.0], [device: iPhone9,3, os-version: 15.0], [device: iPhone14,6, os-version: 15.0], [device: iPhone10,1, os-version: 16.0], [device: iPhone14,6, os-version: 16.0], and [device: iPhone10,1, os-version: 15.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-A967D284-0359-4F00-B120-5F3AAA752F24.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 16.0], [device: iPhone11,8, os-version: 15.0], [device: iPhone12,1, os-version: 15.0], and [device: iPhone12,1, os-version: 16.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-ABFDDCDF-4802-4F98-95E3-15DC599B16F7.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-ACBF958C-C44E-4849-BA5A-70964DD5C8F5.ipa
+Supported variant descriptors: [device: iPad8,7, os-version: 14.0], [device: iPad8,1, os-version: 14.0], [device: iPad11,4, os-version: 14.0], [device: iPad7,3, os-version: 13.0], [device: iPad11,2, os-version: 13.0], [device: iPad8,10, os-version: 13.0], [device: iPad8,11, os-version: 13.0], [device: iPad8,3, os-version: 14.0], [device: iPad11,3, os-version: 14.0], [device: iPad8,9, os-version: 13.0], [device: iPad8,5, os-version: 13.0], [device: iPad11,2, os-version: 14.0], [device: iPad13,2, os-version: 14.0], [device: iPad13,8, os-version: 14.0], [device: iPad8,3, os-version: 13.0], [device: iPad13,7, os-version: 14.0], [device: iPad8,12, os-version: 14.0], [device: iPad8,8, os-version: 13.0], [device: iPad7,4, os-version: 13.0], [device: iPad11,4, os-version: 13.0], [device: iPad13,4, os-version: 14.0], [device: iPad11,1, os-version: 13.0], [device: iPad13,1, os-version: 14.0], [device: iPad13,10, os-version: 14.0], [device: iPad7,2, os-version: 14.0], [device: iPad8,6, os-version: 14.0], [device: iPad7,1, os-version: 13.0], [device: iPad8,5, os-version: 14.0], [device: iPad13,11, os-version: 14.0], [device: iPad7,1, os-version: 14.0], [device: iPad13,5, os-version: 14.0], [device: iPad11,1, os-version: 14.0], [device: iPad6,3, os-version: 13.0], [device: iPad8,12, os-version: 13.0], [device: iPad6,4, os-version: 13.0], [device: iPad11,3, os-version: 13.0], [device: iPad8,2, os-version: 13.0], [device: iPad7,4, os-version: 14.0], [device: iPad13,6, os-version: 14.0], [device: iPad8,2, os-version: 14.0], [device: iPad8,4, os-version: 14.0], [device: iPad7,2, os-version: 13.0], [device: iPad6,3, os-version: 14.0], [device: iPad8,4, os-version: 13.0], [device: iPad8,7, os-version: 13.0], [device: iPad8,6, os-version: 13.0], [device: iPad8,10, os-version: 14.0], [device: MacFamily20,1, os-version: 14.0], [device: iPad8,9, os-version: 14.0], [device: iPad8,8, os-version: 14.0], [device: iPad13,9, os-version: 14.0], [device: iPad6,4, os-version: 14.0], [device: iPad7,3, os-version: 14.0], [device: iPad8,11, os-version: 14.0], and [device: iPad8,1, os-version: 13.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-B2ED33E6-AC80-41C1-AD96-05DFB296DA87.ipa
+Supported variant descriptors: [device: iPhone8,1, os-version: 12.2], [device: iPhone7,2, os-version: 12.2], [device: iPod7,1, os-version: 12.2], [device: iPod9,1, os-version: 12.2], [device: iPhone6,1, os-version: 12.2], [device: iPhone8,4, os-version: 12.2], and [device: iPhone6,2, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-BA79ECDF-16A8-48C2-9BF1-2E6A52279300.ipa
+Supported variant descriptors: [device: iPad6,3, os-version: 12.2], [device: iPad8,8, os-version: 12.2], [device: iPad11,3, os-version: 12.2], [device: iPad8,2, os-version: 12.2], [device: iPad8,5, os-version: 12.2], [device: iPad11,1, os-version: 12.2], [device: iPad11,4, os-version: 12.2], [device: iPad11,2, os-version: 12.2], [device: iPad7,1, os-version: 12.2], [device: iPad7,4, os-version: 12.2], [device: iPad7,3, os-version: 12.2], [device: iPad8,1, os-version: 12.2], [device: iPad8,7, os-version: 12.2], [device: iPad8,4, os-version: 12.2], [device: iPad7,2, os-version: 12.2], [device: iPad6,4, os-version: 12.2], [device: iPad8,6, os-version: 12.2], and [device: iPad8,3, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-C3E8E777-1F4F-4933-B525-E11EA7A5D869.ipa
+Supported variant descriptors: [device: iPad7,11, os-version: 13.0], [device: iPad5,1, os-version: 14.0], [device: iPad7,6, os-version: 14.0], [device: iPad5,3, os-version: 13.0], [device: iPad5,4, os-version: 14.0], [device: iPad5,4, os-version: 13.0], [device: iPad7,6, os-version: 13.0], [device: iPad6,7, os-version: 13.0], [device: iPad11,7, os-version: 14.0], [device: iPad7,12, os-version: 14.0], [device: iPad6,8, os-version: 14.0], [device: iPad5,3, os-version: 14.0], [device: iPad5,1, os-version: 13.0], [device: iPad6,12, os-version: 13.0], [device: iPad11,6, os-version: 14.0], [device: iPad7,5, os-version: 13.0], [device: iPad6,11, os-version: 14.0], [device: iPad5,2, os-version: 14.0], [device: iPad7,12, os-version: 13.0], [device: iPad5,2, os-version: 13.0], [device: iPad6,12, os-version: 14.0], [device: iPad6,7, os-version: 14.0], [device: iPad7,11, os-version: 14.0], [device: iPad7,5, os-version: 14.0], [device: iPad6,8, os-version: 13.0], and [device: iPad6,11, os-version: 13.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-C5025080-95C4-4E81-8341-11EA3E113ABB.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 15.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-DCA9E955-0C1E-49E5-9CA5-3BC6027981BD.ipa
+Supported variant descriptors: [device: iPhone10,4, os-version: 12.2], [device: iPhone10,1, os-version: 12.2], [device: iPhone9,3, os-version: 12.2], and [device: iPhone9,1, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-E2B14CA1-4F3C-46E5-A310-1D48BEEACDDD.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 14.0] and [device: iPhone8,2, os-version: 13.0]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO-EA0198FA-DA75-47FC-8C0C-5B676D067AA8.ipa
+Supported variant descriptors: [device: iPhone11,6, os-version: 12.2], [device: iPhone9,2, os-version: 12.2], [device: iPhone10,2, os-version: 12.2], [device: iPhone10,5, os-version: 12.2], [device: iPhone10,6, os-version: 12.2], [device: iPhone9,4, os-version: 12.2], [device: iPhone10,3, os-version: 12.2], [device: iPhone11,4, os-version: 12.2], and [device: iPhone11,2, os-version: 12.2]
+App + On Demand Resources size: 8 MB compressed, 17,9 MB uncompressed
+App size: 8 MB compressed, 17,9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: IQEDUDO.ipa
+Supported variant descriptors: Universal
+App + On Demand Resources size: 8,1 MB compressed, 18 MB uncompressed
+App size: 8,1 MB compressed, 18 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
