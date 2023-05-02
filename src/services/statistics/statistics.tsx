@@ -109,7 +109,7 @@ class StatisticsService {
     }
 
     const points = await this.getFetchGamificationValuesAndTransformData({
-      force_calculation: true,
+      // force_calculation: true,
       alliance_id: alliance_id,
       auth_token: token,
     })
@@ -148,6 +148,7 @@ class StatisticsService {
         auth_token: auth_token
       };
       const data = await Http.send(query_data);
+      
       if (data?.status === 'success') {
         const newStatistics = {
           total : data?.gamification_level?.value,
@@ -157,7 +158,7 @@ class StatisticsService {
               points : data?.gamification_level?.info?.from
             },
             end : {
-              name : data?.next_gamification_level?.info?.level_name || '',
+              name : data?.next_gamification_level?.level_name || '',
               points : data?.gamification_level?.info?.to
             },
             percentage : ((data?.gamification_level?.value - data?.gamification_level?.info?.from) / data?.gamification_level?.info?.to) * 100
