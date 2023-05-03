@@ -112,7 +112,7 @@ class Challenges extends Component<any> {
           title: item?.name,
           color: item?.config?.color,
           progress: item?.statistics?.completed_status ? Math.round(item?.statistics?.completed_status) : 0,
-          brains_can_get: item?.brains_can_get || 0,
+          brains_can_get: item?.brains_can_get || 3000,
           backgroundImage : images[item?.name],
           onPress: isGenerateLearningWay ? () => null :this?.handlePress,
           isDiagnostic : isDiagnostic && !isGenerateLearningWay ? true : false,

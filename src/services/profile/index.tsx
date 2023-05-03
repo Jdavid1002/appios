@@ -58,6 +58,7 @@ class ProfileService {
   };
 
   getRankings = async (params: any, token: string, dispatch: any) => {
+    return
     dispatch(getRankingsAction('loading'));
 
     const paramString = `${Object.keys(params)
