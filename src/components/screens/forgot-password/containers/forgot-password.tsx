@@ -10,7 +10,7 @@ class ForgotPassword extends Component {
       <SafeAreaView
         style={[mainStyles.blueBackground, mainStyles.mainContainer]}>
         <LogoHeaderContainer navigation={this?.props?.navigation} />
-        <ForgotPasswordFormContainer />
+        <ForgotPasswordFormContainer navigation={this?.props?.navigation} />
       </SafeAreaView>
     );
   }
