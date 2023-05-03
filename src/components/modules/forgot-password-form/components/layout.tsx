@@ -4,6 +4,7 @@ import {
   StatusBar,
   TextInput,
   View,
+  Text,
   TouchableOpacity,
 } from 'react-native';
 import mainStyles from '../../../../styles/MainStyles';
@@ -12,7 +13,7 @@ import {CustomText} from '../../../../components/commons/customs/components/cust
 
 class ForgotPasswordFormComponent extends Component<any> {
   render() {
-    const {email} = this.props;
+    const {email, showInputsOfCode} = this.props;
 
     return (
       <View style={mainStyles.formContainer}>
@@ -30,6 +31,12 @@ class ForgotPasswordFormComponent extends Component<any> {
           onChangeText={this.props.handleInputChange('email')}
           value={email}
         />
+
+        {showInputsOfCode && (
+          <View> 
+            <Text> showInputsOfCode </Text>
+          </View>
+        )}
 
         <TouchableOpacity
           onPress={this.props.handleSubmit}

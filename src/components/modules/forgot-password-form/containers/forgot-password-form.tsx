@@ -4,13 +4,14 @@ import ForgotPasswordFormComponent from '../components/layout';
 import {Http, HttpCustomStructure} from '../../../../utils/http';
 
 class ForgotPasswordFormContainer extends Component {
-  state = {email: ''};
+  state = {email: '', showInputsOfCode : false};
 
   constructor(props: any) {
     super(props);
 
     this.state = {
       email: '',
+      showInputsOfCode : false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,23 +33,30 @@ class ForgotPasswordFormContainer extends Component {
   }
 
   forgotPass = async () => {
+
     const query_data: HttpCustomStructure = {
       method: 'GET',
-      url: '/api/auth/change-password',
+      url: '/api/auth/generate-authentication',
+      headers: {
+        'system-source': 'lms',
+      },
       params: {
-        email_address: this.state.email,
+        email: this.state.email,
+        destination: 'email',
+        alliance: 'iq-secundaria',
       },
     };
+
     const data = await Http.send(query_data);
     if (data.status === 'success') {
-      alert(data.message);
+      this.setState({...this.state, showInputsOfCode : true});
     } else {
-      alert(data.message);
+      this.setState({...this.state, showInputsOfCode : false});
     }
   };
 
   render() {
-    const {email} = this.state;
+    const {email, showInputsOfCode} = this.state;
 
     return (
       <View style={{marginTop: 20}}>
@@ -56,6 +64,7 @@ class ForgotPasswordFormContainer extends Component {
           email={email}
           handleInputChange={this.handleInputChange}
           handleSubmit={this.onSubmit}
+          showInputsOfCode={showInputsOfCode}
         />
       </View>
     );

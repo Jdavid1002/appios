@@ -61,9 +61,8 @@ class ProfileEditModal extends Component<any> {
                 justifyContent : 'space-between',
                 paddingHorizontal : 15,
                 paddingBottom : 10,
-                paddingTop : 35
+                paddingTop : 55
               }}
-              // androidStatusBarColor="#061946"
             >
               <StatusBar
                 translucent={true}
