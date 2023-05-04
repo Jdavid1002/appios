@@ -59,8 +59,8 @@ const StatisticsRankingSection = (props: any) => {
       setRankingDistrict(newRankingDistrict);
     };
 
-    // getRankingNational();
-    // getLocationRanking();
+    getRankingNational();
+    getLocationRanking();
   }, []);
 
   const sortByValue = (rankingList: any[]) => {
