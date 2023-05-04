@@ -24,6 +24,8 @@ function mapStatesToProps(state: any = {}) {
 }
 
 class ChallengeQuestions extends Component<any, any> {
+  public _unsubscribe : any = null;
+
   state: any = {
     loading: true,
     start_time: null,
@@ -46,7 +48,14 @@ class ChallengeQuestions extends Component<any, any> {
     5 : 'F',
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.updateInitialState()
+    });
+    this.updateInitialState()
+  }
+
+  updateInitialState = () => {
     this.setState({
       loading: true,
       start_time: null,
@@ -60,7 +69,7 @@ class ChallengeQuestions extends Component<any, any> {
       statistics : []
     });
     this.getQuestionsBySection();
-  };
+  }
 
   componentWillUnmount = () => {
     this.setState({
@@ -78,6 +87,11 @@ class ChallengeQuestions extends Component<any, any> {
   };
 
   getQuestionsBySection = async () => {
+    this.setState({
+      ...this.state,
+      loading: true,
+    })
+
     const section = this?.props?.route?.params?.section;
     const newQuestions = section?.questions?.map((_question : any, idx : number) => {
       return {

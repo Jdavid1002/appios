@@ -125,6 +125,7 @@ class Simulacrums extends Component<any, ISimulacrumState> {
       is_diagnostic: false,
       status: { $in: ['started', 'ended'] }
     })
+
     if (response?.code === 200) {
       let matters_data: ISimulacrumData[] = [];
       let results_data: ISimulacrumResult[] = [];
@@ -160,6 +161,10 @@ class Simulacrums extends Component<any, ISimulacrumState> {
           total_simulacrums: response.simulacrums.simulacrums[i].attempts?.length || 0
         })
       }
+
+      console.log('matters_data', matters_data)
+      console.log('results_data', results_data)
+
       this.setState({
         matters_data: matters_data,
         results_data: results_data,

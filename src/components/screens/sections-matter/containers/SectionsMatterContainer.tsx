@@ -58,7 +58,6 @@ class SectionsMatterContainer extends Component<
 
   componentDidMount = () => {
     this.setState({
-      loading: true,
       infoSections: [],
     });
     this.getSectionsOfMatter();
@@ -66,12 +65,13 @@ class SectionsMatterContainer extends Component<
 
   componentWillUnmount = () => {
     this.setState({
-      loading: true,
+      loading: false,
       infoSections: [],
     });
   };
 
   getSectionsOfMatter = async () => {
+    
     if (this?.props?.defaultInfoSections?.length) {
       this.setState({
         ...this.state,
@@ -79,6 +79,12 @@ class SectionsMatterContainer extends Component<
       });
       return;
     }
+
+    this.setState({
+      ...this.state,
+      loading: true,
+    });
+
     const challengeService = new ChallengeService();
 
     const matterId = this.props.route.params.matterId;
@@ -101,6 +107,8 @@ class SectionsMatterContainer extends Component<
       alliance_id: this?.props?.alliance_id,
       query_params: params,
     });
+
+    if (data?.status_code !== 'success') return 
 
     let sectionsWithQuestions: ISection[] = [];
 
@@ -151,14 +159,12 @@ class SectionsMatterContainer extends Component<
         );
     }
 
-    if (data?.status_code === 'success') {
-      this.setState({
-        ...this.state,
-        loading: false,
-        infoSections: sectionsWithQuestions,
-        academicResourceData: data?.academicResourceData,
-      });
-    }
+    this.setState({
+      ...this.state,
+      loading: false,
+      infoSections: sectionsWithQuestions,
+      academicResourceData: data?.academicResourceData,
+    });
   };
 
   render() {

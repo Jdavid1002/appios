@@ -106,9 +106,19 @@ class SimulacrumQuestions extends Component<any, any> {
   };
 
   getSimulacrumsQuestions = async () => {
+    
+    this.setState({
+      ...this.state,
+      loading: true,
+    })
+
     const section = this?.props?.route?.params?.section;
     const dontUseStatistics = this?.props?.route?.params?.dontUseStatistics;
-    const newQuestions = section?.questions?.map(
+    const isQuestionOfDay = this?.props?.route?.params?.isQuestionOfDay;
+
+    const cutQuestions = isQuestionOfDay ? 10 : section?.questions?.length - 1
+
+    const newQuestions = section?.questions?.slice(0, cutQuestions).map(
       (_question: any, idx: number) => {
         return {
           ..._question,

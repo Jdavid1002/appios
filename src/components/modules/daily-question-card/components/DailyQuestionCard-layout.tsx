@@ -49,11 +49,9 @@ const DailyQuestionCardLayout: React.FC<
         </React.Fragment>
       ) : null}
 
-      {props.lives === 0 && (
+      {!props.lives && (
         <Text style={[styles.text]} numberOfLines={4}>
-          {props.data?.message === 'No tienes mas vidas'
-            ? 'No tienes más oportunidades'
-            : props.data?.message}
+          No tienes mas vidas
         </Text>
       )}
 

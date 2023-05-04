@@ -134,6 +134,8 @@ class SimulacrumService {
 
     const data = await Http.send(query_data);
 
+    console.log('data', data)
+
     if (data.status === 'success') {
       dispatch(getDailyQuestionAction({
         ...data?.response,

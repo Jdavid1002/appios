@@ -12,6 +12,9 @@ interface TriviaCardLayoutProps {
 const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
   const navigation = useNavigation();
 
+  const regex = /(<([^>]+)>)/ig;
+  const result = props?.trivia?.content?.replace(regex, '');
+
   return (
     <View style={[styles.triviaCard]}>
       <Image
@@ -29,8 +32,9 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
         </View>
 
         <Text style={[styles.subtitle]} numberOfLines={2}>
-          {props?.trivia?.content}
+          {result}
         </Text>
+
         <TouchableHighlight
           onPress={() =>
             navigation.navigate('TriviaScreen', {trivia: props?.trivia})
