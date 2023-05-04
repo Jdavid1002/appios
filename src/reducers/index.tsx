@@ -8,7 +8,7 @@ import {simulacrumReducer} from './simulacrum/reducers';
 import {triviaReducer} from './trivia/reducers';
 import {dailyQuestionReducer} from './daily-question/reducers';
 import {howIFeelReducer} from './how_i_feel/reducers';
-
+import {notAuthInfo} from './not_auth_Info/reducers';
 import {LOGOUT} from './auth/types';
 
 const reducers = combineReducers({
@@ -20,11 +20,14 @@ const reducers = combineReducers({
   trivia: triviaReducer,
   dailyQuestion: dailyQuestionReducer,
   howIFeel: howIFeelReducer,
+  notAuthInfo : notAuthInfo
 });
 
 const rootReducer = (state: any, action: any) => {
   if (action.type === LOGOUT) {
-    state = undefined;
+    state = {
+      notAuthInfo :  state.notAuthInfo
+    };
   }
   return reducers(state, action);
 };

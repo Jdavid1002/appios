@@ -22,6 +22,8 @@ import {styles} from './../index';
 import SimulacrumService from '../../../../services/simulacrum/simulacrum';
 import {updateLives} from '../../../../reducers/auth/actions';
 import moment from 'moment';
+import { store } from '../../../../storage/redux-storage';
+import { updateAnswerOfDateQuestionDay, updateAnswerOfDateTriviaDay } from '../../../../reducers/not_auth_Info/actions';
 
 class SimulacrumQuestions extends Component<any, any> {
   private simulacrumService = new SimulacrumService();
@@ -347,6 +349,7 @@ class SimulacrumQuestions extends Component<any, any> {
 
       //@INFO Cuando la vista se usa en una pregunta del dia.
       if(isQuestionOfDay) {
+        store.dispatch(updateAnswerOfDateQuestionDay(new Date()))
         const end = moment();
         const duration = moment.duration(end.diff(this.state.start_time));
         const seconds = duration.asSeconds();

@@ -7,6 +7,7 @@ import {TriviaLayout} from './../index';
 import {TriviaAnswers, TriviaType} from '../../../../reducers/trivia/types';
 import { store } from '../../../../storage/redux-storage';
 import { Http, HttpCustomStructure } from '../../../../utils/http';
+import { updateAnswerOfDateQuestionDay, updateAnswerOfDateTriviaDay } from '../../../../reducers/not_auth_Info/actions';
 
 export interface ITriviaScreenProps {
   route: {
@@ -44,6 +45,8 @@ class Trivia extends React.Component<any, any> {
 
   generateGamification = async () => { 
     const trivia = store.getState()?.trivia
+
+    store.dispatch(updateAnswerOfDateTriviaDay(new Date()))
 
     const params = {
       results: {
@@ -94,7 +97,7 @@ class Trivia extends React.Component<any, any> {
 
     if (this.state.selectedOption) {
 
-      // await this.generateGamification()
+      await this.generateGamification()
 
       const newState = {
         ...this.state,

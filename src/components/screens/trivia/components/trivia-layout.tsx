@@ -23,7 +23,7 @@ export interface ITriviaLayout {
 }
 
 const TriviaLayout: React.FC<ITriviaLayout> = props => {
-  
+
   return (
     <ScrollView contentContainerStyle={[styles.trivia]}>
       <Text style={[styles.title]}>Selecciona la opción correcta. </Text>

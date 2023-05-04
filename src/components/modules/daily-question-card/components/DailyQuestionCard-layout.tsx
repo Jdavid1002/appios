@@ -4,6 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 
 import {styles} from './../index';
 import { DailyQuestionType } from '../../../../reducers/daily-question/types';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 interface DailyQuestionCardLayoutProps {
   data: DailyQuestionType;
@@ -15,6 +17,18 @@ const DailyQuestionCardLayout: React.FC<
   DailyQuestionCardLayoutProps
 > = props => {
   const navigation = useNavigation();
+
+  const lastAnswerDailyQuestion = useSelector((state : any) => state.notAuthInfo.answerOfDateQuestionDay)
+
+  const validateDateOfLastAnswerDailyQuestion = () => {
+    if(!lastAnswerDailyQuestion) return true;
+
+    if(moment().isAfter(moment(lastAnswerDailyQuestion).add('1', 'day'))){
+      return true
+    }
+    return false
+  }
+
 
   const cutContentOfQuestion = (text : string) => {
     if (text?.length > 100) {
@@ -28,7 +42,11 @@ const DailyQuestionCardLayout: React.FC<
     <View style={[styles.dailyQuestionCard]}>
       <Text style={[styles.title]}>Pregunta del día</Text>
 
-      {props.data?.questions?.length > 0 && props?.lives > 0 ? (
+      {!validateDateOfLastAnswerDailyQuestion() ? 
+        <Text style={[styles.text]} numberOfLines={4}>
+          No existen mas preguntas por hoy.
+        </Text>
+      : props.data?.questions?.length > 0 && props?.lives > 0 ? (
         <React.Fragment>
           <Text style={[styles.text]} numberOfLines={4}>
             {cutContentOfQuestion(props.data?.title)}
@@ -47,7 +65,9 @@ const DailyQuestionCardLayout: React.FC<
             <Text style={[styles.buttonText]}>Responder</Text>
           </TouchableOpacity>
         </React.Fragment>
-      ) : null}
+        )
+      : null} 
+      
 
       {!props.lives && (
         <Text style={[styles.text]} numberOfLines={4}>

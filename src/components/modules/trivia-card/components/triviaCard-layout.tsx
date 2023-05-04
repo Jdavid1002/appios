@@ -3,6 +3,8 @@ import {View, Image, ActivityIndicator, Text, TouchableHighlight} from 'react-na
 import {useNavigation} from '@react-navigation/native';
 import {styles} from './../index';
 import {TriviaType} from '../../../../reducers/trivia/types';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 interface TriviaCardLayoutProps {
   trivia: TriviaType;
@@ -11,6 +13,16 @@ interface TriviaCardLayoutProps {
 
 const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
   const navigation = useNavigation();
+  const lastAnswerTrivia = useSelector((state : any) => state.notAuthInfo.answerOfDateTriviaDay)
+
+  const validateDateOfLastAnswerTrivia = () => {
+    if(!lastAnswerTrivia) return true;
+  
+    if(moment().isAfter(moment(lastAnswerTrivia).add('1', 'day'))){
+      return true
+    }
+    return false
+  }
 
   const regex = /(<([^>]+)>)/ig;
   const result = props?.trivia?.content?.replace(regex, '');
@@ -32,21 +44,24 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
         </View>
 
         <Text style={[styles.subtitle]} numberOfLines={2}>
-          {result}
+          {validateDateOfLastAnswerTrivia() ? result : 'No existen mas trivias por hoy.'}
         </Text>
 
-        <TouchableHighlight
-          onPress={() =>
-            navigation.navigate('TriviaScreen', {trivia: props?.trivia})
-          }
-          style={[styles.button]}
-          disabled={!props?.trivia}
-          >
-            <>
-              {!props?.trivia && <ActivityIndicator />}
-              <Text style={[styles.buttonText]}>Responder trivia</Text>
-            </>
-        </TouchableHighlight>
+        {validateDateOfLastAnswerTrivia() &&
+          <TouchableHighlight
+            onPress={() =>
+              navigation.navigate('TriviaScreen', {trivia: props?.trivia})
+            }
+            style={[styles.button]}
+            disabled={!props?.trivia}
+            >
+              <>
+                {!props?.trivia && <ActivityIndicator />}
+                <Text style={[styles.buttonText]}>Responder trivia</Text>
+              </>
+          </TouchableHighlight>
+        }
+
       </View>
     </View>
   );
