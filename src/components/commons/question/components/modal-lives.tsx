@@ -117,7 +117,7 @@ function ModalLives(props: any) {
               <ButtonRed
                 style={{marginBottom: 15, marginHorizontal: 20}}
                 fontStyle={{fontSize: 20, paddingVertical: 0}}
-                textBtn={props.onliInfo ? 'Cerrar' : 'Ir a simulacros'}
+                textBtn={props.onliInfo ? 'Cerrar' : (props.isDailyQuestion ? 'Ir al Inicio' : 'Ir a simulacros')}
                 onPressBtn={props.onCloseModal}
               />
             </>

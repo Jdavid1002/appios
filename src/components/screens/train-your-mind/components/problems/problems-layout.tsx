@@ -48,12 +48,13 @@ const SpellIt = (props: any) => {
               {props?.question?.question} {props.answered && `= ${props?.question?.answer}`}
             </Text>
 
-            <View style={{ width: '100%' }}>
+            <View style={{ width: '100%' , justifyContent : 'center', gap : 10, flexDirection : 'row' , flexWrap : 'wrap', marginBottom : 100}}>
               {props.question?.options.map((option: string, index: number) => (
                 <TouchableHighlight
                   key={index}
                   style={[
-                    { marginBottom: 16, paddingHorizontal: 16, width : '100%', alignItems : 'center', justifyContent: 'center',borderRadius: 10},
+                    {marginLeft: 16, borderRadius: 100, borderWidth : 1, width : 50, height : 50, justifyContent : 'center', alignItems : 'center'},
+
                     props.answered &&
                     props?.question?.answer === option &&
                     { backgroundColor: '#8ec772' },

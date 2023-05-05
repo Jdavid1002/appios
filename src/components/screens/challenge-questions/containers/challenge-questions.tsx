@@ -254,6 +254,10 @@ class ChallengeQuestions extends Component<any, any> {
 
     //@INFO En caso de que se haya terminado el diagnostico.
     if(qualify){
+      Alert.alert(
+        'Perfecto',
+        '¡Terminaste esta el diagnostico!'
+      )
       this.props.navigation.navigate('Home',{})
       return
     }
@@ -273,6 +277,10 @@ class ChallengeQuestions extends Component<any, any> {
     const getQuestionsNoSelecteds = questions_ids?.filter((item : any) => !questions_selected_id.includes(item))
 
     if(!getQuestionsNoSelecteds?.length){
+      Alert.alert(
+        'Perfecto',
+        '¡Terminaste esta seccion del diagnostico!'
+      )
       this.props.navigation.goBack()
     }else{
       this.changeQuestionByNavigate('+')
@@ -306,8 +314,8 @@ class ChallengeQuestions extends Component<any, any> {
           <QuestionNavigate
             currentItem={this.state.current_question}
             totalItem={this.state.question_per_challenge}
-            // disableNext={true}
-            // disablePrev={true}
+            disableNext={true}
+            disablePrev={false}
             text="Pregunta"
             onPressNextItem={() => this.changeQuestionByNavigate('+')}
             onPressPrevItem={() => this.changeQuestionByNavigate('-')}

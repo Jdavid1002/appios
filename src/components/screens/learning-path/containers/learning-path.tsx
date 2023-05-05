@@ -140,6 +140,18 @@ class LearningPath extends Component<any> {
   };
 
   goToStage = (stage: number) => {
+    const currentLessons = this.state.learning_path[this.state.current_stage]?.childs?.map((item : any) => item?.id)
+
+    if(currentLessons?.find((id : string) => this.state.lesson_statistics[id] < 99)){
+      Alert.alert(
+        'Error',
+        'Debes completar todas las lecciones antes de ir a la siguiente etapa',
+        [{text: 'OK', onPress: () => {}}],
+        {cancelable: false},
+      );
+      return;
+    }
+
     this.setState({
       current_stage: stage,
     });

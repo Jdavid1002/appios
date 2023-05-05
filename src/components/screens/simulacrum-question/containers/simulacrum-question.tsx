@@ -101,8 +101,10 @@ class SimulacrumQuestions extends Component<any, any> {
   };
 
   hideModal = () => {
+    const isQuestionOfDay = this?.props?.route?.params?.isQuestionOfDay
     if (this.props.lives === 0) {
-      this.props.navigation.navigate('Simulacrums');
+      if(isQuestionOfDay) this.props.navigation.navigate('Home');
+      else this.props.navigation.navigate('Simulacrums');
     }
     this.setState({modalVisible: false});
   };
@@ -233,27 +235,25 @@ class SimulacrumQuestions extends Component<any, any> {
 
     //@INFO En caso de no necesitar estadisticas se enviaran todas las preguntas.
     const questionsByConfiguration = dontUseStatistics 
-      ? section?.questionsByConfiguration
-      : 
-      this?.props?.route?.params
-      ?.academicResourceData?.config?.attempt_active?.results
-      ?.questionsByConfiguration?.length
-      ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active
-          ?.results?.questionsByConfiguration
-      : this?.props?.route?.params?.academicResourceData?.config
-          ?.questionsByConfiguration;
+    ? section?.questionsByConfiguration
+    : 
+    this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsByConfiguration?.length
+    ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsByConfiguration
+    : this?.props?.route?.params?.academicResourceData?.config?.questionsByConfiguration
 
     const questionsToEvaluate = dontUseStatistics 
-    
     ? section?.questions?.map((question: any) => question?._id)
+    : this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsToEvaluate?.length
+    ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.questionsToEvaluate
+    : this?.props?.route?.params?.academicResourceData?.config?.questions?.map((item : any)=> item?._id)
 
-    : this?.props?.route?.params?.academicResourceData
-      ?.config?.attempt_active?.results?.questionsToEvaluate?.length
-      ? this?.props?.route?.params?.academicResourceData?.config?.attempt_active
-          ?.results?.questionsToEvaluate
-      : this?.props?.route?.params?.academicResourceData?.config?.questions?.map(
-          (item: any) => item?._id,
-        );
+    let qualify : boolean = false
+
+    const new_statistics_ids = newStatistics?.map((item : any) => item?.question)
+    const new_questions_ids = this?.props?.route?.params?.academicResourceData?.config?.questions?.map((item : any) => item?._id)
+
+    const getQuestionsNotSelectedInAllStatistics = new_questions_ids?.filter((item : any) => !new_statistics_ids.includes(item))
+    if(!getQuestionsNotSelectedInAllStatistics?.length) qualify = true
 
     const academic_resource_config = dontUseStatistics ? section?.academic_resource_config  : this.props?.route?.params?.academicResourceData?.academic_resource_config
 
@@ -265,7 +265,7 @@ class SimulacrumQuestions extends Component<any, any> {
         statistics: newStatistics,
       },
       deliverable_date: new Date(),
-      qualify: false,
+      qualify: qualify,
       academic_resource_config: academic_resource_config,
       user: this.props.user?._id,
     };
@@ -299,6 +299,16 @@ class SimulacrumQuestions extends Component<any, any> {
     if (data?.status_code !== 'success') {
       console.log('error', data);
       // return;
+    }
+
+    //@INFO En caso de que se haya terminado el Simulacro.
+    if(qualify && !isQuestionOfDay){
+      Alert.alert(
+        'Perfecto',
+        '¡Terminaste esta sección del Simulacro!'
+      )
+      this.props.navigation.navigate('Home',{})
+      return
     }
 
     let new_success_response_question = this.state.success_response_question
@@ -347,6 +357,7 @@ class SimulacrumQuestions extends Component<any, any> {
 
     if (!getQuestionsNoSelecteds?.length) {
 
+
       //@INFO Cuando la vista se usa en una pregunta del dia.
       if(isQuestionOfDay) {
         store.dispatch(updateAnswerOfDateQuestionDay(new Date()))
@@ -363,6 +374,10 @@ class SimulacrumQuestions extends Component<any, any> {
         return
       }
 
+      Alert.alert(
+        'Perfecto',
+        '¡Terminaste esta seccion del Simulacro!'
+      )
       //@INFO Cuando la vista se usa en un simulacro
       this?.props?.route?.params?.getSectionsOfSimulacrum();
       this.props.navigation.navigate('SectionsSimulacrum', {
@@ -457,7 +472,7 @@ class SimulacrumQuestions extends Component<any, any> {
             onPressNextItem={() => this.changeQuestionByNavigate('+')}
             onPressPrevItem={() => this.changeQuestionByNavigate('-')}
           />
-          {Object.keys(this.state.current_question_data).length > 0 ? (
+          {this.state.current_question_data && Object.keys(this.state.current_question_data).length > 0 ? (
             <React.Fragment>
               <InlineWebview
                 html={`${this.state.current_question_data?.content || ''}`}
@@ -506,6 +521,7 @@ class SimulacrumQuestions extends Component<any, any> {
             transparent={true}
             lives={this.props.lives}
             presentationStyle="overFullScreen"
+            isDailyQuestion={this?.props?.route?.params?.isQuestionOfDay}
           />
         </ScrollView>
         <HowIFeel screen="section_simulacrum" />

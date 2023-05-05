@@ -102,7 +102,9 @@ const ResultsLayout = (props: any) => {
           style={[styles.button, {backgroundColor: '#e94044'}]}
           onPress={() => props.navigation.navigate('Train-your-mind')}
         >
-          <Text>Salir</Text>
+          <Text style={[styles.text, {color: '#fff'}]}>
+            Salir
+          </Text>
         </TouchableHighlight>
       </ScrollView>
     </View>

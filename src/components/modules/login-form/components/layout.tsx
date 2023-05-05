@@ -49,7 +49,7 @@ class LoginFormComponent extends Component<any> {
             editable={!this.props.loading}
           />
           <CustomText
-            style={{position: 'absolute', bottom: 32, right: 10}}
+            style={{position: 'absolute', bottom: 32, right: 0, width : "10%", heigth : '100%'}}
             onPress={() => {
               this.setState({
                 showLettersPassword: !this.state.showLettersPassword,

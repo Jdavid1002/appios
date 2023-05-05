@@ -72,19 +72,12 @@ class ChallengesContainer extends Component<any> {
         'Ciencias de la Naturaleza': require('assets/img/challenge/card_ciencias.png'),
       };
 
-      const matters = data?.home_data?.learning_ways?.length
-        ? data?.home_data?.learning_ways
-        : data?.home_data?.diagnostics;
+      const matters = data?.home_data?.diagnostics.concat(data?.home_data?.learning_ways)
+      const diagnostics_ids = data?.home_data?.diagnostics?.map((item: any) => item?._id)
 
-      const matter_data = matters?.map((item: any, idx: number) => {
-        const itemLearningWays = data?.home_data?.learning_ways[idx];
-        const isDiagnostic = !itemLearningWays ? true : false;
+      const matter_data = matters?.map((item: any) => {
+        const isDiagnostic = diagnostics_ids?.find((diagnostic : any) => diagnostic === item?._id)
 
-        item = !item?.statistics?.diagnostic_attempts_available
-          ? item
-          : itemLearningWays
-          ? itemLearningWays
-          : item;
         const isGenerateLearningWay = this.canResultsWhenIsDiagnostic(
           item?.statistics?.results,
           'is_generating',
@@ -114,6 +107,7 @@ class ChallengesContainer extends Component<any> {
       Alert.alert(data.message);
     }
   }
+
 
   canResultsWhenIsDiagnostic = (
     results_statistics: any | undefined,

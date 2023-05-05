@@ -42,7 +42,7 @@ const DailyQuestionCardLayout: React.FC<
     <View style={[styles.dailyQuestionCard]}>
       <Text style={[styles.title]}>Pregunta del día</Text>
 
-      {!validateDateOfLastAnswerDailyQuestion() ? 
+      {!validateDateOfLastAnswerDailyQuestion() && props.lives ? 
         <Text style={[styles.text]} numberOfLines={4}>
           No existen mas preguntas por hoy.
         </Text>
@@ -70,8 +70,8 @@ const DailyQuestionCardLayout: React.FC<
       
 
       {!props.lives && (
-        <Text style={[styles.text]} numberOfLines={4}>
-          No tienes mas vidas
+        <Text style={[styles.text,  {textAlign : 'center'}]} numberOfLines={4}>
+          No tienes mas vidas, volverás a tener en los siguientes 15 minutos.
         </Text>
       )}
 

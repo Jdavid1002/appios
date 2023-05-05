@@ -45,7 +45,7 @@ const SpellIt = (props: any) => {
                 <TouchableHighlight
                   key={option}
                   style={[
-                    {marginLeft: 16, paddingHorizontal: 16},
+                    {marginLeft: 16, borderRadius: 100, borderWidth : 1, width : 50, height : 50, justifyContent : 'center', alignItems : 'center'},
                     props.answered &&
                     props?.question?.answer === option &&
                     { backgroundColor: '#8ec772' },
