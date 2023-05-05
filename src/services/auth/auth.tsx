@@ -10,6 +10,8 @@ import {Alert} from 'react-native';
 import {Profile} from '../../reducers/profile/types';
 import SimulacrumService from '../../services/simulacrum/simulacrum';
 import ProfileService from '../../services/profile';
+import { updateAnswerOfDateQuestionDay, updateAnswerOfDateTriviaDay } from '../../reducers/not_auth_Info/actions';
+import { store } from '../../storage/redux-storage';
 
 class AuthService {
   setUserData = async (profile: Profile, dispatch: any) => {
@@ -37,6 +39,23 @@ class AuthService {
   };
 
   loginPersist = async (user_data: any, props: any, alliance_id: string) => {
+
+    const storeObject = store
+
+    if(user_data?.user?.id !== storeObject.getState()?.notAuthInfo?.answerOfDateQuestionDay?._id){
+
+      props.dispatch(updateAnswerOfDateQuestionDay({
+        date : '',
+        _id : user_data?.user?.id || user_data?.user?._id
+      }))
+
+      props.dispatch(updateAnswerOfDateTriviaDay({
+        date : '',
+        _id : user_data?.user?.id || user_data?.user?._id
+      }))
+
+    }
+
     const simulacrumService = new SimulacrumService();
     const profileService = new ProfileService();
 
@@ -44,6 +63,7 @@ class AuthService {
       user_data?.user?.id || user_data?.user?._id,
       user_data.token,
     );
+    
     const defaultGradientColors: string[] = [
       '#FD531E',
       '#B40056',
@@ -56,6 +76,7 @@ class AuthService {
       'rgba(242,115,146,1)',
       'rgba(115,242,214,1)',
     ];
+
     const randomColor = Math.round(
       Math.random() * defaultGradientColors?.length - 1,
     );

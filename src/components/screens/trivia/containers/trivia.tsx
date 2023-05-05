@@ -46,7 +46,10 @@ class Trivia extends React.Component<any, any> {
   generateGamification = async () => { 
     const trivia = store.getState()?.trivia
 
-    store.dispatch(updateAnswerOfDateTriviaDay(new Date()))
+    store.dispatch(updateAnswerOfDateTriviaDay({
+      date : new Date(),
+      _id : this?.props?.user_id
+    }))
 
     const params = {
       results: {

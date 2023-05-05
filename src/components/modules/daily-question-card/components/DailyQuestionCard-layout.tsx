@@ -18,7 +18,7 @@ const DailyQuestionCardLayout: React.FC<
 > = props => {
   const navigation = useNavigation();
 
-  const lastAnswerDailyQuestion = useSelector((state : any) => state.notAuthInfo.answerOfDateQuestionDay)
+  const lastAnswerDailyQuestion = useSelector((state : any) => state.notAuthInfo.answerOfDateQuestionDay?.date)
 
   const validateDateOfLastAnswerDailyQuestion = () => {
     if(!lastAnswerDailyQuestion) return true;

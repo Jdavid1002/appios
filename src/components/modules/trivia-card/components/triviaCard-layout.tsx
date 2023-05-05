@@ -13,7 +13,7 @@ interface TriviaCardLayoutProps {
 
 const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
   const navigation = useNavigation();
-  const lastAnswerTrivia = useSelector((state : any) => state.notAuthInfo.answerOfDateTriviaDay)
+  const lastAnswerTrivia = useSelector((state : any) => state.notAuthInfo.answerOfDateTriviaDay.date)
 
   const validateDateOfLastAnswerTrivia = () => {
     if(!lastAnswerTrivia) return true;

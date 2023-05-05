@@ -6,8 +6,14 @@ import {
 } from './types';
 
 const initialState: initialStateAuthInfoActionTypes = {
-  answerOfDateQuestionDay : '',
-  answerOfDateTriviaDay : '',
+  answerOfDateQuestionDay : {
+    date : '',
+    _id : ''
+  },
+  answerOfDateTriviaDay : {
+    date : '',
+    _id : ''
+  },
 };
 
 export function notAuthInfo(

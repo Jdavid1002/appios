@@ -180,10 +180,16 @@ class SimulacrumQuestions extends Component<any, any> {
   };
 
   changeCurrentQuestion = async (question: any) => {
+
+    const findQuestion = this.state.statistics.find((item : any) => item.question === question?._id)
+    let selected_answer = {}
+    const findAnswer = question?.answers?.find((item : any) => item?.unique === findQuestion?.answer)
+    if(findAnswer) selected_answer = findAnswer
+
     this.setState({
       current_question_data: question,
       current_answers: question?.answers,
-      selected_answer: {},
+      selected_answer: selected_answer,
       current_question: question?.position,
     });
 
@@ -360,7 +366,10 @@ class SimulacrumQuestions extends Component<any, any> {
 
       //@INFO Cuando la vista se usa en una pregunta del dia.
       if(isQuestionOfDay) {
-        store.dispatch(updateAnswerOfDateQuestionDay(new Date()))
+        store.dispatch(updateAnswerOfDateQuestionDay({
+          date : new Date(),
+          _id : this?.props?.user?._id
+        }))
         const end = moment();
         const duration = moment.duration(end.diff(this.state.start_time));
         const seconds = duration.asSeconds();
@@ -453,6 +462,22 @@ class SimulacrumQuestions extends Component<any, any> {
     
   };
 
+  getSelectedAnswer = (answer : any) => {
+    if(answer?.selected) return true
+
+    const findSelected = this?.state?.current_answers?.find((item : any) => item?.selected)
+
+    if(findSelected) return false
+
+    const findQuestion = this.state.statistics.find((item : any) => item.question === this.state.current_question_data?._id)
+
+    if(!findQuestion) return false
+
+    if(answer?.unique === findQuestion?.answer) return true
+
+    return false
+  }
+
   render() {
     if (this.state.loading) {
       return (
@@ -468,6 +493,8 @@ class SimulacrumQuestions extends Component<any, any> {
           <QuestionNavigate
             currentItem={this.state.current_question}
             totalItem={this.state.question_per_simulacrum}
+            disableNext={true}
+            disablePrev={false}
             text="Pregunta"
             onPressNextItem={() => this.changeQuestionByNavigate('+')}
             onPressPrevItem={() => this.changeQuestionByNavigate('-')}
@@ -487,7 +514,7 @@ class SimulacrumQuestions extends Component<any, any> {
                     <View
                       style={[
                         styles.responseOption,
-                        answer.selected && styles.responseSelectedOption,
+                        this.getSelectedAnswer(answer) && styles.responseSelectedOption,
                       ]}>
                       <InlineWebview
                         html={`<span>${this.lettersByIndex[i]}).&nbsp; ${answer.content}</span>`}
