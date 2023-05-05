@@ -55,7 +55,7 @@ const SpellIt = (props: any) => {
                   ]}
                   onPress={() => props.doAnswer(option)}
                 >
-                  <Text>{option}</Text>
+                  <Text style={{fontSize : 24, color : 'black'}} >{option}</Text>
                 </TouchableHighlight>
               ))}
             </View>

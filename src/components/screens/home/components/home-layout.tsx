@@ -13,6 +13,7 @@ import { TipsHomeCard } from '../../../../components/modules/tips';
 
 import mainStyles from '../../../../styles/MainStyles';
 import SimulacrumService from '../../../../services/simulacrum/simulacrum';
+import { updateLives } from '../../../../reducers/auth/actions';
 
 function HomeLayout(props: any) {
   const dispatch = useDispatch();
@@ -22,11 +23,12 @@ function HomeLayout(props: any) {
     state.simulacrum && state.simulacrum.data ? state.simulacrum.data : null
   );
 
-  let auth_token = useSelector(state =>
+  let auth_token = useSelector((state : any) =>
     state.auth && state.auth.user && state.auth.user.token
       ? state.auth.user.token
       : null
   );
+  const user_id = useSelector((state : any) => state?.auth?.user?._id)
 
   useEffect(() => {
     updateData();
@@ -63,6 +65,15 @@ function HomeLayout(props: any) {
     setRefreshing(true);
 
     await getSimulacrumData();
+
+    const simulacrum_service = new SimulacrumService();
+
+    const lives = await simulacrum_service.getLivesAvailable(
+      user_id,
+      auth_token,
+    );
+
+    dispatch(updateLives(lives.attempts));
 
     setRefreshing(false);
   };
