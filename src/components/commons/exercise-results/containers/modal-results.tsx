@@ -27,7 +27,7 @@ class ModalResults extends Component<any> {
           <ButtonRed
             style={{marginBottom: 80, marginTop: 30, marginHorizontal: 0}}
             textBtn="Salir"
-            onPressBtn={this.props.onCloseModal}
+            onPressBtn={() => this.props.onCloseModal()}
           />
         </ScrollView>
       </Modal>

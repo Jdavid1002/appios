@@ -162,9 +162,6 @@ class Simulacrums extends Component<any, ISimulacrumState> {
         })
       }
 
-      console.log('matters_data', matters_data)
-      console.log('results_data', results_data)
-
       this.setState({
         matters_data: matters_data,
         results_data: results_data,

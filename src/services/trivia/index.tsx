@@ -27,8 +27,6 @@ class TriviaService {
 
     const data = await Http.send(query_data);
 
-    console.log('trivia', data)
-
     if (data.status === 'success') {
       dispatch(getTriviaAction(data?.trivia_question?.question));
     }

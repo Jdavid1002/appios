@@ -50,7 +50,7 @@ class ChallengeResults extends Component<any> {
           <View style={styles.boxRightContainer}>
             <CustomText style={styles.textCyan}>
               {this.props.route.params.questions_answered_correctly} /{' '}
-              {this.props.route.params.total_questions_evaluated}
+              {10}
             </CustomText>
           </View>
         </View>

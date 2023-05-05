@@ -7,7 +7,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCheck, faClose} from '@fortawesome/free-solid-svg-icons';
 
 const SpellIt = (props: any) => {
-  props.question&& console.log('options', props.question?.options)
   return (
     <View style={[styles.container]}>
       <ScrollView
