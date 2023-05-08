@@ -98,15 +98,16 @@ class Challenges extends Component<any> {
         'Ciencias de la Naturaleza': 'http://uploads.kuepa.com/uploads/app-matters/53288/card_large.png',
       }
 
-      const matters = data?.home_data?.learning_ways?.length ? data?.home_data?.learning_ways : data?.home_data?.diagnostics
-      const matter_data = matters?.map((item : any, idx : number) => {
+      const matters = data?.home_data?.diagnostics.concat(data?.home_data?.learning_ways)
+      const diagnostics_ids = data?.home_data?.diagnostics?.map((item: any) => item?._id)
+      
+      const matter_data = matters?.map((item : any) => {
+        const isDiagnostic = diagnostics_ids?.find((diagnostic : any) => diagnostic === item?._id)
 
-        const itemLearningWays = data?.home_data?.learning_ways[idx]
-        const isDiagnostic = !itemLearningWays ? true : false
-
-        item = !item?.statistics?.diagnostic_attempts_available ? item : itemLearningWays ? itemLearningWays : item
-        const isGenerateLearningWay = this.canResultsWhenIsDiagnostic(item?.statistics?.results, 'is_generating')
-
+        const isGenerateLearningWay = this.canResultsWhenIsDiagnostic(
+          item?.statistics?.results,
+          'is_generating',
+        );
         return {
           id: item?._id,
           title: item?.name,
