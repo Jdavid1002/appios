@@ -288,9 +288,9 @@ class ChallengeQuestions extends Component<any, any> {
         '¡Terminaste esta seccion del diagnostico!'
       )
       this.props.navigation.navigate('SectionsMatter', {
-        matterId: this.props.route.params.matterId,
+        matterId: this?.props?.route?.params?.matterId,
         configCategory: '6303ed5f3138387a1669d7ac',
-        getChallengesData: this.props.route.params.getChallengesData(),
+        getChallengesData: () => null,
       });
     }else{
       this.changeQuestionByNavigate('+')

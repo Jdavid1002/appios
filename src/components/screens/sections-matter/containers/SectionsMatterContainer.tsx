@@ -50,6 +50,8 @@ class SectionsMatterContainer extends Component<
   ISectionsMatterContainerProps,
   ISectionsMatterContainerState
 > {
+  public _unsubscribe : any = null;
+
   state: ISectionsMatterContainerState = {
     loading: true,
     infoSections: [],
@@ -57,10 +59,17 @@ class SectionsMatterContainer extends Component<
   };
 
   componentDidMount = () => {
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.getSectionsOfMatter();
+      this.setState({
+        infoSections: [],
+      });
+    });
+
+    this.getSectionsOfMatter();
     this.setState({
       infoSections: [],
     });
-    this.getSectionsOfMatter();
   };
 
   componentWillUnmount = () => {
