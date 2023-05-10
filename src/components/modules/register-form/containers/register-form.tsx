@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import styles from '../styles/styles';
 import RegisterForm1 from '../components/register-form-1/components/register-form-1';
-import RegisterForm2 from '../components/register-form-2/components/register-form-2.ios';
+import RegisterForm2 from '../components/register-form-2/components/register-form-2';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {CustomText} from '../../../../components/commons/customs/components/customComponents';
