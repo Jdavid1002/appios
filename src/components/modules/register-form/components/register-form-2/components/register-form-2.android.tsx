@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {
   TextInput,
-  Picker,
   View,
   Modal,
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+
+import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from 'react-native-check-box';
 import mainStyles from '../../../../../../styles/MainStyles';
@@ -78,7 +79,7 @@ class RegisterForm2Component extends Component<any> {
           <View style={styles.input}>
             <Picker
               mode={'dialog'}
-              style={styles.picker}
+              style={styles.picker2}
               selectedValue={userType}
               onValueChange={this.props.handleSelectInputChange('userType')}>
               {userTypes.map((type: any) => (
