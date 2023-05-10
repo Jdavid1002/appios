@@ -28,6 +28,7 @@ export default StyleSheet.create({
     backgroundColor: '#8E96AB',
     paddingHorizontal: 8,
     marginBottom: 16,
+    justifyContent : 'center',
   },
   checkbox: {
     flex: 1,

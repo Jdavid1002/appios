@@ -101,6 +101,7 @@ class RegisterForm2Component extends Component<any> {
                   mode={'dialog'}
                   style={styles.picker}
                   selectedValue={grade}
+                  itemStyle={styles.inputText}
                   onValueChange={this.props.handleSelectInputChange('grade')}>
                   {grades.map((g: any) => (
                     <Picker.Item key={g.key} label={g.label} value={g.key} />
