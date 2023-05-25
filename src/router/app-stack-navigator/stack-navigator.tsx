@@ -140,11 +140,11 @@ export const AppStackNavigator = () => {
         component={ChallengeResultsScreen}
         options={{title: 'Resultados'}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Tips"
         component={TipsScreen}
         options={{title: 'Noticias'}}
-      />
+      /> */}
       <Stack.Screen
         name="Tip"
         component={TipScreen}

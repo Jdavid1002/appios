@@ -44,7 +44,10 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
         </View>
 
         <Text style={[styles.subtitle]} numberOfLines={2}>
-          {validateDateOfLastAnswerTrivia() ? result : 'No existen mas trivias por hoy.'}
+          {!validateDateOfLastAnswerTrivia() 
+            ? 'No existen mas trivias por hoy.' : 
+            result ? result : 'No hay trivias disponibles.' 
+          }
         </Text>
 
         {validateDateOfLastAnswerTrivia() &&
@@ -54,11 +57,10 @@ const TriviaCardLayout: React.FC<TriviaCardLayoutProps> = props => {
             }
             style={[styles.button]}
             disabled={!props?.trivia}
-            >
-              <>
-                {!props?.trivia && <ActivityIndicator />}
-                <Text style={[styles.buttonText]}>Responder trivia</Text>
-              </>
+          >
+            <>
+              {result ? <Text style={[styles.buttonText]}>Responder trivia</Text>  : null}            
+            </>
           </TouchableHighlight>
         }
 

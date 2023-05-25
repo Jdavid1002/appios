@@ -14,7 +14,16 @@ class LogoHeaderContainer extends Component<any> {
           barStyle="light-content"
         />
         {typeof this?.props?.navigation !== 'undefined' ? (
-          <TouchableOpacity onPress={() => this?.props?.navigation?.goBack && this?.props?.navigation?.goBack()}>
+          <TouchableOpacity
+            style={
+              this.props.useArrowInLeft
+                ? {position: 'absolute', left: 30, top: 12}
+                : {}
+            }
+            onPress={() =>
+              this?.props?.navigation?.goBack &&
+              this?.props?.navigation?.goBack()
+            }>
             <FontAwesomeIcon icon={faArrowLeft} color={'#24ABDF'} size={32} />
           </TouchableOpacity>
         ) : (

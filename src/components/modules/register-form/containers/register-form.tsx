@@ -38,6 +38,8 @@ class RegisterFormScreenComponent extends Component<any> {
     subjects: [{}],
     step: 1,
     loading: false,
+    headquarter_not_found_name : '',
+    location_not_found_name : '',
   };
 
   userTypes = [
@@ -105,6 +107,8 @@ class RegisterFormScreenComponent extends Component<any> {
       ],
       step: 1,
       loading: false,
+      headquarter_not_found_name : '',
+      location_not_found_name : '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -219,7 +223,7 @@ class RegisterFormScreenComponent extends Component<any> {
         : this.userTypes.find((item: any) => item.key === this.state.userType)
             ?.value;
 
-    const newParams: any = {
+    let newParams: any = {
       alliance_id: alliance_id,
       password: register_data.password,
       confirm_password: register_data.password,
@@ -239,8 +243,14 @@ class RegisterFormScreenComponent extends Component<any> {
         birthday: this.formatDate(register_data?.birthDate),
         culture: 'es_DO',
         journey: register_data?.journey,
+        gender : register_data?.gender
       },
     };
+
+    if(this?.state?.headquarter_not_found_name && this?.state?.location_not_found_name){
+      newParams.profile.headquarter_not_found_name = this.state.headquarter_not_found_name
+      newParams.profile.location_not_found_name = this.state.location_not_found_name
+    }
 
     const query_data: HttpCustomStructure = {
       method: 'POST',
@@ -328,7 +338,6 @@ class RegisterFormScreenComponent extends Component<any> {
       step,
       subjects,
     } = this.state;
-
     return (
       <View>
         {Platform.OS === 'ios' && (

@@ -18,11 +18,17 @@ export default StyleSheet.create({
     height: 36,
     paddingVertical: 8,
   },
+  picker2: {
+    color: '#FFF',
+    height: 36,
+    paddingVertical: 4,
+  },
   input: {
     borderRadius: 18,
     backgroundColor: '#8E96AB',
     paddingHorizontal: 8,
     marginBottom: 16,
+    justifyContent : 'center',
   },
   checkbox: {
     flex: 1,

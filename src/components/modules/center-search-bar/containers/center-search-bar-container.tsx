@@ -15,6 +15,9 @@ class CenterSearchBarContainer extends Component<any> {
     text: '',
     items: [],
     addCenter: false,
+    showNotFound : false,
+    headquarter_not_found_name : '',
+    location_not_found_name : '',
   };
 
   constructor(props: any) {
@@ -26,6 +29,9 @@ class CenterSearchBarContainer extends Component<any> {
       text: '',
       items: [],
       addCenter: false,
+      showNotFound : false,
+      headquarter_not_found_name : '',
+      location_not_found_name : '',
     };
 
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -33,13 +39,24 @@ class CenterSearchBarContainer extends Component<any> {
     this.changeSelectedItem = this.changeSelectedItem.bind(this);
   }
 
-  handleSelectItem(item: any) {
+  handleSelectItem(item: any, isButtonNotFound ? : boolean) {
+    const isNotFound = item.name.includes("No encuentro mi centro educativo")
+
+    if(isNotFound && !isButtonNotFound){
+      this.setState({showNotFound: true, selectedItem: item})
+      return
+    }
+
     this.setState({selectedItem: item});
-    this.props.onSubmit(item);
+    this.props.onSubmit(item, {
+      headquarter_not_found_name : this.state.headquarter_not_found_name,
+      location_not_found_name : this.state.location_not_found_name,
+    });
   }
 
   changeSelectedItem() {
     this.setState({
+      showNotFound : false,
       selectedItem: null,
       message: 'Ingrese por lo menos 3 caracteres',
       text: '',
@@ -97,6 +114,13 @@ class CenterSearchBarContainer extends Component<any> {
     }
   }
 
+  updateTextNotFound = (name : string, value : string) => {
+    this?.setState({
+      ...this?.state,
+      [name] : value
+    })
+  }
+
   render() {
     const {items, message, text, addCenter, selectedItem} = this.state;
 
@@ -116,6 +140,10 @@ class CenterSearchBarContainer extends Component<any> {
           handleTextChange={this.handleTextChange}
           handleSelectItem={this.handleSelectItem}
           changeSelectedItem={this.changeSelectedItem}
+          showNotFound={this.state.showNotFound}
+          updateTextNotFound={this.updateTextNotFound}
+          handleButtonNotFound={this.handleSelectItem}
+          state={this.state}
         />
         {message !== '' && (
           <View style={styles.message}>

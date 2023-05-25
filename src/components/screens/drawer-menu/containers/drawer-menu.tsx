@@ -66,10 +66,10 @@ const DrawerMenu  = (props : any) => {
           name="Entrena tu mente"
           onPress={() => navigation.navigate('Train-your-mind')}
         />
-        <DrawerMenuItem
+        {/* <DrawerMenuItem
           name="Tips"
           onPress={() => navigation.navigate('Tips')}
-        />
+        /> */}
         <DrawerMenuItem
           name="Ranking"
           onPress={() =>

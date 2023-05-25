@@ -11,8 +11,7 @@ class CenterItemComponent extends Component<any> {
       <TouchableOpacity
         style={styles.item}
         onPress={this.props.handleSelectItem}>
-        <CustomText style={styles.mainText}>{school.school_name}</CustomText>
-        {/* <CustomText style={styles.subText}>{school.district_name}, {school.tanda}</CustomText> */}
+        <CustomText style={styles.mainText}>{school?.school_name}</CustomText>
       </TouchableOpacity>
     );
   }

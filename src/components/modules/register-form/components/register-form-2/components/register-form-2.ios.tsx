@@ -50,7 +50,15 @@ class RegisterForm2Component extends Component<any> {
     this.setState({modalVisible: true});
   };
 
-  closeModal = (item: any = {}) => {
+  closeModal = (item: any = {}, notFoundInfo ?: {
+    headquarter_not_found_name : string
+    location_not_found_name : string
+  }) => {
+    if(notFoundInfo){
+      this.props.handleCenterChange('headquarter_not_found_name', notFoundInfo?.headquarter_not_found_name);
+      this.props.handleCenterChange('location_not_found_name', notFoundInfo?.location_not_found_name);
+    }
+    
     this.setState({modalVisible: false});
     this.props.handleCenterChange('center', item);
   };

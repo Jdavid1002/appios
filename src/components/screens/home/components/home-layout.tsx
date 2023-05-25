@@ -100,7 +100,7 @@ function HomeLayout(props: any) {
           <SimulacrumCard navigation={props.navigation} />
           <TrainYourMindHome />
           <TriviaCard />
-          <TipsHomeCard navigation={props.navigation} />
+          {/* <TipsHomeCard navigation={props.navigation} /> */}
         </View>
       </ScrollView>
       <HowIFeel screen="section_home_page" />

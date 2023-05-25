@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {
   TextInput,
-  Picker,
   View,
   Modal,
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+
+import {Picker} from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CheckBox from 'react-native-check-box';
 import mainStyles from '../../../../../../styles/MainStyles';
@@ -44,7 +45,15 @@ class RegisterForm2Component extends Component<any> {
     this.setState({modalVisible: true});
   };
 
-  closeModal = (item: any = {}) => {
+  closeModal = (item: any = {}, notFoundInfo ?: {
+    headquarter_not_found_name : string
+    location_not_found_name : string
+  }) => {
+    if(notFoundInfo){
+      this.props.handleCenterChange('headquarter_not_found_name', notFoundInfo.headquarter_not_found_name);
+      this.props.handleCenterChange('location_not_found_name', notFoundInfo.location_not_found_name);
+    }
+    
     this.setState({modalVisible: false});
     this.props.handleCenterChange('center', item);
   };
@@ -78,7 +87,7 @@ class RegisterForm2Component extends Component<any> {
           <View style={styles.input}>
             <Picker
               mode={'dialog'}
-              style={styles.picker}
+              style={styles.picker2}
               selectedValue={userType}
               onValueChange={this.props.handleSelectInputChange('userType')}>
               {userTypes.map((type: any) => (
@@ -100,6 +109,7 @@ class RegisterForm2Component extends Component<any> {
                   mode={'dialog'}
                   style={styles.picker}
                   selectedValue={grade}
+                  itemStyle={styles.inputText}
                   onValueChange={this.props.handleSelectInputChange('grade')}>
                   {grades.map((g: any) => (
                     <Picker.Item key={g.key} label={g.label} value={g.key} />
@@ -192,7 +202,8 @@ class RegisterForm2Component extends Component<any> {
             {birthDate
               ? `${birthDate.getDate()}/${birthDate.getMonth() +
                   1}/${birthDate.getFullYear()}`
-              : 'día/mes/año'}
+              : 'día/mes/año'
+            }
           </CustomText>
 
           {showPicker && (

@@ -6,6 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import mainStyles from '../../../../styles/MainStyles';
 import styles from '../styles/styles';
@@ -16,7 +17,7 @@ class ForgotPasswordFormComponent extends Component<any> {
     const {email, showInputsOfCode, code, lastPassword, firstPassword} = this.props;
 
     return (
-      <View style={mainStyles.formContainer}>
+      <ScrollView style={mainStyles.formContainer}>
         {Platform.OS === 'ios' && (
           <StatusBar barStyle="light-content" translucent={true} />
         )}
@@ -95,7 +96,7 @@ class ForgotPasswordFormComponent extends Component<any> {
             Restablecer
           </CustomText>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
     );
   }
 }
