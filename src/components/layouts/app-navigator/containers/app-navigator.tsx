@@ -41,6 +41,7 @@ class AppNavigator extends Component<any, any> {
   }
 
   async checkSession() {
+    if(!this?.props?.auth_token || !this?.props?.alliance_id || !this?.props?.user_id) return
     const query_data: HttpCustomStructure = {
       method: 'GET',
       url: '/api/auth/check-session-token',
