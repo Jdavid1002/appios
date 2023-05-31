@@ -167,15 +167,19 @@ class RegisterFormScreenComponent extends Component<any> {
 
     let subjects_array = [];
 
-    if (userType === 'docente') {
-      if (center === {}) {
-        Alert.alert('Error!', 'Llene todos los campos antes de continuar');
-      }
-    } else if (userType === 'estudiante') {
-      if (grade === '' || center === {}) {
-        Alert.alert('Error!', 'Llene todos los campos antes de continuar');
-      }
-    } else if (userType === 'pendiente') {
+    if (userType === 'docente' && !center?._id) {
+      this.setState({loading: false});
+      Alert.alert('Error!', 'Llene todos los campos antes de continuar');
+      return ;
+    }
+    
+    if (userType === 'estudiante' && (grade === '' || !center?._id)) {
+      this.setState({loading: false});
+      Alert.alert('Error!', 'Llene todos los campos antes de continuar');
+      return;
+    }
+    
+    if (userType === 'pendiente') {
       for (var i = subjects.length - 1; i >= 0; i--) {
         if (subjects[i].selected === true) {
           subjects_array.push(subjects[i].key);
@@ -183,9 +187,12 @@ class RegisterFormScreenComponent extends Component<any> {
       }
 
       if (subjects_array.length === 0) {
+        this.setState({loading: false});
         Alert.alert('Error!', 'Llene todos los campos antes de continuar');
+        return;
       }
     }
+
     await this.loginAction({...this.state, subjects: subjects_array});
     this.setState({loading: false});
   }
