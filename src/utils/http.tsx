@@ -126,12 +126,14 @@ class HttpUtil {
 
       /*=====  End of Enviando la petición  ======*/
     } catch (e) {
-      return {
-        status: 'error',
-        status_code: 'fail_request_http',
-        message: e.message,
-        code: 500,
-      };
+      if(e && e?.message){
+        return {
+          status: 'error',
+          status_code: 'fail_request_http',
+          message: e.message,
+          code: 500,
+        };
+      }
     }
   };
 }

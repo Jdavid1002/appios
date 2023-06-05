@@ -103,8 +103,6 @@ class ChallengesContainer extends Component<any> {
         loading: false,
         matters: matter_data,
       });
-    } else {
-      Alert.alert(data.message);
     }
   }
 
