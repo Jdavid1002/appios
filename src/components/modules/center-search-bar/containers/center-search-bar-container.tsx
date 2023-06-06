@@ -25,7 +25,7 @@ class CenterSearchBarContainer extends Component<any> {
 
     this.state = {
       selectedItem: null,
-      message: 'Ingrese por lo menos 3 caracteres',
+      message: 'Ingrese su busqueda',
       text: '',
       items: [],
       addCenter: false,
@@ -58,59 +58,84 @@ class CenterSearchBarContainer extends Component<any> {
     this.setState({
       showNotFound : false,
       selectedItem: null,
-      message: 'Ingrese por lo menos 3 caracteres',
+      message: 'Ingrese su busqueda',
       text: '',
       items: [],
       addCenter: false,
     });
   }
 
-  async handleTextChange(text: string) {
-    this.setState({text});
+  async getCenterNotFoundItem () {
+    // Fetch.
+    const query_data: HttpCustomStructure = {
+      method: 'GET',
+      url: `/api/alliance/iq-secundaria/headquarter/external-list?search=No encuentro mi centro educativo&pageNumber=1&nPerPage=15&select=name+localization+slug`,
+    };
 
-    if (text.length < 3) {
-      this.setState({
-        message: 'Ingrese por lo menos 3 caracteres',
-        items: [],
-        addCenter: false,
-      });
-    } else if (this.state.items.length === 0) {
-      this.setState({
-        message: 'Buscando...',
-      });
+    const data = await Http.send(query_data);
 
-      // Fetch.
-      const query_data: HttpCustomStructure = {
-        method: 'GET',
-        url: '/api/alliance/iq-secundaria/headquarter/external-list?search=&pageNumber=1&nPerPage=10&select=name+localization+slug',
+    const centers = data?.headquarters?.map((item: any) => {
+      return {
+        school_name:
+          item?.name +
+            ',  ' +
+            item?.localization?.regional +
+            ',  ' +
+            item?.localization?.district || '',
+        ...item,
       };
+    });
+    const noFoundFind = centers?.find((item : any) => item?.name?.includes("No encuentro mi centro educativo"))
 
-      const data = await Http.send(query_data);
+    return noFoundFind
+  }
 
-      if (data.status === 'success') {
-        const centers = data?.headquarters?.map((item: any) => {
-          return {
-            school_name:
-              item?.name +
-                ',  ' +
-                item?.localization?.regional +
-                ',  ' +
-                item?.localization?.district || '',
-            ...item,
-          };
-        });
+  async handleTextChange(text: string) {
 
-        this.setState({
-          items: centers,
-          message:
-            centers.length > 0
-              ? ''
-              : 'No hay resultados que coincidan con la búsqueda',
-          addCenter: true,
-        });
-      } else {
-        alert(data.message);
-      }
+    if(!text?.length && !this.state.showNotFound) return this.changeSelectedItem()
+
+    this.setState({
+      message: 'Buscando...',
+      text
+    });
+
+    // Fetch.
+    const query_data: HttpCustomStructure = {
+      method: 'GET',
+      url: `/api/alliance/iq-secundaria/headquarter/external-list?search=${text}&pageNumber=1&nPerPage=15&select=name+localization+slug`,
+    };
+
+    const data = await Http.send(query_data);
+
+    if (data.status === 'success') {
+      const centers = data?.headquarters?.map((item: any) => {
+        return {
+          school_name:
+            item?.name +
+              ',  ' +
+              item?.localization?.regional +
+              ',  ' +
+              item?.localization?.district || '',
+          ...item,
+        };
+      });
+
+      const noFoundFind = centers?.find((item : any) => item?.name?.includes("No encuentro mi centro educativo")) || await this.getCenterNotFoundItem()
+
+      
+      if(!centers.find((item : any) => item?._id === noFoundFind?._id)) centers.unshift(noFoundFind)
+
+      this.setState({
+        items: centers,
+        message:
+          centers?.length > 0
+            ? ''
+            : 'No hay resultados que coincidan con la búsqueda',
+        addCenter: true,
+      });
+
+    } else {
+      if(data?.message && !data?.message.includes('JSON')) alert(data?.message && !data?.message.includes('JSON'));
     }
   }
 
@@ -122,7 +147,7 @@ class CenterSearchBarContainer extends Component<any> {
   }
 
   render() {
-    const {items, message, text, addCenter, selectedItem} = this.state;
+    const {items, message, text, selectedItem} = this.state;
 
     return (
       <SafeAreaView style={[styles.container, mainStyles.formContainer]}>

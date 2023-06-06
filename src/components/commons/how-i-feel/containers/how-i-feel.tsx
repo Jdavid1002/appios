@@ -145,11 +145,12 @@ const HowIFeel = (props: HowIFeelProps) => {
     dispatch(setIsActiveAction(false));
 
     if (response?.status === 200) {
-      Alert.alert(
+      if(response?.message) Alert.alert(
         'Success',
         response.message,
         [{text: 'Cerrar'}],
       );
+      
     }
   };
 

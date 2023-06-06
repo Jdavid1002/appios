@@ -83,12 +83,13 @@ class LearningPath extends Component<any> {
         no_learning_path: true,
       });
     } else {
-      Alert.alert(
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert(
         'Error',
         data.message,
         [{text: 'OK', onPress: () => this.props.navigation.navigate('Home')}],
         {cancelable: false},
       );
+      
     }
   };
 

@@ -33,7 +33,7 @@ class ProfileService {
       dispatch(updateProfileAction(data.user));
       dispatch(setUserDataAction(data.user));
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
   };
 
@@ -53,7 +53,7 @@ class ProfileService {
 
     if (data.status === 'success') {
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
   };
 

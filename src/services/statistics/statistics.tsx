@@ -55,7 +55,7 @@ class StatisticsService {
     if (data?.code === 200) {
       return data
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
   }
 
@@ -82,7 +82,7 @@ class StatisticsService {
     if (data?.code === 200) {
       return data
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
   }
 
@@ -104,7 +104,7 @@ class StatisticsService {
     const data = await Http.send(query_data);
 
     if(data?.status !== 'success') {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
       return
     }
 
@@ -167,7 +167,7 @@ class StatisticsService {
 
         return newStatistics
       } else {
-        Alert.alert(data.message);
+        if(data?.message && !data?.message.includes('JSON')) Alert.alert(data.message);
       }
     } catch (error) {
       console.log(error)

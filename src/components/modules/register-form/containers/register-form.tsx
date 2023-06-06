@@ -274,7 +274,7 @@ class RegisterFormScreenComponent extends Component<any> {
       };
       await authService.login(credentials, this.props);
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
   };
 

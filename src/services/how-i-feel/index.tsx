@@ -22,7 +22,7 @@ class HowIFeelService {
     if (data.status === 'success') {
       return data;
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
   };
 

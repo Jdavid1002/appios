@@ -93,11 +93,12 @@ class ForgotPasswordFormContainer extends Component {
       );
       this.props.navigation.navigate('Login');
     }else{
-      Alert.alert(
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert(
         'Success',
         data?.message,
         [{text: 'Cerrar'}],
       );
+      
     }
   }
 

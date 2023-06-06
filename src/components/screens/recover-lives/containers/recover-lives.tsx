@@ -65,12 +65,14 @@ class RecoverLives extends Component<any> {
         questions_data: questions_data,
       });
     } else {
-      Alert.alert(
+
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert(
         'Error',
         data.message,
         [{text: 'OK', onPress: () => this.props.navigation.navigate('Home')}],
         {cancelable: false},
       );
+      
     }
   };
 

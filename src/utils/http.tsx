@@ -126,7 +126,7 @@ class HttpUtil {
 
       /*=====  End of Enviando la petición  ======*/
     } catch (e) {
-      if(e && e?.message){
+      if(e && e?.message && !e?.message.includes('JSON')){
         return {
           status: 'error',
           status_code: 'fail_request_http',

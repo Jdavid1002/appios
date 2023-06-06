@@ -127,7 +127,7 @@ class Challenges extends Component<any> {
         matters: matter_data,
       });
     } else {
-      Alert.alert(data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert(data.message);
     }
   };
 

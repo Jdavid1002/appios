@@ -47,7 +47,7 @@ class GameService {
       statistics.points.total = statistics.points.total + data.brains_to_assign;
       dispatch(updateStatisticsAction(statistics));
     } else {
-      Alert.alert('Error!', data.message);
+      if(data?.message && !data?.message.includes('JSON')) Alert.alert('Error!', data.message);
     }
 
     return data;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TextInput, FlatList, View, Text} from 'react-native';
+import {TextInput, FlatList, View, Text, ScrollView} from 'react-native';
 import CenterItemComponent from '../../../../components/modules/center-search-bar/components/center-item-component';
 import mainStyles from '../../../../styles/MainStyles';
 import styles from '../styles/styles';
@@ -9,22 +9,13 @@ import ButtonRed from '../../../commons/buttons/components/button-red';
 class CenterSearchBarComponent extends Component<any> {
   constructor(props: any) {
     super(props);
-
-    this.filterItems = this.filterItems.bind(this);
   }
 
-  filterItems() {
-    const {text} = this.props;
-    return this.props.items.filter((item: any) => item.school_name.toLowerCase().indexOf(text.toLowerCase()) > -1,);
-  }
 
   render() {
-    const {text, message, selectedItem, showNotFound} = this.props;
-    const filteredItems = this.filterItems();
-    const noFoundFind = this.props.items?.find((item : any) => item.name.includes("No encuentro mi centro educativo"))
-    if(!filteredItems.find((item : any) => item?._id === noFoundFind?._id) && text?.length > 2) filteredItems.push(noFoundFind);
+    const {text, message, selectedItem, showNotFound, items} = this.props;
 
-    const deleteUndefinedTextInItems = filteredItems?.map((item : any) => {
+    const deleteUndefinedTextInItems = items?.map((item : any) => {
       return {
         ...item,
         school_name : item?.school_name?.replaceAll("undefined,", "").replaceAll("undefined", ""),
@@ -35,7 +26,7 @@ class CenterSearchBarComponent extends Component<any> {
 
 
     return (
-      <View>
+      <ScrollView>
         <CustomText style={mainStyles.label}>Centro Educativo</CustomText>
         <TextInput
           placeholder="Centro Educativo"
@@ -47,23 +38,22 @@ class CenterSearchBarComponent extends Component<any> {
         />
 
         {!selectedItem && (
-          <>
-            <FlatList
-              data={deleteUndefinedTextInItems}
-              renderItem={({item}) => (
-                <CenterItemComponent
-                  handleSelectItem={() => this.props.handleSelectItem(item)}
-                  school={item}
-                />
-              )}
-              style={styles.listContainer}
-            />
-            {!message && filteredItems.length === 0 && (
+          <View
+            style={styles.listContainer}
+          >
+            {deleteUndefinedTextInItems?.map((item : any, idx : number)=> 
+              <CenterItemComponent
+                handleSelectItem={() => this.props.handleSelectItem(item)}
+                school={item}
+                key={idx}
+              />
+            )}
+            {!message && deleteUndefinedTextInItems.length === 0 && (
               <CustomText style={styles.message}>
                 No hay resultados que coincidan con la búsqueda
               </CustomText>
             )}
-          </>
+          </View>
         )}
 
 
@@ -97,7 +87,7 @@ class CenterSearchBarComponent extends Component<any> {
               }} />
           </View>
         :null}
-      </View>
+      </ScrollView>
     );
   }
 }

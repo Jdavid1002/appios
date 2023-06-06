@@ -44,7 +44,7 @@ class ChallengeService {
       const data = await Http.send(queryData);
 
       if (data?.code !== 200) {
-        Alert.alert(data.message);
+        if(data?.message && !data?.message.includes('JSON')) Alert.alert(data.message);
         return null;
       }
 
@@ -76,7 +76,7 @@ class ChallengeService {
       if (data?.status === 'success') {
         return data;
       } else {
-        Alert.alert(data.message);
+        if(data?.message && !data?.message.includes('JSON')) Alert.alert(data.message);
       }
     } catch (error) {
       console.log(error);
