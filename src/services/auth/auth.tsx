@@ -141,6 +141,31 @@ class AuthService {
     }
   };
 
+  userStatus = async () => {
+    const storeObject = store
+    const auth = storeObject.getState()?.auth?.user?.token ? true : false
+    const token = storeObject.getState().auth.user?.token || ''
+    const alliance = store.getState().auth.user?.alliance_id || ''
+    const user =  store.getState().auth.user?._id || ""
+
+    if(auth){
+      const queryData: HttpCustomStructure = {
+        method: 'POST',
+        url: `/api/user-status/${alliance}/update`,
+        headers: new Headers({
+          'Authorization': token
+        }),
+        params: {
+          connection: "online",
+          system: "app",
+          user : user,
+        },
+        auth_token: token
+      }
+      await Http.send(queryData)
+    }
+  }
+
   logout = (dispatch: any) => dispatch(logoutAction());
   updateToken = (token: string, dispatch: any) => dispatch(updateToken(token));
 }
