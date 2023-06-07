@@ -135,7 +135,7 @@ class CenterSearchBarContainer extends Component<any> {
       });
 
     } else {
-      if(data?.message && !data?.message.includes('JSON')) alert(data?.message && !data?.message.includes('JSON'));
+      if(data?.message && !data?.message.includes('JSON')) alert(data?.message);
     }
   }
 
