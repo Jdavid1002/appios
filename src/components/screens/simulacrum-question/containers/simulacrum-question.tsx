@@ -120,7 +120,7 @@ class SimulacrumQuestions extends Component<any, any> {
     const dontUseStatistics = this?.props?.route?.params?.dontUseStatistics;
     const isQuestionOfDay = this?.props?.route?.params?.isQuestionOfDay;
 
-    const cutQuestions = isQuestionOfDay ? 10 : section?.questions?.length - 1
+    const cutQuestions = isQuestionOfDay ? 10 : section?.questions?.length
 
     const newQuestions = section?.questions?.slice(0, cutQuestions).map(
       (_question: any, idx: number) => {

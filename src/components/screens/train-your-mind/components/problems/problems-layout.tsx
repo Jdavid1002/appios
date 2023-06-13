@@ -44,7 +44,7 @@ const SpellIt = (props: any) => {
             )}
 
             <Text style={[styles.gameTitle, gameStyles.word]}>
-              {props?.question?.question} {props.answered && `= ${props?.question?.answer}`}
+              {props?.question?.question || ''} {props.answered ? `= ${props?.question?.answer}` : ''}
             </Text>
 
             <View style={{ width: '100%' , justifyContent : 'center', gap : 10, flexDirection : 'row' , flexWrap : 'wrap', marginBottom : 100}}>
@@ -63,13 +63,13 @@ const SpellIt = (props: any) => {
                   ]}
                   onPress={() => props.doAnswer(option)}
                 >
-                  <Text style={{fontSize : 24, color : 'black'}} >{option}</Text>
+                  <Text style={{fontSize : 24, color : 'black'}} >{option || ''}</Text>
                 </TouchableHighlight>
               ))}
             </View>
 
             <Text style={[gameStyles.timer]}>
-              {`${props.remaining.m}:${props.remaining.s}`}
+              {`${props.remaining.m || ''}:${props.remaining.s || ''}`}
             </Text>
           </React.Fragment>
         )}
