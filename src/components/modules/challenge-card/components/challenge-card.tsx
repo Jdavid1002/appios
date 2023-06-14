@@ -37,6 +37,7 @@ function ChallengeCardComponent(props: any) {
             </CustomText>
           </TouchableOpacity>
         )}
+
       </ImageBackground>
     </TouchableOpacity>
   );

@@ -20,7 +20,9 @@ function mapStatesToProps(state: any = {}) {
   return {
     auth_token: state?.auth?.user?.token,
     user_id: state?.auth?.user?._id,
-    alliance_id: state?.auth?.user?.alliance_id,  };
+    alliance_id: state?.auth?.user?.alliance_id, 
+    program: state?.auth?.user?.user_data?.program,
+  };
 }
 
 class Challenges extends Component<any> {
@@ -48,7 +50,7 @@ class Challenges extends Component<any> {
     }
 
     if (!matter_data?.isDiagnostic) {
-      this.props.navigation.navigate('LearningPath', {matterId: matterId});
+      this.props.navigation.navigate('LearningPath', {matterId: matter_data?.way});
       return false;
     }
 
@@ -86,7 +88,8 @@ class Challenges extends Component<any> {
     const data = await challengeService.getChallengesData({
       auth_token : this.props.auth_token,
       alliance_id : this.props.alliance_id,
-      user_id : this.props.user_id
+      user_id : this.props.user_id,
+      program: this?.props?.program?._id
     })
 
 
@@ -98,16 +101,16 @@ class Challenges extends Component<any> {
         'Ciencias de la Naturaleza': 'http://uploads.kuepa.com/uploads/app-matters/53288/card_large.png',
       }
 
-      const matters = data?.home_data?.diagnostics.concat(data?.home_data?.learning_ways)
-      const diagnostics_ids = data?.home_data?.diagnostics?.map((item: any) => item?._id)
+      const matters = data?.diagnostics
       
       const matter_data = matters?.map((item : any) => {
-        const isDiagnostic = diagnostics_ids?.find((diagnostic : any) => diagnostic === item?._id)
+        const isDiagnostic = item?.has_way ? false : true
 
         const isGenerateLearningWay = this.canResultsWhenIsDiagnostic(
           item?.statistics?.results,
           'is_generating',
         );
+
         return {
           id: item?._id,
           title: item?.name,
@@ -118,7 +121,8 @@ class Challenges extends Component<any> {
           onPress: isGenerateLearningWay ? () => null :this?.handlePress,
           isDiagnostic : isDiagnostic && !isGenerateLearningWay ? true : false,
           loading : isGenerateLearningWay,
-          getChallengesData : this.getChallengesData
+          getChallengesData : this.getChallengesData,
+          ...item
         }
       });
 

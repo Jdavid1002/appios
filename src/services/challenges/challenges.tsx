@@ -17,6 +17,7 @@ export interface IGetChallengesData {
   auth_token: string;
   alliance_id: string;
   user_id: string;
+  program : string;
 }
 
 class ChallengeService {
@@ -55,12 +56,12 @@ class ChallengeService {
   }
 
   async getChallengesData(params: IGetChallengesData) {
-    const {auth_token, alliance_id, user_id} = params;
+    const {auth_token, alliance_id, user_id, program} = params;
 
     try {
       const query_data: HttpCustomStructure = {
         method: 'POST',
-        url: '/api/learning-way/get-home-info',
+        url: '/api/learning-way/get-diagnostics',
         headers: new Headers({
           Accept: 'application/json',
           'Content-Type': 'application/json',
@@ -68,12 +69,13 @@ class ChallengeService {
         }),
         params: {
           alliance_id: alliance_id,
-          user_id: user_id,
+          user: user_id,
+          program: program,
         },
         auth_token: auth_token,
       };
       const data = await Http.send(query_data);
-      if (data?.status === 'success') {
+      if (data?.code === 200) {
         return data;
       } else {
         if(data?.message && !data?.message.includes('JSON')) Alert.alert(data.message);
