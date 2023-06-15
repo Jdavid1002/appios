@@ -258,11 +258,11 @@ class ChallengeQuestions extends Component<any, any> {
       return
     }
 
-    //@INFO En caso de que se haya terminado el diagnostico.
+    //@INFO En caso de que se haya terminado el diagnóstico.
     if(qualify){
       Alert.alert(
         'Perfecto',
-        '¡Terminaste esta el diagnostico!'
+        '¡Terminaste esta el diagnóstico!'
       )
       this.props.navigation.navigate('Home',{})
       return
@@ -285,7 +285,7 @@ class ChallengeQuestions extends Component<any, any> {
     if(!getQuestionsNoSelecteds?.length){
       Alert.alert(
         'Perfecto',
-        '¡Terminaste esta seccion del diagnostico!'
+        '¡Terminaste esta seccion del diagnóstico!'
       )
       this.props.navigation.navigate('SectionsMatter', {
         matterId: this?.props?.route?.params?.matterId,

@@ -20,7 +20,7 @@ export interface IFilterLevelsSimulacrumsParams {
   structure_id?: string; // Identificador del programa
   user_only?: boolean; // Solo de los grupos donde pertenece el usuario
   programByUser?: boolean; // Obtener el programa del usuario y no de la structure_id que llega
-  is_diagnostic?: boolean; // Obtener los diagnosticos o simulacros
+  is_diagnostic?: boolean; // Obtener los diagnósticos o simulacros
 }
 
 class SimulacrumService {

@@ -197,7 +197,7 @@ const SectionsMatterLayout = (props: ISectionsMatterLayout) => {
     <React.Fragment>
       <ScrollView>
         <CustomText style={[mainStyles.textCenter, styles.textTitle]}>
-          Componentes del {props.isSimulacrum ? 'simulacro' : 'diagnostico'}
+          Componentes del {props.isSimulacrum ? 'simulacro' : 'diagnóstico'}
         </CustomText>
         <FlatList
           keyExtractor={keyExtractor}
