@@ -36,7 +36,8 @@ class ChallengeQuestions extends Component<any, any> {
     current_question_data: {},
     current_answers: [],
     selected_answer: {},
-    statistics: []
+    statistics: [],
+    loadingButton: false,
   };
 
   lettersByIndex : any = {
@@ -198,6 +199,7 @@ class ChallengeQuestions extends Component<any, any> {
   };
 
   handlePressButtonSend = async () => {
+    this.setState({loadingButton : true})
     const section = this?.props?.route?.params?.section;
 
     const currentStatisticsInDataBase = this?.props?.route?.params?.academicResourceData?.config?.attempt_active?.results?.statistics || []
@@ -254,12 +256,14 @@ class ChallengeQuestions extends Component<any, any> {
     const data = await Http.send(query_data);
 
     if(data?.status_code !== 'success'){
-      console.log('error', data)
+      console.log('diagnosticos_data', data)
+      this.setState({loadingButton : false})
       return
     }
 
     //@INFO En caso de que se haya terminado el diagnóstico.
     if(qualify){
+      this.setState({loadingButton : false})
       Alert.alert(
         'Perfecto',
         '¡Terminaste esta el diagnóstico!'
@@ -292,8 +296,10 @@ class ChallengeQuestions extends Component<any, any> {
         configCategory: '6303ed5f3138387a1669d7ac',
         getChallengesData: () => null,
       });
+      this.setState({loadingButton : false})
     }else{
       this.changeQuestionByNavigate('+')
+      this.setState({loadingButton : false})
     }
 
   };
@@ -377,14 +383,22 @@ class ChallengeQuestions extends Component<any, any> {
             ))}
 
             <ButtonBlue
-              textBtn="Responder"
-              onPressBtn={this.handlePressButtonSend}
+              textBtn={
+                this.state.loadingButton 
+                ?  
+                  <View style={{width : '100%', flexDirection : 'row', justifyContent : 'center', alignItems : 'center'}} >
+                    <ActivityIndicator size="small" color="#061946" />
+                  </View>
+                : "Responder"
+              }
+              onPressBtn={this.state.loadingButton ? () => null : this.handlePressButtonSend}
               disabled={
                 Object.keys(this.state.selected_answer).length > 0
                   ? false
                   : true
               }
             />
+
           </React.Fragment>
         </ScrollView>
         <HowIFeel screen="section_challenge" />

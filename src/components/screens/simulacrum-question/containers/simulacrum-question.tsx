@@ -43,6 +43,7 @@ class SimulacrumQuestions extends Component<any, any> {
     lives: 3,
     modalVisible: false,
     success_response_question : 0,
+    loadingButton: false,
   };
 
   lettersByIndex: any = {
@@ -223,6 +224,8 @@ class SimulacrumQuestions extends Component<any, any> {
   };
 
   handlePressButtonSend = async () => {
+    this.setState({loadingButton : true})
+
     const section = this?.props?.route?.params?.section;
     const dontUseStatistics = this?.props?.route?.params?.dontUseStatistics;
     const isQuestionOfDay = this?.props?.route?.params?.isQuestionOfDay;
@@ -304,11 +307,13 @@ class SimulacrumQuestions extends Component<any, any> {
 
     if (data?.status_code !== 'success') {
       console.log('error', data);
-      // return;
+      this.setState({loadingButton : false})
+      return;
     }
 
     //@INFO En caso de que se haya terminado el Simulacro.
     if(qualify && !isQuestionOfDay){
+      this.setState({loadingButton : false})
       Alert.alert(
         'Perfecto',
         '¡Terminaste esta sección del Simulacro!'
@@ -380,6 +385,7 @@ class SimulacrumQuestions extends Component<any, any> {
           time_view : seconds,
           dataResults : this.convertQuestionInFormatOfSummary(newStatistics)
         })
+        this.setState({loadingButton : false})
         return
       }
 
@@ -397,7 +403,9 @@ class SimulacrumQuestions extends Component<any, any> {
         configCategory: '601981dcef21ba13c3843b88',
         isSimulacrum: true,
       });
+      this.setState({loadingButton : false})
     } else {
+      this.setState({loadingButton : false})
       this.changeQuestionByNavigate('+');
     }
   };
@@ -526,8 +534,15 @@ class SimulacrumQuestions extends Component<any, any> {
                 </View>
               ))}
               <ButtonBlue
-                textBtn="Responder"
-                onPressBtn={this.handlePressButtonSend}
+              textBtn={
+                this.state.loadingButton 
+                ?  
+                  <View style={{width : '100%', flexDirection : 'row', justifyContent : 'center', alignItems : 'center'}} >
+                    <ActivityIndicator size="small" color="#061946" />
+                  </View>
+                : "Responder"
+              }
+              onPressBtn={this.state.loadingButton ? () => null : this.handlePressButtonSend}
                 disabled={
                   Object.keys(this.state.selected_answer).length > 0
                     ? false

@@ -12,7 +12,8 @@ const SectionsMatterCard = (props: ItemWithOnPress) => {
   return (
     <TouchableOpacity
       onPress={() => props.handlePress(props)}
-      disabled={props.disabled || props.completed}>
+      disabled={props.disabled || props.completed}
+    >
       <View
         style={{
           ...styles.containerRight,

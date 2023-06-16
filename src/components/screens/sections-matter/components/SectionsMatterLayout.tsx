@@ -77,16 +77,17 @@ const SectionsMatterLayout = (props: ISectionsMatterLayout) => {
       ) !== undefined || Number(index) === 0
         ? false
         : true;
+
     const completed = ProgressBySection[item?._id] > 99 ? true : false;
+
+    const onClick = completed || disabled ? () => null : handlePress
+
     const ItemWithOnPress: ItemWithOnPress = {
       ...item,
-      handlePress:
-        completed || (disabled && props.isSimulacrum)
-          ? () => null
-          : handlePress,
+      handlePress: onClick,
       index: index + 1,
       completed,
-      disabled,
+      disabled
     };
     return <SectionsMatterCard {...ItemWithOnPress} />;
   };
@@ -128,8 +129,15 @@ const SectionsMatterLayout = (props: ISectionsMatterLayout) => {
       });
       setCompletedSections(completedSectionsData);
       setProgressBySection(_auxProgress);
+      validateAllSectionsComplete(_auxProgress)
     }
   };
+
+  const validateAllSectionsComplete = (newProgressBySection : any) => {
+    const sectionsNotComplete = props.infoSections?.find((item : ISection) => newProgressBySection[item?._id] > 99 ? false : true)
+    if(sectionsNotComplete) return
+    handlePressButtonSend(true)
+  }
 
   const getSectionProgress = (_section: any) => {
     if (!_section) {
@@ -160,13 +168,12 @@ const SectionsMatterLayout = (props: ISectionsMatterLayout) => {
   const keyExtractor = (item: ISection) => item?._id.toString();
   const itemSeparator = () => <CustomText />;
 
-  const handlePressButtonSend = async () => {
+  const handlePressButtonSend = async (isDiagnostic ? : boolean) => {
     const params = {
       results: props.academicResourceData?.results,
       deliverable_date: new Date(),
       qualify: true,
-      academic_resource_config:
-        props.academicResourceData?.academic_resource_config,
+      academic_resource_config: props.academicResourceData?.academic_resource_config,
       user: store.getState().auth.user?._id,
     };
 
@@ -186,10 +193,18 @@ const SectionsMatterLayout = (props: ISectionsMatterLayout) => {
 
     const data = await Http.send(query_data);
     if (data.status === 'success') {
-      props.navigation.navigate('SimulacrumScore', {
-        score: Math.round(data.attempt.results.score),
-        approve: data.attempt.results.score > 50,
-      });
+      if(isDiagnostic){
+        Alert.alert(
+          'Perfecto',
+          '¡Terminaste esta el diagnóstico!'
+        )
+        props.navigation.navigate('Home',{})
+      }else{
+        props.navigation.navigate('SimulacrumScore', {
+          score: Math.round(data.attempt.results.score),
+          approve: data.attempt.results.score > 50,
+        });
+      }
     }
   };
 
