@@ -5,6 +5,11 @@ import {connect} from 'react-redux';
 import {UpdateProfile} from '../../../../reducers/profile/types';
 import ProfileService from '../../../../services/profile';
 import {ProfileEditLayout} from '../../../../components/screens/profile';
+import { UserState } from '../../../../reducers/auth/types';
+
+import {
+  setUserData as setUserDataAction,
+} from '../../../../reducers/auth/actions';
 
 class EditProfile extends Component<any, any> {
   constructor(props: any) {
@@ -65,17 +70,30 @@ class EditProfile extends Component<any, any> {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       email_address: this.state.email_address,
-      birthdate: this.state.birthdate,
       phone: this.state.phone,
-      sex: this.state.sex,
+      _id : this.props.user._id,
     };
 
-    await profileService.updateMe(profile_info, this.props.auth_token);
-    await profileService.getMe(this.props.auth_token, this.props.dispatch);
+    await profileService.updateMe(profile_info, this.props.auth_token, this.props.alliance_id);
+
+    this.updateReduxUser(profile_info)
 
     this.setState({status: null});
     this.props.setVisible(false);
   };
+
+  async updateReduxUser (profile_info : Partial<UpdateProfile>) {
+    const newProfile = {
+      ...this.props.user?.user_data,
+      first_name: profile_info.first_name,
+      last_name: profile_info.last_name,
+      email_address: profile_info.email_address,
+      phone: profile_info.phone,
+      fullname : `${profile_info.first_name} ${profile_info.last_name}`
+    }
+    
+    await this.props.dispatch(setUserDataAction(newProfile));
+  }
 
   render() {
     return (
@@ -95,7 +113,9 @@ class EditProfile extends Component<any, any> {
 function mapStatesToProps(state: any = {}) {
   return {
     user_data: state.auth.user.user_data,
+    user: state.auth.user,
     auth_token: state.auth.user.token,
+    alliance_id: state?.auth?.user?.alliance_id, 
   };
 }
 

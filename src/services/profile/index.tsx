@@ -37,16 +37,21 @@ class ProfileService {
     }
   };
 
-  updateMe = async (profile: Partial<UpdateProfile>, token: string) => {
+  updateMe = async (profile: Partial<UpdateProfile>, token: string, alliance_id : string) => {
+
     const query_data: HttpCustomStructure = {
-      method: 'PUT',
-      url: '/api/user/update-info',
-      params: profile,
+      method: 'POST',
+      url: `/api/user/update/${profile._id}`,
       headers: new Headers({
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: token,
       }),
+      params: {
+        profile,
+        alliance_id
+      },
+      auth_token: token,
     };
 
     const data = await Http.send(query_data);

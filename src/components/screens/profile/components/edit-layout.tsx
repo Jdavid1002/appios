@@ -59,7 +59,7 @@ class ProfileEditModal extends Component<any> {
                 flexDirection: 'row',
                 alignItems : 'center',
                 justifyContent : 'space-between',
-                paddingHorizontal : 15,
+                paddingHorizontal : 12,
                 paddingBottom : 10,
                 paddingTop : 55
               }}
@@ -150,7 +150,7 @@ class ProfileEditModal extends Component<any> {
                   />
                 </View>
 
-                <View style={[styles.row, {margin: 8}]}>
+                {/* <View style={[styles.row, {margin: 8}]}>
                   <Text style={[styles.label]}>Fecha de nacimiento</Text>
                   <TouchableHighlight
                     onPress={() => this.props.setShowBirthdatePicker(true)}
@@ -168,7 +168,7 @@ class ProfileEditModal extends Component<any> {
                       style={{backgroundColor: '#8E96AB', borderRadius: 30}}
                     />
                   )}
-                </View>
+                </View> */}
 
                 <View style={[styles.row, {margin: 8}]}>
                   <Text style={[styles.label]}>Teléfono (opcional *)</Text>

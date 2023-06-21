@@ -38,8 +38,8 @@ const SpellIt = (props: any) => {
             )}
 
             {props.answered && props.answered !== props?.question?.answer && (
-              <View style={[styles.feedBackIconContainer, { borderColor: '#7aab62' }]}>
-                <FontAwesomeIcon icon={faClose}  color='#7aab62' />
+              <View style={[styles.feedBackIconContainer, { borderColor: '#e94044' }]}>
+                <FontAwesomeIcon icon={faClose}  color='#e94044' />
               </View>
             )}
 

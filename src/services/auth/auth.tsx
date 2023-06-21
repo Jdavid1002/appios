@@ -89,6 +89,8 @@ class AuthService {
           avatar: user_data?.user?.avatar,
           color: defaultGradientColors[randomColor] || defaultGradientColors[0],
           email_address: profile?.email,
+          first_name: profile?.first_name,
+          last_name: profile?.last_name,
           birthdate: '',
           phone: profile.cell_phone,
           gender: profile.gender,

@@ -17,14 +17,10 @@ const RankingLayout = (props: any) => {
         props.data.map((rank: any, i: number) => {
           return typeof rank !== 'undefined' ? (
             <React.Fragment key={i}>
-              {props.data.length > 4 && i === props.data.length - 2 && (
+              {!props.showMore && (props.data.length > 4 && i === props.data.length - 2) && (
                 <Separator color={props.color} />
               )}
               <View key={rank.id} style={[styles.rankItem]}>
-                {/* <Thumbnail
-                  style={[styles.avatar, {borderColor: props.color}]}
-                  source={{uri: rank.avatar}}
-                /> */}
                 <Text
                   numberOfLines={1}
                   ellipsizeMode="tail"

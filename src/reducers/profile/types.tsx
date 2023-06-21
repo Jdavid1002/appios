@@ -2,6 +2,8 @@ export const PROFILE_UPDATE = 'PROFILE_UPDATE';
 
 export interface Profile {
   fullname: string;
+  first_name: string;
+  last_name: string;
   avatar: string;
   email_address: string;
   birthdate: string | Date;
@@ -19,6 +21,7 @@ export interface UpdateProfile {
   phone: string;
   sex: 'male' | 'female' | string;
   password: string;
+  _id : string
 }
 
 export type ProfileState = null | Profile;
