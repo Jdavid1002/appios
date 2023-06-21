@@ -525,8 +525,8 @@ class SimulacrumQuestions extends Component<any, any> {
                         this.getSelectedAnswer(answer) && styles.responseSelectedOption,
                       ]}>
                       <InlineWebview
-                        html={`<span>${this.lettersByIndex[i]}).&nbsp; ${answer.content}</span>`}
-                        css={'span, span * { display: inline; }'}
+                        html={`<span>${this.lettersByIndex[i]}).&nbsp;${answer.content.replace('style=\"float: left;\"', "")}</span>`}
+                        css={`span, span * { display: inline; }`}
                         style={[styles.webview]}
                       />
                     </View>

@@ -331,7 +331,6 @@ class ChallengeQuestions extends Component<any, any> {
 
   render() {
 
-
     if (this.state.loading) {
       return (
         <View style={[mainStyles.container, mainStyles.containerLoading]}>
@@ -373,7 +372,7 @@ class ChallengeQuestions extends Component<any, any> {
                     ]}
                     >
                     <InlineWebview
-                      html={`<span>${this.lettersByIndex[i]}).&nbsp; ${answer.content}</span>`}
+                      html={`<span>${this.lettersByIndex[i]}).&nbsp;${answer.content.replace('style=\"float: left;\"', "")}</span>`}
                       css={`span, span * { display: inline; }`}
                       style={[styles.webview]}
                     />
