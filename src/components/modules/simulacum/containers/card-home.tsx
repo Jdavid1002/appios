@@ -26,7 +26,10 @@ class SimulacrumCard extends Component<any> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <TouchableOpacity 
+        onPress={() => this.props.navigation.navigate('Simulacrums')}
+        style={styles.container}
+      >
         <Image
           style={styles.cardImageLeft}
           source={require('../../../../assets/img/home/bg_card_simulacrum.png')}
@@ -123,13 +126,12 @@ class SimulacrumCard extends Component<any> {
         </CustomText>
         <TouchableHighlight
           style={[styles.button]}
-          onPress={() => this.props.navigation.navigate('Simulacrums')}
         >
           <CustomText style={[styles.buttonText]}>
             Escoge tu asignatura
           </CustomText>
         </TouchableHighlight>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
